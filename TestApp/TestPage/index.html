@@ -195,19 +195,15 @@ function escHtml(s) {
       .catch(function(e){ e instanceof TypeError ? pass(c, label + ' → rejected ✓') : fail(c, label, e.message); });
   }
 
-  function testAllow(label, url) {
-    fetch(url)
-      .then(function(r){ r.ok ? pass(c, label + ' → allowed ✓') : fail(c, label, 'status ' + r.status); })
-      .catch(function(e){ fail(c, label + ' → unexpectedly blocked', e.message); });
-  }
-
   testBlock('fetch googlesyndication', 'https://pagead2.googlesyndication.com/test');
   testBlock('fetch doubleclick',        'https://ad.doubleclick.net/test');
   testBlock('fetch GA /collect',        'https://www.google-analytics.com/collect?v=1');
   testBlock('fetch GA /g/collect',      'https://www.google-analytics.com/g/collect');
   testBlock('fetch hotjar',             'https://static.hotjar.com/c/hotjar.js');
   testBlock('fetch clarity.ms',         'https://c.clarity.ms/clarity.js');
-  testAllow('fetch example.com',        'https://example.com');
+  // Note: non-ad-domain pass-through is verified by browsing real sites in the
+  // URL bar — fetching https:// from a file:// page is blocked by Safari's own
+  // same-origin policy regardless of our adblocker, so we skip that test here.
 })();
 
 // ── 4. WebSocket blocking ─────────────────────────────────────────────────────
