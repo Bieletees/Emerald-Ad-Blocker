@@ -27,6 +27,7 @@ import re
 import ssl
 import sys
 import textwrap
+import hashlib
 import urllib.request
 import urllib.error
 from collections import Counter, defaultdict
@@ -36,6 +37,7 @@ from typing import Any
 ROOT = Path(__file__).parent.parent
 FILES_DIR = ROOT / "Files"
 OUTPUT_DIR = ROOT / "output"
+CACHE_DIR = ROOT / ".cache"
 
 # ---------------------------------------------------------------------------
 # Upstream list URLs
@@ -92,7 +94,7 @@ MAX_RULES = 149_000
 
 
 # ---------------------------------------------------------------------------
-# Network helpers
+# Network helpers with hash-based caching
 # ---------------------------------------------------------------------------
 
 def _ssl_context() -> ssl.SSLContext:
@@ -103,7 +105,20 @@ def _ssl_context() -> ssl.SSLContext:
         return ssl.create_default_context()
 
 
+def _cache_path(name: str) -> Path:
+    return CACHE_DIR / f"{name}.txt"
+
+
+def _hash_path(name: str) -> Path:
+    return CACHE_DIR / f"{name}.sha256"
+
+
 def fetch_list(name: str, url: str) -> str:
+    """Fetch an upstream list, using a local cache when content is unchanged."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache = _cache_path(name)
+    hash_file = _hash_path(name)
+
     print(f"  Fetching {name} …", end=" ", flush=True)
     req = urllib.request.Request(
         url, headers={"User-Agent": "EmeraldAdBlocker/3.0 build-pipeline"}
@@ -111,11 +126,26 @@ def fetch_list(name: str, url: str) -> str:
     try:
         with urllib.request.urlopen(req, context=_ssl_context(), timeout=45) as resp:
             text = resp.read().decode("utf-8", errors="replace")
-        print(f"OK ({len(text):,} bytes, {text.count(chr(10)):,} lines)")
-        return text
     except urllib.error.URLError as exc:
+        # Network failed — fall back to cache if available
+        if cache.exists():
+            text = cache.read_text(encoding="utf-8")
+            print(f"FAILED ({exc}) — using cached ({len(text):,} bytes)")
+            return text
         print(f"FAILED — {exc}")
         return ""
+
+    new_hash = hashlib.sha256(text.encode()).hexdigest()
+    old_hash = hash_file.read_text().strip() if hash_file.exists() else ""
+
+    if new_hash == old_hash:
+        print(f"OK (unchanged, {len(text):,} bytes)")
+    else:
+        cache.write_text(text, encoding="utf-8")
+        hash_file.write_text(new_hash)
+        print(f"OK (updated, {len(text):,} bytes, {text.count(chr(10)):,} lines)")
+
+    return text
 
 
 # ---------------------------------------------------------------------------
@@ -504,7 +534,79 @@ def extract_cosmetic_selectors(texts: dict[str, str]) -> list[str]:
                 seen.add(selector)
                 selectors.append(selector)
 
-    return selectors[:5_000]  # increased cap — two rule lists = more room
+    return selectors[:3_000]  # keep high-signal selectors, lighter output
+
+
+def cosmetic_to_native_rules(selectors: list[str]) -> list[dict]:
+    """
+    Convert generic CSS selectors to native WKContentRuleList css-display-none
+    rules. These are applied before paint — zero flicker, zero JS overhead.
+
+    Excludes Google/YouTube domains to prevent breaking video players and
+    other Google services. Network-level ad blocking still applies on those
+    domains — only cosmetic element hiding is skipped.
+    """
+    # Domains where cosmetic hiding causes breakage (video players, etc.)
+    # Network blocking rules for ad domains (doubleclick, googlesyndication)
+    # still apply — this only skips CSS element hiding.
+    COSMETIC_EXCLUDE_DOMAINS = [
+        "*youtube.com", "*youtu.be", "*googlevideo.com", "*ytimg.com",
+        "*google.com", "*googleapis.com", "*gstatic.com",
+        "*googleusercontent.com",
+    ]
+
+    rules: list[dict] = []
+    for sel in selectors:
+        # WKContentRuleList css-display-none only supports simple selectors
+        if "," in sel or "::" in sel or "iframe[src" in sel:
+            continue
+        rules.append({
+            "trigger": {
+                "url-filter": ".*",
+                "unless-domain": COSMETIC_EXCLUDE_DOMAINS,
+            },
+            "action": {"type": "css-display-none", "selector": sel}
+        })
+    return rules
+
+
+def extract_domain_cosmetic_selectors(texts: dict[str, str]) -> dict[str, list[str]]:
+    """
+    Extract domain-specific cosmetic selectors → {domain: [selector, ...]}.
+    The browser injects only matching selectors per domain via WKUserScript.
+    """
+    domain_selectors: dict[str, list[str]] = defaultdict(list)
+    seen: dict[str, set[str]] = defaultdict(set)
+
+    for text in texts.values():
+        for line in text.splitlines():
+            line = line.strip()
+            if not line or line.startswith("!") or line.startswith("@@"):
+                continue
+            if "##" not in line:
+                continue
+            domain_part, _, selector = line.partition("##")
+            selector = selector.strip()
+            if not selector:
+                continue
+            # Skip generic (handled by native rules) and extended syntax
+            if not domain_part or domain_part == "*":
+                continue
+            if ":-abp-" in selector or ":xpath(" in selector:
+                continue
+            if ":has-text(" in selector or ":matches-css(" in selector:
+                continue
+            # Handle comma-separated domains
+            for domain in domain_part.split(","):
+                domain = domain.strip().lstrip("~")
+                if not domain or domain.startswith("~"):
+                    continue
+                if selector not in seen[domain]:
+                    seen[domain].add(selector)
+                    domain_selectors[domain].append(selector)
+
+    # Cap per-domain to avoid huge entries
+    return {d: sels[:200] for d, sels in domain_selectors.items()}
 
 
 def extract_has_text_filters(texts: dict[str, str]) -> list[dict]:
@@ -1534,6 +1636,40 @@ def build_cosmetic_js(selectors: list[str], has_text_filters: list[dict]) -> str
 
 
 # ---------------------------------------------------------------------------
+# Auto-split helper — splits a rule list into 149K chunks
+# ---------------------------------------------------------------------------
+
+def write_rules_auto_split(
+    rules: list[dict], base_name: str, output_dir: Path, root: Path
+) -> list[str]:
+    """
+    Write rules to one or more JSON files. If len(rules) <= MAX_RULES,
+    writes a single file. Otherwise splits into base_name-1.json, -2.json, etc.
+    Returns list of filenames written.
+    """
+    files_written: list[str] = []
+    if len(rules) <= MAX_RULES:
+        out = output_dir / f"{base_name}.json"
+        with open(out, "w") as f:
+            json.dump(rules, f, separators=(",", ":"))
+        size_mb = out.stat().st_size / (1024 * 1024)
+        print(f"  Wrote {out.relative_to(root)} ({len(rules):,} rules, {size_mb:.1f} MB)")
+        files_written.append(f"{base_name}.json")
+    else:
+        chunks = [rules[i:i + MAX_RULES] for i in range(0, len(rules), MAX_RULES)]
+        for idx, chunk in enumerate(chunks, 1):
+            fname = f"{base_name}-{idx}.json"
+            out = output_dir / fname
+            with open(out, "w") as f:
+                json.dump(chunk, f, separators=(",", ":"))
+            size_mb = out.stat().st_size / (1024 * 1024)
+            print(f"  Wrote {out.relative_to(root)} ({len(chunk):,} rules, {size_mb:.1f} MB)")
+            files_written.append(fname)
+        print(f"  Split {base_name} into {len(chunks)} files ({len(rules):,} total)")
+    return files_written
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -1569,9 +1705,7 @@ def main() -> None:
     # ── Parse upstream (blocks + exceptions) ──────────────────────────────────
     print("\n=== Parsing upstream lists ===")
 
-    # Ad-blocking lists → adblock.json
     AD_LISTS = ["easylist", "ublock", "ublock_annoyances", "fanboy_annoyances", "ublock_unbreak"]
-    # Tracker/privacy lists → trackers.json
     TRACKER_LISTS = ["easyprivacy", "peter_lowe", "ublock_privacy"]
 
     adblock_blocks: list[dict] = []
@@ -1586,57 +1720,76 @@ def main() -> None:
             adblock_blocks.extend(blocks)
         all_exceptions.extend(exceptions)
 
+    # ── Build native cosmetic rules (css-display-none) ────────────────────────
+    print("\n=== Building native cosmetic rules ===")
+    cosmetic_selectors = extract_cosmetic_selectors(raw)
+    native_cosmetic = cosmetic_to_native_rules(cosmetic_selectors)
+    print(f"  {len(native_cosmetic):,} selectors → native css-display-none rules (pre-paint, zero flicker)")
+
     # ── Merge & deduplicate ───────────────────────────────────────────────────
     print("\n=== Merging and deduplicating ===")
 
-    # adblock.json: curated + EasyList + uBlock + Annoyances + Fanboy + Unbreak
-    adblock_merged = dedup(fixed_adblock + adblock_blocks)
+    # YouTube/Google safety net — MUST be at the end of every rule list so
+    # ignore-previous-rules overrides all upstream rules, not just curated ones.
+    # This prevents blocking YouTube's player API (youtubei/v1/player) and
+    # other Google service endpoints that match ad-like URL patterns.
+    # Network ad blocking for YouTube is handled by Emerald's own userscript.
+    YOUTUBE_SAFETY_NET = [
+        {
+            "trigger": {
+                "url-filter": ".*",
+                "if-domain": [
+                    "*youtube.com", "*youtu.be", "*googlevideo.com",
+                    "*ytimg.com", "*google.com", "*googleapis.com",
+                    "*gstatic.com", "*googleusercontent.com",
+                ]
+            },
+            "action": {"type": "ignore-previous-rules"}
+        }
+    ]
 
-    # trackers.json: curated + EasyPrivacy + Peter Lowe + uBlock Privacy
-    trackers_merged = dedup(fixed_trackers + tracker_blocks)
-
+    # adblock.json: curated + upstream + native cosmetic + YouTube safety net (last!)
+    adblock_merged = dedup(fixed_adblock + adblock_blocks + native_cosmetic) + YOUTUBE_SAFETY_NET
+    trackers_merged = dedup(fixed_trackers + tracker_blocks) + YOUTUBE_SAFETY_NET
     exceptions_merged = dedup(all_exceptions)
 
-    if len(adblock_merged) > MAX_RULES:
-        print(f"  WARNING: adblock ({len(adblock_merged):,}) exceeds WK limit → truncating")
-        adblock_merged = adblock_merged[:MAX_RULES]
-    if len(trackers_merged) > MAX_RULES:
-        print(f"  WARNING: trackers ({len(trackers_merged):,}) exceeds WK limit → truncating")
-        trackers_merged = trackers_merged[:MAX_RULES]
-    if len(exceptions_merged) > MAX_RULES:
-        exceptions_merged = exceptions_merged[:MAX_RULES]
+    total = len(adblock_merged) + len(trackers_merged) + len(exceptions_merged)
+    print(f"  adblock    : {len(adblock_merged):,} rules (incl. {len(native_cosmetic):,} cosmetic)")
+    print(f"  trackers   : {len(trackers_merged):,} rules")
+    print(f"  exceptions : {len(exceptions_merged):,} rules")
+    print(f"  total      : {total:,} rules")
 
-    print(f"  Final adblock.json    : {len(adblock_merged):,} rules")
-    print(f"  Final trackers.json   : {len(trackers_merged):,} rules")
-    print(f"  Final exceptions.json : {len(exceptions_merged):,} rules")
-
-    # ── Write JSON outputs ────────────────────────────────────────────────────
-    # Use compact JSON (no whitespace) for WKContentRuleList files —
-    # cuts file size by ~65%, faster to read from disk and compile.
+    # ── Write JSON outputs (with auto-split) ──────────────────────────────────
     print("\n=== Writing output files ===")
 
-    for fname, data in [
-        ("adblock.json", adblock_merged),
-        ("trackers.json", trackers_merged),
-        ("exceptions.json", exceptions_merged),
-    ]:
-        out = OUTPUT_DIR / fname
-        with open(out, "w") as f:
-            json.dump(data, f, separators=(",", ":"))
-        size_mb = out.stat().st_size / (1024 * 1024)
-        print(f"  Wrote {out.relative_to(ROOT)} ({size_mb:.1f} MB)")
+    write_rules_auto_split(adblock_merged, "adblock", OUTPUT_DIR, ROOT)
+    write_rules_auto_split(trackers_merged, "trackers", OUTPUT_DIR, ROOT)
+    write_rules_auto_split(exceptions_merged, "exceptions", OUTPUT_DIR, ROOT)
 
-    # ── Build cosmetic.js ─────────────────────────────────────────────────────
-    cosmetic_selectors = extract_cosmetic_selectors(raw)
+    # ── Build cosmetic.js (JS fallback for complex selectors) ─────────────────
+    # Native css-display-none handles most selectors. cosmetic.js handles
+    # the rest: anti-adblock stubs, :has-text(), and selectors too complex
+    # for the native engine (compound selectors with commas, iframe[src]).
     has_text_filters = extract_has_text_filters(raw)
-    print(f"  Extracted {len(cosmetic_selectors):,} cosmetic selectors")
-    print(f"  Extracted {len(has_text_filters):,} :has-text() procedural filters")
+    # Only keep selectors that didn't make it into native rules
+    js_only_selectors = [s for s in cosmetic_selectors
+                         if "," in s or "::" in s or "iframe[src" in s]
+    print(f"  {len(js_only_selectors):,} complex selectors → cosmetic.js (JS fallback)")
+    print(f"  {len(has_text_filters):,} :has-text() procedural filters")
 
-    cosmetic_js = build_cosmetic_js(cosmetic_selectors, has_text_filters)
+    cosmetic_js = build_cosmetic_js(js_only_selectors, has_text_filters)
     cosmetic_out = OUTPUT_DIR / "cosmetic.js"
     with open(cosmetic_out, "w") as f:
         f.write(cosmetic_js)
     print(f"  Wrote {cosmetic_out.relative_to(ROOT)}")
+
+    # ── Domain-specific cosmetic selectors ────────────────────────────────────
+    domain_cosmetics = extract_domain_cosmetic_selectors(raw)
+    domain_out = OUTPUT_DIR / "cosmetic_domains.json"
+    with open(domain_out, "w") as f:
+        json.dump(domain_cosmetics, f, separators=(",", ":"))
+    size_kb = domain_out.stat().st_size / 1024
+    print(f"  Wrote {domain_out.relative_to(ROOT)} ({len(domain_cosmetics):,} domains, {size_kb:.0f} KB)")
 
     # ── Build scriptlets.js ───────────────────────────────────────────────────
     scriptlet_configs = extract_scriptlet_configs(raw)
@@ -1652,7 +1805,7 @@ def main() -> None:
     site_configs = extract_site_scriptlet_configs(raw)
     site_out = OUTPUT_DIR / "scriptlet_rules.json"
     with open(site_out, "w") as f:
-        json.dump(site_configs, f, indent=2)
+        json.dump(site_configs, f, separators=(",", ":"))
     print(f"  Wrote {site_out.relative_to(ROOT)} ({len(site_configs):,} domains)")
 
     # ── Write websocket_block.js ──────────────────────────────────────────────
@@ -1665,14 +1818,14 @@ def main() -> None:
     redirect_rules = extract_redirect_rules(raw)
     redirect_out = OUTPUT_DIR / "redirect_rules.json"
     with open(redirect_out, "w") as f:
-        json.dump(redirect_rules, f, indent=2)
+        json.dump(redirect_rules, f, separators=(",", ":"))
     print(f"  Wrote {redirect_out.relative_to(ROOT)} ({len(redirect_rules):,} rules)")
 
     # ── Extract and write removeparam_rules.json ──────────────────────────────
     removeparam_rules = extract_removeparam_rules(raw)
     removeparam_out = OUTPUT_DIR / "removeparam_rules.json"
     with open(removeparam_out, "w") as f:
-        json.dump(removeparam_rules, f, indent=2)
+        json.dump(removeparam_rules, f, separators=(",", ":"))
     print(f"  Wrote {removeparam_out.relative_to(ROOT)} ({len(removeparam_rules):,} rules)")
 
     print("\n=== Done ✓ ===\n")
