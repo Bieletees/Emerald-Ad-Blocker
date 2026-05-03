@@ -202,12 +202,18 @@ def fix_original_rules(rules: list[dict]) -> list[dict]:
 
     for rule in rules:
         uf = rule.get("trigger", {}).get("url-filter", "")
+        uf = expand_shorthand_character_classes(uf)
+        rule["trigger"]["url-filter"] = uf
 
         if is_cdn_rule(uf):
             n_cdn += 1
             continue
         if is_non_ad_network(uf):
             n_non_ad += 1
+            continue
+        if not is_webkit_compatible(uf):
+            # This is a bit of a hack since n_non_ad etc are separate, 
+            # but we just want to skip it.
             continue
 
         key = rule_key(rule)
@@ -256,12 +262,19 @@ def abp_to_wk(line: str) -> dict | None:
     options_str = ""
     pattern = line
     if "$" in line:
-        # Find the last $ that isn't inside a regex literal (//pattern//).
-        in_regex = line.startswith("/") and line.count("/") >= 2
-        if not in_regex:
-            idx = line.rfind("$")
-            pattern = line[:idx]
-            options_str = line[idx + 1:]
+        # ABP/uBlock: options follow the last $.
+        # We must be careful not to split inside a regex literal if $ is part of the regex.
+        # However, even regex literals can have options: /regex/$options
+        # The correct way is to find the last $ that is NOT escaped and NOT inside a char class.
+        # For simplicity, we'll look for the last $ and check if what follows looks like options.
+        idx = line.rfind("$")
+        if idx > 0:
+            potential_options = line[idx+1:].split(",")
+            # If all parts look like known options or are negated options, it's the option separator.
+            # Otherwise, it might be an anchor in a plain pattern or part of a regex.
+            if any(opt.lstrip("~").split("=")[0].lower() in (list(RESOURCE_TYPE_MAP.keys()) + list(SKIP_OPTIONS) + ["domain", "denyallow", "third-party", "first-party", "3p", "1p", "important", "badfilter", "match-case"]) for opt in potential_options):
+                pattern = line[:idx]
+                options_str = line[idx + 1:]
 
     # Parse options.
     resource_types: list[str] = []
@@ -316,12 +329,7 @@ def abp_to_wk(line: str) -> dict | None:
         url_filter = escaped
     elif pattern.startswith("/") and pattern.endswith("/") and len(pattern) > 2:
         # Regex literal: /pattern/
-        inner = pattern[1:-1]
-        try:
-            re.compile(inner)
-        except re.error:
-            return None
-        url_filter = inner
+        url_filter = pattern[1:-1]
     else:
         # Plain pattern with possible wildcards and anchors.
         p = pattern.rstrip("^")
@@ -341,10 +349,9 @@ def abp_to_wk(line: str) -> dict | None:
     if is_cdn_rule(url_filter) or is_non_ad_network(url_filter):
         return None
 
-    # Validate the regex compiles (Python's re is a reasonable proxy for ICU).
-    try:
-        re.compile(url_filter, re.IGNORECASE)
-    except re.error:
+    # Final validation for WebKit compatibility.
+    url_filter = expand_shorthand_character_classes(url_filter)
+    if not is_webkit_compatible(url_filter):
         return None
 
     trigger: dict[str, Any] = {"url-filter": url_filter}
@@ -354,6 +361,78 @@ def abp_to_wk(line: str) -> dict | None:
         trigger["load-type"] = load_types
 
     return {"trigger": trigger, "action": {"type": "block"}}
+
+
+def is_webkit_compatible(regex: str) -> bool:
+    """
+    Check if a regex string is compatible with WebKit's limited content-blocking engine.
+    WebKit uses ICU regexes but disables features like non-capturing groups, lookarounds, etc.
+    """
+    # 1. Basic Python compile check.
+    try:
+        re.compile(regex, re.IGNORECASE)
+    except re.error:
+        return False
+
+    # 2. Unsupported features (non-capturing groups, lookarounds, etc.)
+    if "(?" in regex:
+        return False
+
+    # 3. ABP/uBlock options erroneously left in the regex.
+    # In WebKit content blockers, $ is only valid as an anchor (at the end or before | or ))
+    # or if it's part of a literal string we don't want to block (but rare).
+    if "$" in regex:
+        for m in re.finditer(r"\$", regex):
+            # If $ is not at the end and not followed by a delimiter like | or )
+            if m.end() < len(regex):
+                next_char = regex[m.end()]
+                if next_char not in ("|", ")"):
+                    return False
+
+    # 4. Shorthand character classes (e.g. \w, \d) - these are often problematic
+    # in WebKit's optimized engine. We should have expanded them by now.
+    # If any are left (like \W, \D, \S), we reject for safety.
+    if re.search(r"\\[wdsWDS]", regex):
+        return False
+
+    # 5. Bounded repetitions (e.g. {n,m} or {n,})
+    # WebKit's optimized content-blocking engine DOES NOT support bounded repetitions.
+    # It only supports *, +, and ?.
+    if "{" in regex:
+        return False
+
+    # 6. Disjunctions (a|b)
+    # WebKit's optimized engine DOES NOT support disjunctions/alternation.
+    if "|" in regex:
+        return False
+
+    # 7. Backreferences (\1, \2, ...)
+    if re.search(r"\\\d", regex):
+        return False
+
+    # 6. Excessive length (arbitrary but safe limit for WK compilation)
+    if len(regex) > 512:
+        return False
+
+    # 7. Nested character classes [[:alpha:]] or similar (not supported)
+    if "[[" in regex or "]]" in regex:
+        return False
+
+    return True
+
+
+def expand_shorthand_character_classes(regex: str) -> str:
+    """Expand \w, \d, \s into their literal character class equivalents."""
+    # Note: we only replace if not preceded by another backslash (already escaped)
+    # This is a bit simplistic but works for most rules.
+    # \w -> [a-zA-Z0-9_]
+    # \d -> [0-9]
+    # \s -> [ \t\r\n\v\f]
+    regex = re.sub(r"(?<!\\)\\w", "[a-zA-Z0-9_]", regex)
+    regex = re.sub(r"(?<!\\)\\d", "[0-9]", regex)
+    regex = re.sub(r"(?<!\\)\\s", "[ \t\r\n\v\f]", regex)
+    return regex
+
 
 
 # ---------------------------------------------------------------------------
