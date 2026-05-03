@@ -20,6 +20,7 @@ Emerald-Ad-Blocker/
 │   ├── trackers.json           #   WKContentRuleList (trackers)
 │   ├── cosmetic.js             #   WKUserScript — CSS hiding + anti-adblock stubs
 │   ├── tracker_stubs.js        #   WKUserScript — silently stubs tracker JS APIs
+│   ├── ytadblocker.js          #   WKUserScript — YouTube ad blocker
 │   └── SWIFT_INTEGRATION.md   #   Full Swift wiring guide
 │
 └── .github/
@@ -55,6 +56,12 @@ Google Analytics, Facebook Pixel, Mixpanel, Amplitude, Hotjar, Heap, FullStory,
 Segment, Intercom, Drift, TikTok Pixel, Pinterest Tag, Criteo, Twitter Pixel,
 Snapchat Pixel, LinkedIn Insight, Microsoft Clarity, Mouseflow, Lucky Orange,
 VWO, Optimizely, Braze.
+
+### `output/ytadblocker.js`
+WKUserScript injected at `document_start`.  It blocks the following:
+Video and Shorts ads,
+Suggestion ads,
+YouTube ad tracking.
 
 ### `output/SWIFT_INTEGRATION.md`
 Step-by-step Swift code showing how to:

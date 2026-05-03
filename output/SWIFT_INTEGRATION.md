@@ -11,7 +11,8 @@ This guide covers wiring every output file from the build pipeline into a WKWebV
 | `output/adblock.json` | WKContentRuleList — blocks ad-network requests |
 | `output/trackers.json` | WKContentRuleList — blocks tracker/analytics requests |
 | `output/cosmetic.js` | WKUserScript — CSS hiding + anti-adblock API stubs |
-| `output/tracker_stubs.js` | WKUserScript — silently stubs tracker JS APIs |
+| `output/tracker_stubs.js` | WKUserScript — silently stubs tracker JS APIs | 
+| `output/ytadblock.js` | WKUserScript — YouTube ad blocker | 
 
 ---
 
@@ -70,7 +71,7 @@ func makeWebViewConfiguration() async throws -> WKWebViewConfiguration {
 
 ## 2. Injecting WKUserScripts at documentStart
 
-Both JS files must run *before* any page script; use `.atDocumentStart` and inject into `.allFrames` so iframes are covered too.
+All JS files must run *before* any page script; use `.atDocumentStart` and inject into `.allFrames` so iframes are covered too.
 
 ```swift
 import WebKit
@@ -79,7 +80,7 @@ extension WKUserContentController {
 
     /// Add all Emerald user-scripts.
     func addEmeraldScripts() {
-        for filename in ["cosmetic", "tracker_stubs"] {
+        for filename in ["cosmetic", "tracker_stubs", "ytadblock"] {
             guard
                 let url    = Bundle.main.url(forResource: filename, withExtension: "js"),
                 let source = try? String(contentsOf: url, encoding: .utf8)

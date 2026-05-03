@@ -17,6 +17,7 @@ filter list pipeline (`src/build.py`) already handles the rest.
 | `output/removeparam_rules.json` | `$removeparam` rules (param names + URL patterns) | Strip params in `decidePolicyFor:` |
 | `output/websocket_block.js` | WebSocket/WebRTC/sendBeacon blocking | Inject as `WKUserScript` at `documentStart` |
 | `output/tracker_stubs.js` | JS API stubs for 20+ tracker SDKs | Inject as `WKUserScript` at `documentStart` |
+| `output/ytadblocker.js` | YouTube ad blocker | Inject as `WKUserScript` at `documentStart` |
 
 ---
 
@@ -30,7 +31,7 @@ before page scripts. Cosmetic last so it sees the final DOM.
 private var userScriptSources: [(String, String)] = []
 
 func loadUserScripts() {
-    for filename in ["scriptlets", "websocket_block", "tracker_stubs", "cosmetic"] {
+    for filename in ["scriptlets", "websocket_block", "tracker_stubs", "cosmetic", "ytadblock"] {
         guard
             let url    = Bundle.main.url(forResource: filename, withExtension: "js"),
             let source = try? String(contentsOf: url, encoding: .utf8)
@@ -498,7 +499,7 @@ Show a shield icon with a count of blocked requests per page. Track in
 
 | # | Recommendation | Effort | Impact |
 |---|---|---|---|
-| 1 | Inject all four scripts | Trivial | Very high |
+| 1 | Inject all five scripts | Trivial | Very high |
 | 2 | Three cached WKContentRuleLists | Trivial | High |
 | 3 | Loading speed optimizations | Low | High |
 | 4 | Per-site scriptlets | Medium | Very high |
