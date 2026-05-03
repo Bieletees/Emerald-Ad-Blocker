@@ -1,0 +1,716 @@
+[
+  {
+    "param": "r",
+    "pattern": "||htlb.casalemedia.com^",
+    "domains": [
+      "aternos.org"
+    ]
+  },
+  {
+    "param": "caid",
+    "pattern": "||clips-manifests-aka.warnermediacdn.com^",
+    "domains": [
+      "nba.com"
+    ]
+  },
+  {
+    "param": "prof",
+    "pattern": "||ssaimanifest.prod.boltdns.net^",
+    "domains": [
+      "amc.com"
+    ]
+  },
+  {
+    "param": "gtm",
+    "pattern": "||googletagmanager.com/gtag/js?id="
+  },
+  {
+    "param": "cx",
+    "pattern": "||googletagmanager.com/gtag/js?id="
+  },
+  {
+    "param": "correlation_id",
+    "pattern": "||reddit.com^"
+  },
+  {
+    "param": "ref",
+    "pattern": "||reddit.com^"
+  },
+  {
+    "param": "ref_campaign",
+    "pattern": "||reddit.com^"
+  },
+  {
+    "param": "ref_source",
+    "pattern": "||reddit.com^"
+  },
+  {
+    "param": "utm_content",
+    "pattern": "||reddit.com^"
+  },
+  {
+    "param": "src",
+    "pattern": "||wuzhuiso.com^"
+  },
+  {
+    "param": "hybrid_search_source",
+    "pattern": "||zhihu.com^"
+  },
+  {
+    "param": "hybrid_search_extra",
+    "pattern": "||zhihu.com^"
+  },
+  {
+    "param": "referrer",
+    "pattern": "||play.google.com/store/apps/*referrer"
+  },
+  {
+    "param": "referrer",
+    "pattern": "||apps.apple.com/*/app/*referrer"
+  },
+  {
+    "param": "experienceId",
+    "pattern": "||api.cxense.com/public/widget/data?"
+  },
+  {
+    "param": "experienceActionId",
+    "pattern": "||api.cxense.com/public/widget/data?"
+  },
+  {
+    "param": "sid",
+    "pattern": "||api.cxense.com/public/widget/data?"
+  },
+  {
+    "param": "trackingId",
+    "pattern": "||api.cxense.com/public/widget/data?"
+  },
+  {
+    "param": "tzo",
+    "pattern": "||api.cxense.com/public/widget/data?"
+  },
+  {
+    "param": "widgetId",
+    "pattern": "||api.cxense.com/public/widget/data?"
+  },
+  {
+    "param": "gbraid"
+  },
+  {
+    "param": "wbraid"
+  },
+  {
+    "param": "gclsrc"
+  },
+  {
+    "param": "gclid"
+  },
+  {
+    "param": "gad_source"
+  },
+  {
+    "param": "gad_campaignid"
+  },
+  {
+    "param": "_gl"
+  },
+  {
+    "param": "dclid"
+  },
+  {
+    "param": "srsltid"
+  },
+  {
+    "param": "fbclid"
+  },
+  {
+    "param": "fb_action_ids"
+  },
+  {
+    "param": "fb_action_types"
+  },
+  {
+    "param": "fb_comment_id"
+  },
+  {
+    "param": "fb_ref"
+  },
+  {
+    "param": "fb_source"
+  },
+  {
+    "param": "fbadid"
+  },
+  {
+    "param": "mibextid",
+    "pattern": "||facebook.com^"
+  },
+  {
+    "param": "rdid",
+    "pattern": "||facebook.com^"
+  },
+  {
+    "param": "share_url",
+    "pattern": "||facebook.com^"
+  },
+  {
+    "param": "ymclid"
+  },
+  {
+    "param": "ysclid"
+  },
+  {
+    "param": "yclid"
+  },
+  {
+    "param": "msclkid"
+  },
+  {
+    "param": "wickedid"
+  },
+  {
+    "param": "twclid"
+  },
+  {
+    "param": "__hsfp"
+  },
+  {
+    "param": "__hssc"
+  },
+  {
+    "param": "__hstc"
+  },
+  {
+    "param": "_hsenc"
+  },
+  {
+    "param": "hsa_acc"
+  },
+  {
+    "param": "hsa_ad"
+  },
+  {
+    "param": "hsa_cam"
+  },
+  {
+    "param": "hsa_grp"
+  },
+  {
+    "param": "hsa_kw"
+  },
+  {
+    "param": "hsa_la"
+  },
+  {
+    "param": "hsa_mt"
+  },
+  {
+    "param": "hsa_net"
+  },
+  {
+    "param": "hsa_ol"
+  },
+  {
+    "param": "hsa_src"
+  },
+  {
+    "param": "hsa_tgt"
+  },
+  {
+    "param": "hsa_ver"
+  },
+  {
+    "param": "hsCtaTracking"
+  },
+  {
+    "param": "mc_eid"
+  },
+  {
+    "param": "s_cid"
+  },
+  {
+    "param": "vero_conv"
+  },
+  {
+    "param": "vero_id"
+  },
+  {
+    "param": "rb_clickid"
+  },
+  {
+    "param": "oly_anon_id"
+  },
+  {
+    "param": "_openstat"
+  },
+  {
+    "param": "ml_subscriber"
+  },
+  {
+    "param": "ml_subscriber_hash"
+  },
+  {
+    "param": "oft_id"
+  },
+  {
+    "param": "oft_k"
+  },
+  {
+    "param": "oft_lk"
+  },
+  {
+    "param": "oft_d"
+  },
+  {
+    "param": "oft_c"
+  },
+  {
+    "param": "oft_ck"
+  },
+  {
+    "param": "oft_ids"
+  },
+  {
+    "param": "oft_sk"
+  },
+  {
+    "param": "bsft_clkid"
+  },
+  {
+    "param": "bsft_eid"
+  },
+  {
+    "param": "bsft_mid"
+  },
+  {
+    "param": "bsft_uid"
+  },
+  {
+    "param": "bsft_aaid"
+  },
+  {
+    "param": "bsft_ek"
+  },
+  {
+    "param": "guce_referrer"
+  },
+  {
+    "param": "guce_referrer_sig"
+  },
+  {
+    "param": "mtm_campaign"
+  },
+  {
+    "param": "mtm_cid"
+  },
+  {
+    "param": "mtm_content"
+  },
+  {
+    "param": "mtm_group"
+  },
+  {
+    "param": "mtm_keyword"
+  },
+  {
+    "param": "mtm_medium"
+  },
+  {
+    "param": "mtm_placement"
+  },
+  {
+    "param": "mtm_source"
+  },
+  {
+    "param": "pk_campaign"
+  },
+  {
+    "param": "pk_medium"
+  },
+  {
+    "param": "pk_source"
+  },
+  {
+    "param": "pk_cid"
+  },
+  {
+    "param": "vgo_ee"
+  },
+  {
+    "param": "cx_click"
+  },
+  {
+    "param": "cx_recsOrder"
+  },
+  {
+    "param": "cx_recsWidget"
+  },
+  {
+    "param": "gps_adid"
+  },
+  {
+    "param": "unicorn_click_id"
+  },
+  {
+    "param": "adjust_creative"
+  },
+  {
+    "param": "adjust_tracker_limit"
+  },
+  {
+    "param": "adjust_tracker"
+  },
+  {
+    "param": "adjust_adgroup"
+  },
+  {
+    "param": "adjust_campaign"
+  },
+  {
+    "param": "ir_campaignid"
+  },
+  {
+    "param": "ir_adid"
+  },
+  {
+    "param": "ir_partnerid"
+  },
+  {
+    "param": "at_campaign"
+  },
+  {
+    "param": "at_campaign_type"
+  },
+  {
+    "param": "at_creation"
+  },
+  {
+    "param": "at_emailtype"
+  },
+  {
+    "param": "at_link"
+  },
+  {
+    "param": "at_link_id"
+  },
+  {
+    "param": "at_link_origin"
+  },
+  {
+    "param": "at_link_type"
+  },
+  {
+    "param": "at_medium"
+  },
+  {
+    "param": "at_ptr_name"
+  },
+  {
+    "param": "at_recipient_id"
+  },
+  {
+    "param": "at_recipient_list"
+  },
+  {
+    "param": "at_send_date"
+  },
+  {
+    "param": "sfmc_id"
+  },
+  {
+    "param": "sfmc_activityid"
+  },
+  {
+    "param": "ss_email_id"
+  },
+  {
+    "param": "et_rid"
+  },
+  {
+    "param": "bbeml"
+  },
+  {
+    "param": "_branch_match_id"
+  },
+  {
+    "param": "_branch_referrer"
+  },
+  {
+    "param": "_bhlid"
+  },
+  {
+    "param": "sms_click"
+  },
+  {
+    "param": "sms_source"
+  },
+  {
+    "param": "sms_uph"
+  },
+  {
+    "param": "ttclid"
+  },
+  {
+    "param": "sc_customer"
+  },
+  {
+    "param": "sc_eh"
+  },
+  {
+    "param": "sc_uid"
+  },
+  {
+    "param": "asc_campaign"
+  },
+  {
+    "param": "asc_refurl"
+  },
+  {
+    "param": "asc_source"
+  },
+  {
+    "param": "adsterra_clid"
+  },
+  {
+    "param": "adsterra_placement_id"
+  },
+  {
+    "param": "ref_",
+    "pattern": "||amazon.*/dp/"
+  },
+  {
+    "param": "lp_context_asin",
+    "pattern": "||www.amazon.*/page/"
+  },
+  {
+    "param": "ingress",
+    "pattern": "||www.amazon.*/page/"
+  },
+  {
+    "param": "ref_",
+    "pattern": "||www.amazon.*/page/"
+  },
+  {
+    "param": "pp",
+    "pattern": "||youtube.com^"
+  },
+  {
+    "param": "si",
+    "pattern": "||youtu.be^"
+  },
+  {
+    "param": "si",
+    "pattern": "||youtube.com/shorts/"
+  },
+  {
+    "param": "si",
+    "pattern": "://youtube.com/@*?si="
+  },
+  {
+    "param": "refsrc"
+  },
+  {
+    "param": "ref_src"
+  },
+  {
+    "param": "ref_url"
+  },
+  {
+    "param": "cxt"
+  },
+  {
+    "param": "s"
+  },
+  {
+    "param": "t",
+    "pattern": "||com/*/status/"
+  },
+  {
+    "param": "ssspo",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "sssrc",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "ssuid",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "mkevt",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "mkcid",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "_trkparms",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "amdata",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "mkrid",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "campid",
+    "pattern": "||www.ebay."
+  },
+  {
+    "param": "ig_rid",
+    "pattern": "||instagram.com^"
+  },
+  {
+    "param": "igsh"
+  },
+  {
+    "param": "igshid",
+    "domains": [
+      "instagram.com",
+      "threads.net"
+    ]
+  },
+  {
+    "param": "ocid",
+    "pattern": "||msn.com^"
+  },
+  {
+    "param": "pc",
+    "pattern": "||msn.com^"
+  },
+  {
+    "param": "cvid",
+    "pattern": "||msn.com^"
+  },
+  {
+    "param": "ei",
+    "pattern": "||msn.com^"
+  },
+  {
+    "param": "vid",
+    "pattern": "||msn.com^"
+  },
+  {
+    "param": "referral",
+    "pattern": "||open.spotify.com^"
+  },
+  {
+    "param": "si",
+    "pattern": "||open.spotify.com^"
+  },
+  {
+    "param": "rdt",
+    "pattern": "||reddit.com^"
+  },
+  {
+    "param": "_rt",
+    "pattern": "||control.kochava.com^"
+  },
+  {
+    "param": "device_id",
+    "pattern": "||control.kochava.com^"
+  },
+  {
+    "param": "ftag",
+    "pattern": "||control.kochava.com^"
+  },
+  {
+    "param": "ko_exchange",
+    "pattern": "||control.kochava.com^"
+  },
+  {
+    "param": "network_id",
+    "pattern": "||control.kochava.com^"
+  },
+  {
+    "param": "site_id",
+    "pattern": "||control.kochava.com^"
+  },
+  {
+    "param": "eid0",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "eit0",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "media",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "prnd",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "rnd",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "sid",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "usi",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "widgetId",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "experienceId",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "experienceActionId",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "trackingId",
+    "pattern": "||api.cxense.com/public/widget/data^"
+  },
+  {
+    "param": "c",
+    "pattern": "||sonar.viously.com^"
+  },
+  {
+    "param": "r",
+    "pattern": "||sonar.viously.com^"
+  },
+  {
+    "param": "s_cid",
+    "pattern": "||che168.com^",
+    "exception": true
+  },
+  {
+    "param": "cid",
+    "pattern": "||connatix.com^"
+  },
+  {
+    "param": "pid",
+    "pattern": "||connatix.com^"
+  },
+  {
+    "param": "traffic_source",
+    "pattern": "||adweek.com^"
+  },
+  {
+    "param": "visitor_id",
+    "pattern": "||jobbio.com/channels/",
+    "domains": [
+      "stackoverflow.jobs"
+    ]
+  },
+  {
+    "param": "caid",
+    "pattern": "||v.fwmrm.net/ad/*html5_live^",
+    "domains": [
+      "channel4.com"
+    ]
+  }
+]

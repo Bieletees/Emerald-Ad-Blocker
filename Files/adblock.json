@@ -1,2945 +1,816 @@
 [
   {
-    "trigger": {
-      "url-filter": ".*doubleclick\\.net"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*googlesyndication\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adservice\\.google\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adsystem\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*pagead\\."
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adsby.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*popunder.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*iabtechlab.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*\\.adition\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*\\.adnxs\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*\\.zedo\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*\\.pubmatic\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*\\.moatads\\.com"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*doubleclick\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adtago.s3.amazonaws.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*googlesyndication\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analyticsengine.s3.amazonaws.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adservice\\.google\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adsystem\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*pagead2\\.googlesyndication.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*pagead\\." },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adservice\\.google.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adsby.*" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*media\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*popunder.*" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ad\\.doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*iabtechlab.*" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*static\\.doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*\\.adition\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*m\\.doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*\\.adnxs\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*mediavisor\\.doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*\\.zedo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adservetx\\.media\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*\\.pubmatic\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics\\.s3\\.amazonaws\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*\\.moatads\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*advice-ads\\.s3\\.amazonaws\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adtago\\.s3\\.amazonaws\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*pagead2\\.googleadservices\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analyticsengine\\.s3\\.amazonaws\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads30\\.adcolony\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.s3\\.amazonaws\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adc3-launch\\.adcolony\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*advice-ads\\.s3\\.amazonaws\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*events3alt\\.adcolony\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adservetx\\.media\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*wd\\.adcolony\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*pagead2\\.googleadservices\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*click\\.googleanalytics\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*googleadservices\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*mouseflow\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adsbygoogle\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*cdn\\.mouseflow\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*2mdn\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*o2\\.mouseflow\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*googletagmanager\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*tools\\.mouseflow\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*googletagservices\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*cdn-test\\.mouseflow\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*google-analytics\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*luckyorange\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.google\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*upload\\.luckyorange\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*click\\.googleanalytics\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*cs\\.luckyorange\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads30\\.adcolony\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*settings\\.luckyorange\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adc3-launch\\.adcolony\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*freshmarketer\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*events3alt\\.adcolony\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*claritybt\\.freshmarketer\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*wd\\.adcolony\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*stats.wp.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*mouseflow\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*notify.bugsnag.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*luckyorange\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*sessions.bugsnag.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*freshmarketer\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*api.bugsnag.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*stats\\.wp\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*app.bugsnag.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*pixel\\.facebook\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*browser.sentry-cdn.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*an\\.facebook\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*app.getsentry.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.facebook\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*pixel.facebook.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.linkedin\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*an.facebook.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.pointdrive\\.linkedin\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads.linkedin.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*events\\.reddit\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics.pointdrive.linkedin.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*events\\.redditmedia\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*events.reddit.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads-api\\.tiktok\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*events.redditmedia.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.tiktok\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads-api.tiktok.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads-sg\\.tiktok\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics.tiktok.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics-sg\\.tiktok\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads-sg.tiktok.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*business-api\\.tiktok\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics-sg.tiktok.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.tiktok\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*business-api.tiktok.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*log\\.byteoversea\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads.tiktok.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*static\\.ads-twitter\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*log.byteoversea.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads-api\\.twitter\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*static.ads-twitter.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.pinterest\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads-api.twitter.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*log\\.pinterest\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads.pinterest.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.pinterest\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*log.pinterest.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*trk\\.pinterest\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics.pinterest.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.youtube\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*trk.pinterest.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads.youtube.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*geo\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*udcm\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*geo.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics\\.query\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*udcm.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*partnerads\\.ysm\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics.query.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*log\\.fc\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*partnerads.ysm.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*gemini\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*log.fc.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adtech\\.yahooinc\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*gemini.yahoo.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adcloud\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adtech.yahooinc.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adservice\\.yahoo\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*auction.unityads.unity3d.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*auction\\.unityads\\.unity3d\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*webview.unityads.unity3d.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*webview\\.unityads\\.unity3d\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*config.unityads.unity3d.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*config\\.unityads\\.unity3d\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adserver.unityads.unity3d.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adserver\\.unityads\\.unity3d\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*appmetrica.yandex.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*appmetrica\\.yandex\\.ru" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adfstat.yandex.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adfstat\\.yandex\\.ru" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*metrika.yandex.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*metrika\\.yandex\\.ru" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adfox.yandex.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adfox\\.yandex\\.ru" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*iot-eu-logser.realme.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adfox\\.ru" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*iot-logser.realme.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*iot-eu-logser\\.realme\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*bdapi-ads.realmemobile.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*iot-logser\\.realme\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*bdapi-in-ads.realmemobile.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*bdapi-ads\\.realmemobile\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adsfs.oppomobile.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*bdapi-in-ads\\.realmemobile\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adx.ads.oppomobile.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adsfs\\.oppomobile\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ck.ads.oppomobile.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adx\\.ads\\.oppomobile\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*data.ads.oppomobile.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ck\\.ads\\.oppomobile\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*iadsdk.apple.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*data\\.ads\\.oppomobile\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*metrics.icloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*iadsdk\\.apple\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*metrics.mzstatic.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*metrics\\.icloud\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*weather-analytics-events.apple.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*metrics\\.mzstatic\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*notes-analytics-events.apple.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*weather-analytics-events\\.apple\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*api.ad.xiaomi.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*notes-analytics-events\\.apple\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*data.mistat.xiaomi.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*api\\.ad\\.xiaomi\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*data.mistat.india.xiaomi.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*data\\.mistat\\.xiaomi\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*data.mistat.rus.xiaomi.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*data\\.mistat\\.india\\.xiaomi\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*sdkconfig.ad.xiaomi.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*data\\.mistat\\.rus\\.xiaomi\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*sdkconfig.ad.intl.xiaomi.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*sdkconfig\\.ad\\.xiaomi\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*tracking.rus.miui.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*sdkconfig\\.ad\\.intl\\.xiaomi\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*metrics.data.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*tracking\\.rus\\.miui\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*metrics2.data.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*metrics\\.data\\.hicloud\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*grs.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*metrics2\\.data\\.hicloud\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*logservice.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*logservice\\.hicloud\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*logservice1.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*logservice1\\.hicloud\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*logservice1.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*logbak\\.hicloud\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*logbak.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*samsungads\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*samsungads.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*smetrics\\.samsung\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*smetrics.samsung.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*samsung-com\\.112\\.2o7\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*grs.hicloud.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*analytics-api\\.samsunghealthcn\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*samsung-com.112.2o7.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adm\\.hotjar\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics-api.samsunghealthcn.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*identify\\.hotjar\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*analytics.google.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*insights\\.hotjar\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*google-analytics.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*script\\.hotjar\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ssl.google-analytics.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*surveys\\.hotjar\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adm.hotjar.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads-delivery\\.milenarmedia\\.pt" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*identify.hotjar.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*taboola\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*insights.hotjar.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*outbrain\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*script.hotjar.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*revcontent\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*surveys.hotjar.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adform\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*careers.hotjar.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adform\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*ads-delivery.milenarmedia.pt.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adzerk\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*taboola\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*openx\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*outbrain\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*openx\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*revcontent\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*rubiconproject\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adform\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*rubiconadx\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*pubads\\.g\\.doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*adnxs\\.net" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adsbygoogle\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*appnexus\\.com" },
+    "action": { "type": "block" }
   },
   {
-    "trigger": {
-      "url-filter": ".*adzerk\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
+    "trigger": { "url-filter": ".*xandr\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*adsafeprotected\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*serving-sys\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*criteo\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*criteo\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*amazon-adsystem\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*aaxads\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*mads\\.amazon\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*contextweb\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*adsrvr\\.org" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*casalemedia\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*yieldmanager\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*mediamath\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*sharethrough\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*teads\\.tv" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*spotx\\.tv" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*spotxchange\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*innovid\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*flashtalking\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*smaato\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*sonobi\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*nexage\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*mgid\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*outbrain\\.org" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*pixel\\.quantserve\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*quantserve\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*comscore\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*scorecardresearch\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*clicktale\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*inspectlet\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*kissmetrics\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*heap\\.io" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*crazyegg\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*cdn\\.amplitude\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*api\\.amplitude\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*cdn\\.mixpanel\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*api\\.mixpanel\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*cdn\\.segment\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*api\\.segment\\.io" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*evergage\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*cdn\\.optimizely\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*dstillery\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*doubleverify\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*moatpixel\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*moat\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*zeta\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*zetaglobal\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*addthis\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*addthisedge\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*cdn\\.matomo\\.cloud" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*piwik\\.pro" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*webtrekk\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*eulerian\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*contentsquare\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*contentsquare\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ad\\.gt\\/.*" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*bitrix\\.info" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*stathat\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*chartbeat\\.net" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*getclicky\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*top\\.mail\\.ru" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*top\\.list\\.ru" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*liveinternet\\.ru" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*top100\\.rambler\\.ru" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.ad\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*adserver\\.yahoo\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.msn\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ad\\.msn\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.live\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.aol\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.reddit\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.snapchat\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.twitch\\.tv" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*ads\\.spotify\\.com" },
+    "action": { "type": "block" }
+  },
   {
-    "trigger": {
-      "url-filter": ".*adcloud\\.yahoo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adservice\\.yahoo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*openx\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*rubiconproject\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*cdn\\.taboola\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*widgets\\.outbrain\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*api\\.taboola\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*api\\.revcontent\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adnxs\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adsafeprotected\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*serving-sys\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*taboola.*\\.gif",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*taboola.*\\.jpg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*taboola.*\\.jpeg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*taboola.*\\.png",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*outbrain.*\\.gif",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*outbrain.*\\.jpg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*outbrain.*\\.jpeg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*outbrain.*\\.png",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*revcontent.*\\.gif",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*revcontent.*\\.jpg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*revcontent.*\\.jpeg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*revcontent.*\\.png",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleclick.*\\.gif",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleclick.*\\.jpg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleclick.*\\.jpeg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleclick.*\\.png",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*criteo.*\\.gif",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*criteo.*\\.jpg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*criteo.*\\.jpeg",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*criteo.*\\.png",
-      "resource-type": [
-        "image"
-      ]
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*aafes\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*aarp\\.org.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.ad\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.yahoo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adserver\\.yahoo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads1\\.msn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads2\\.msn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads3\\.msn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.msn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ad\\.msn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.live\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.aol\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.huffingtonpost\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.nytimes\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.washingtonpost\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.bbc\\.co\\.uk.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.cnn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.foxnews\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.reddit\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.instagram\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.snapchat\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.twitch\\.tv.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.discord\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.spotify\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.slack\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.uber\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.airbnb\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.amazon\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.ebay\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.etsy\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.shopify\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.wix\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.wordpress\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.tumblr\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.medium\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.quora\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.stackoverflow\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.github\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.cloudflare\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.stripe\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.paypal\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.square\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.coinbase\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.binance\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*googleadservices\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*googlesyndication\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*pagead2\\.googlesyndication\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*pagead\\.googlesyndication\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adservice\\.google\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*gstatic\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*2mdn\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*criteo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*criteo\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*amazon-adsystem\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*aaxads\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*mads\\.amazon\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adnxs\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adnxs\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*appnexus\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*xandr\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*pubmatic\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*openx\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*openx\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*contextweb\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*quotient\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*rubiconproject\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*rubiconadx\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adform\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adform\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*serving-sys\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adsrvr\\.org.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*casalemedia\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*yieldmanager\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*mediamath\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*turn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*sharethrough\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*teads\\.tv.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*spotx\\.tv.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*spotxchange\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*innovid\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*flashtalking\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*smaato\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*sonobi\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*nexage\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*underone\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*intermedia\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*intermediatepublishing\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adecn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adocean\\.biz.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*mgid\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*outbrain\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*outbrain\\.org.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*taboola\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*revcontent\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*paid\\.outbrain\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*api\\.outbrain\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*api\\.taboola\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*cdn\\.taboola\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*widgets\\.outbrain\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*pixel\\.facebook\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*an\\.facebook\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ads\\.facebook\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*connect\\.facebook\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*pixel\\.quantserve\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*quantserve\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*comscore\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*scorecardresearch\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*clicktale\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*inspectlet\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*kissmetrics\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*heap\\.io.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*crazyegg\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*amplitude\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*mixpanel\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*segment\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*segment\\.io.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*evergage\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*optimizely\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*google\\.com\\/analytics.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*google-analytics\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*analytics\\.google\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*googletagmanager\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*googletagservices\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*ad\\.gt\\/.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*bitrix\\.info.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*stathat\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*chartbeat\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*getclicky\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*heatmap\\.it.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*heatmaps\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*vimeo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*vimeocdn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*vidyard\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*wistia\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*wistia\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*brightcove\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*brightcove\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*jwpcdn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*jwplayer\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*flowplayer\\.org.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*kaltura\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*cdn\\.matomo\\.cloud.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*matomo\\.cloud.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*piwik\\.pro.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*webtrekk\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*eulerian\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*eulerian\\.axiomtelecom\\.fr.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*contentsquare\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*contentsquare\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*decibel\\.nielsenmedia\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*edigitalresearch\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*enom\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*dstillery\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleverify\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*doubleverify\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*integral\\.marketing.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*moatads\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*moatpixel\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*moat\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adsafeprotected\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*securepubads\\.g\\.doubleclick\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*zedo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*zeta\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*zetaglobal\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*addthis\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*addthisedge\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*disqus\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*disquscdn\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*nivo\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*akamaized\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*amazonaws\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*cloudflare\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*fastly\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*trustedsite\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*mcafee\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*norton\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*virusbarier\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*yandex\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*yandex\\.net.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*yandex\\.com.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*adfox\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*metrika\\.yandex\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*top\\.mail\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*top\\.list\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*liveinternet\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*top100\\.rambler\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*top\\.rbc\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
-  },
-  {
-    "trigger": {
-      "url-filter": ".*live\\.rbc\\.ru.*"
-    },
-    "action": {
-      "type": "block"
-    }
+    "trigger": { "url-filter": ".*ads\\.amazon\\.com" },
+    "action": { "type": "block" }
   },
   {
     "trigger": {
       "url-filter": ".*",
-      "resource-type": [
-        "style-sheet"
-      ]
+      "resource-type": ["style-sheet"]
     },
-    "action": {
-      "type": "ignore-previous-rules"
-    }
+    "action": { "type": "ignore-previous-rules" }
   },
   {
     "trigger": {
       "url-filter": ".*",
-      "resource-type": [
-        "font"
-      ]
+      "resource-type": ["font"]
     },
-    "action": {
-      "type": "ignore-previous-rules"
-    }
+    "action": { "type": "ignore-previous-rules" }
   },
   {
     "trigger": {
       "url-filter": ".*",
-      "resource-type": [
-        "image",
-        "svg-document"
-      ]
+      "resource-type": ["image", "svg-document"]
     },
-    "action": {
-      "type": "ignore-previous-rules"
-    }
+    "action": { "type": "ignore-previous-rules" }
   },
   {
     "trigger": {
@@ -2954,8 +825,6 @@
         "*ytimg.com"
       ]
     },
-    "action": {
-      "type": "ignore-previous-rules"
-    }
+    "action": { "type": "ignore-previous-rules" }
   }
 ]

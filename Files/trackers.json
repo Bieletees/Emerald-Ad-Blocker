@@ -1,9 +1,30 @@
 [
-  { "trigger": { "url-filter": ".*google-analytics\\.com.*" }, "action": { "type": "block" } },
-  { "trigger": { "url-filter": ".*analytics\\.google\\.com.*" }, "action": { "type": "block" } },
-  { "trigger": { "url-filter": ".*mixpanel\\.com.*" }, "action": { "type": "block" } },
-  { "trigger": { "url-filter": ".*segment\\.io.*" }, "action": { "type": "block" } },
-  { "trigger": { "url-filter": ".*hotjar\\.com.*" }, "action": { "type": "block" } },
-  { "trigger": { "url-filter": ".*matomo\\.org.*" }, "action": { "type": "block" } },
-  { "trigger": { "url-filter": ".*amplitude\\.com.*" }, "action": { "type": "block" } }
+  {
+    "trigger": { "url-filter": ".*google-analytics\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*analytics\\.google\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*googletagmanager\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*pixel\\.facebook\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*an\\.facebook\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*scorecardresearch\\.com" },
+    "action": { "type": "block" }
+  },
+  {
+    "trigger": { "url-filter": ".*comscore\\.com" },
+    "action": { "type": "block" }
+  }
 ]

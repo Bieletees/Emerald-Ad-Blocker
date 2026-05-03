@@ -1,0 +1,1842 @@
+[
+  {
+    "pattern": "||pcoptimizedsettings.com/wp-content/plugins/koko-analytics/",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||pcoptimizedsettings.com/wp-content/uploads/breeze/google/gtag.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||d21y75miwcfqoq.cloudfront.net/436f3341",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||acustomizedgift.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||inventorycache.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||ubiquitoussea.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||googletagmanager.com/gtag/js",
+    "resource": "googletagmanager_gtm.js",
+    "domains": [
+      "redstoneonline.jp"
+    ]
+  },
+  {
+    "pattern": "||sstats.bitdefender.com^",
+    "resource": "noop.txt"
+  },
+  {
+    "pattern": "||r10s.jp/com/img/home/t.gif?",
+    "resource": "1x1.gif",
+    "domains": [
+      "24.rakuten.co.jp"
+    ]
+  },
+  {
+    "pattern": "||curos.ca/res/*/resources/scripts/lib/fingerprint.js",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||metrics.streaks.jp^",
+    "resource": "noop.txt"
+  },
+  {
+    "pattern": "||adnxs.com/*/sport1.js",
+    "resource": "noopjs",
+    "domains": [
+      "sport1.de"
+    ]
+  },
+  {
+    "pattern": "||acdn.adnxs.com/as/1h/pages/sport1_mediathek.js",
+    "resource": "noopjs",
+    "domains": [
+      "sport1.de"
+    ]
+  },
+  {
+    "pattern": "||asadcdn.com/adlib/*",
+    "resource": "noopjs",
+    "domains": [
+      "sport1.de"
+    ]
+  },
+  {
+    "pattern": "||twnmm.com/js/*/adobe_audience_manager",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||twnmm.com/js/*/dfpad/*",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "*",
+    "resource": "noopjs",
+    "domains": [
+      "aranzulla.it"
+    ]
+  },
+  {
+    "pattern": "||static.toiimg.com/ad-banner*/photo/*",
+    "resource": "2x2.png",
+    "domains": [
+      "m.timesofindia.com"
+    ]
+  },
+  {
+    "pattern": "||indiatimes.com^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||uim.tifbs.net/js/*.js",
+    "resource": "noopjs",
+    "domains": [
+      "gmx.*",
+      "web.de"
+    ]
+  },
+  {
+    "pattern": "*",
+    "resource": "1x1.gif",
+    "domains": [
+      "web.de"
+    ]
+  },
+  {
+    "pattern": "||video.golem.de/*/scripts/radiant/homad",
+    "resource": "nooptext",
+    "domains": [
+      "golem.de"
+    ]
+  },
+  {
+    "pattern": "||tagger.opecloud.com^",
+    "resource": "noop.txt",
+    "domains": [
+      "bild.de"
+    ]
+  },
+  {
+    "pattern": "*/www.bild.de/",
+    "resource": "noopmp3-0.1s"
+  },
+  {
+    "pattern": "||s0.2mdn.net/instream/video/client.js",
+    "resource": "noopjs",
+    "domains": [
+      "player.performgroup.com"
+    ]
+  },
+  {
+    "pattern": "*expires",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "sat1.de",
+      "wetter.com"
+    ]
+  },
+  {
+    "pattern": "||go.oclasrv.com/apu.php",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||onclkds.com/apu.php",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||xxlargepop.com/apu.php",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||googlesyndication.com^",
+    "resource": "noopjs",
+    "domains": [
+      "9to5google.com",
+      "9to5mac.com",
+      "9to5toys.com",
+      "dronedj.com",
+      "electrek.co",
+      "marketrealist.com"
+    ]
+  },
+  {
+    "pattern": "||googletagmanager.com/ns.html",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||vkcdnservice.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||player.ooyala.com/static/*ad",
+    "resource": "noopjs",
+    "domains": [
+      "dugout.com"
+    ]
+  },
+  {
+    "pattern": "||adservice.google.com.*/adsid/integrator.js?domain=player.tubia.com",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "*expire=",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "viki.com"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/pagead/",
+    "resource": "noopjs",
+    "domains": [
+      "mitly.us"
+    ]
+  },
+  {
+    "pattern": "||adspaces.ero-advertising.com/adspace/*",
+    "resource": "noopjs",
+    "domains": [
+      "pornsocket.com"
+    ]
+  },
+  {
+    "pattern": "||syndication.exoclick.com/ads-iframe-display.php",
+    "resource": "noopjs",
+    "domains": [
+      "pornhd.com"
+    ]
+  },
+  {
+    "pattern": "||propbigo.com/*.xml",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||namethatporn.com/assets/imgs/1x1.gif",
+    "resource": "noopframe"
+  },
+  {
+    "pattern": "||thebookee.net^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||focus.de/src/js/spmsg",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||player.ooyala.com/*/ad-plugin/google_ima.min.js",
+    "resource": "noopjs",
+    "domains": [
+      "nrl.com"
+    ]
+  },
+  {
+    "pattern": "*/adsid/integrator.js",
+    "resource": "noopjs",
+    "domains": [
+      "dl.ccbluex.net"
+    ]
+  },
+  {
+    "pattern": "||ads.puhutv.com/i.jpg",
+    "resource": "2x2.png"
+  },
+  {
+    "pattern": "||akamaihd.net/vod/*",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "7tv.de"
+    ]
+  },
+  {
+    "pattern": "||wpfc.ml/b.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "satcesc.com"
+    ]
+  },
+  {
+    "pattern": "||a-ads.com^",
+    "resource": "noopframe",
+    "domains": [
+      "dogefaucet.com"
+    ]
+  },
+  {
+    "pattern": "||ugdturner.com/xd.sjs",
+    "resource": "noopjs",
+    "domains": [
+      "nba.com"
+    ]
+  },
+  {
+    "pattern": "*/rellect/AdblockDetector/handler.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "*",
+    "resource": "noopframe",
+    "domains": [
+      "faucetcrypto.com"
+    ]
+  },
+  {
+    "pattern": "*",
+    "resource": "2x2.png",
+    "domains": [
+      "delcotimes.com",
+      "macombdaily.com",
+      "santacruzsentinel.com",
+      "saratogian.com",
+      "theoaklandpress.com",
+      "trentonian.com"
+    ]
+  },
+  {
+    "pattern": "||2mdn.net^",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "games2rule.com"
+    ]
+  },
+  {
+    "pattern": "||youtube.com/get_video",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "games2rule.com"
+    ]
+  },
+  {
+    "pattern": "*",
+    "resource": "nooptext",
+    "domains": [
+      "marie-claire.es"
+    ]
+  },
+  {
+    "pattern": "||adblockanalytics.com^",
+    "resource": "noop.txt"
+  },
+  {
+    "pattern": "*.mp4",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "abc.go.com"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com^",
+    "resource": "googlesyndication_adsbygoogle.js",
+    "domains": [
+      "3dzip.org"
+    ]
+  },
+  {
+    "pattern": "||amazonaws.com/homad-global-configs.schneevonmorgen.com/global_config.json",
+    "resource": "nooptext",
+    "domains": [
+      "ani-stream.com"
+    ]
+  },
+  {
+    "pattern": "*&expires",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "prosieben.at",
+      "prosieben.de",
+      "prosiebenmaxx.de",
+      "ran.de"
+    ]
+  },
+  {
+    "pattern": "||smrmembers-smr.smartmediarep.com/*/video/*.mp4",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "tv.naver.com"
+    ]
+  },
+  {
+    "pattern": "||rte.ie/ads/*",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "rte.ie"
+    ]
+  },
+  {
+    "pattern": "||securecdn.videologygroup.com/Prod/DSPMedia/",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "rte.ie"
+    ]
+  },
+  {
+    "pattern": "*/media/*.mp4|",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "rte.ie"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/simgad/*",
+    "resource": "1x1.gif",
+    "domains": [
+      "unlockapk.com"
+    ]
+  },
+  {
+    "pattern": "||siriusfiles.com/adframe.js",
+    "resource": "noop.html"
+  },
+  {
+    "pattern": "||fautsy.com/adblock.php",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||notifyvideo.info/p/creative-video/*",
+    "resource": "noopmp4-1s"
+  },
+  {
+    "pattern": "||ads.exoclick.com^",
+    "resource": "noopjs",
+    "domains": [
+      "uflash.tv"
+    ]
+  },
+  {
+    "pattern": "||ads-twitter.com/uwt.js",
+    "resource": "noop.txt"
+  },
+  {
+    "pattern": "||link-to.net^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||ipla.pluscdn.pl/p/*",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "polsatsport.pl"
+    ]
+  },
+  {
+    "pattern": "||p-cdn.us/public/*",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "soundcloud.com"
+    ]
+  },
+  {
+    "pattern": "||sndcdn.com/audio/*",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "soundcloud.com"
+    ]
+  },
+  {
+    "pattern": "||fwmrm.net/ad/*",
+    "resource": "noopjs",
+    "domains": [
+      "nationalgeographic.com"
+    ]
+  },
+  {
+    "pattern": "||player.ooyala.com/static/*/ad-plugin/*",
+    "resource": "noopjs",
+    "domains": [
+      "dragons.com.au"
+    ]
+  },
+  {
+    "pattern": "*&token",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "peekvids.com",
+      "playvids.com",
+      "pornflip.com",
+      "pornoeggs.com"
+    ]
+  },
+  {
+    "pattern": "||static.canal-plus.net/pub/",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "mycanal.fr"
+    ]
+  },
+  {
+    "pattern": "*&expire",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "nhl.com"
+    ]
+  },
+  {
+    "pattern": "*",
+    "resource": "32x32.png",
+    "domains": [
+      "streameast.*",
+      "thestreameast.*"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/pagead/js/",
+    "resource": "noopjs",
+    "domains": [
+      "eazycheat.com"
+    ]
+  },
+  {
+    "pattern": "||assets.moat.com/*/ad",
+    "resource": "2x2.png"
+  },
+  {
+    "pattern": "||redcdn.pl/file/*/vstatic/*.mp4",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "cda.pl"
+    ]
+  },
+  {
+    "pattern": ".mp4",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "tubitv.com"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/pagead/js/adsbygoogle.js",
+    "resource": "noopjs",
+    "domains": [
+      "rollingstone.it"
+    ]
+  },
+  {
+    "pattern": "||pmdipads-a.akamaihd.net^",
+    "resource": "noopmp3-0.1s"
+  },
+  {
+    "pattern": "||adservice.google.*/adsid/integrator.js",
+    "resource": "nooptext",
+    "domains": [
+      "tubia.com"
+    ]
+  },
+  {
+    "pattern": "||gocolumbialions.com/components/js/analytics.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||delivery.tf1.fr/pub",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "tf1.fr"
+    ]
+  },
+  {
+    "pattern": "||dnl-adv-ssl.tf1.fr/",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "tf1.fr"
+    ]
+  },
+  {
+    "pattern": "||slpubmedias.tf1.fr^",
+    "resource": "noopmp3-0.1s"
+  },
+  {
+    "pattern": "||loadshare.org/custom/*",
+    "resource": "noopmp4-1s"
+  },
+  {
+    "pattern": "||mairdumont.com^",
+    "resource": "noopjs",
+    "domains": [
+      "kachelmannwetter.com"
+    ]
+  },
+  {
+    "pattern": "||md-nx.com^",
+    "resource": "noopjs",
+    "domains": [
+      "meteologix.com",
+      "weather.us"
+    ]
+  },
+  {
+    "pattern": "/images/*/b/*",
+    "resource": "2x2.png",
+    "domains": [
+      "babesandbitches.net",
+      "babesaround.com",
+      "babesbang.com",
+      "babeuniversum.com",
+      "grabpussy.com",
+      "join2babes.com",
+      "nightdreambabe.com",
+      "novojoy.com",
+      "novoporn.com",
+      "novostrong.com",
+      "pbabes.com",
+      "pussystate.com",
+      "redpornblog.com",
+      "rossoporn.com",
+      "sexynakeds.com"
+    ]
+  },
+  {
+    "pattern": "/images/*/banners/*",
+    "resource": "2x2.png",
+    "domains": [
+      "100bucksbabes.com",
+      "8boobs.com",
+      "babeimpact.com",
+      "babesandgirls.com",
+      "babesaround.com",
+      "babesinporn.com",
+      "babesmachine.com",
+      "bustybloom.com",
+      "chickteases.com",
+      "decorativemodels.com",
+      "dirtyyoungbitches.com",
+      "exgirlfriendmarket.com",
+      "fooxybabes.com",
+      "girlsofdesire.org",
+      "glam0ur.com",
+      "hotstunners.com",
+      "livejasminbabes.net",
+      "morazzia.com",
+      "nakedneighbour.com",
+      "novoglam.com",
+      "pleasuregirl.net",
+      "rabbitsfun.com",
+      "sexyaporno.com",
+      "sexykittenporn.com",
+      "silkengirl.*",
+      "slutsandangels.com",
+      "theomegaproject.org",
+      "thousandbabes.com",
+      "vibraporn.com",
+      "wantedbabes.com",
+      "wildfanny.com"
+    ]
+  },
+  {
+    "pattern": "||adservice.google.com/adsid/integrator.js",
+    "resource": "noopjs",
+    "domains": [
+      "973espn.com"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/",
+    "resource": "noopjs",
+    "domains": [
+      "gulf-up.com"
+    ]
+  },
+  {
+    "pattern": "||cdn.yollamedia.com^",
+    "resource": "noopjs",
+    "domains": [
+      "spieleklassiker.com"
+    ]
+  },
+  {
+    "pattern": "||doubleclick.net/pagead/id",
+    "resource": "nooptext",
+    "domains": [
+      "windowsreport.com"
+    ]
+  },
+  {
+    "pattern": "||cdn.zomap.de^",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "the-voice-of-germany.*"
+    ]
+  },
+  {
+    "pattern": "||flsaudio.com^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "*/gfp_video_ads/*",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "digisport.ro"
+    ]
+  },
+  {
+    "pattern": "||gvt1.com^",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "digisport.ro"
+    ]
+  },
+  {
+    "pattern": "||slacker.com^*/getspot/?spotid=",
+    "resource": "noopmp3-0.1s"
+  },
+  {
+    "pattern": "*/assets.sidearmsports.com/",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||sidearm-syndication.s3.amazonaws.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "*",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "canalplus.com"
+    ]
+  },
+  {
+    "pattern": "*.mp4",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "cartoonth12.com"
+    ]
+  },
+  {
+    "pattern": "||imdb.com/tr/*pageHit",
+    "resource": "noopjs",
+    "domains": [
+      "imdb.com"
+    ]
+  },
+  {
+    "pattern": "||fls-na.amazon.com/",
+    "resource": "noopjs",
+    "domains": [
+      "imdb.com"
+    ]
+  },
+  {
+    "pattern": "||mangahere.onl/adsbygoogle.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||nensaysubs.net/images/logonensay.ico",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||imasdk.googleapis.com/js/sdkloader/ima3.js",
+    "resource": "noopjs",
+    "domains": [
+      "881903.com"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/pagead/js/adsbygoogle.j",
+    "resource": "noopjs",
+    "domains": [
+      "botayit.com"
+    ]
+  },
+  {
+    "pattern": "||google.com/adsense/domains/caf.js",
+    "resource": "noopjs",
+    "domains": [
+      "jestrudo.pl"
+    ]
+  },
+  {
+    "pattern": "||d2klx87bgzngce.cloudfront.net^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||pandora.com/static/ads/omsdk-",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "*/ads",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "podu.me"
+    ]
+  },
+  {
+    "pattern": "||intellipopup.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||google-analytics.com/analytics.js",
+    "resource": "google-analytics.com/analytics.js",
+    "domains": [
+      "support.amd.com"
+    ]
+  },
+  {
+    "pattern": "||googletagmanager.com/gtm.js",
+    "resource": "googletagmanager.com/gtm.js",
+    "domains": [
+      "support.amd.com"
+    ]
+  },
+  {
+    "pattern": "||vidtech.cbsinteractive.com^*/tracking/",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||carsensor.net/usedcar/modules/clicklog_",
+    "resource": "noop.txt"
+  },
+  {
+    "pattern": "||the-japan-news.com/modules/js/lib/fgp/fingerprint2.js",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||artfut.com/static/tagtag.",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||html-load.com^",
+    "resource": "noopjs",
+    "domains": [
+      "aikatu.jp",
+      "ark-unity.com",
+      "cool-style.com.tw",
+      "doanhnghiepvn.vn",
+      "mynet.com"
+    ]
+  },
+  {
+    "pattern": "||nsfw.xxx/vendor/fingerprint/fingerprint2.min.js",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||cloudflare.com/ajax/libs/fingerprintjs2/",
+    "resource": "fingerprint2.js",
+    "domains": [
+      "gamebox.gesoten.com"
+    ]
+  },
+  {
+    "pattern": "||gamerch.com/s3-assets/library/js/fingerprint2.min.js",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||serasaexperian.com.br/dist/scripts/fingerprint2.js^",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "/^https:\\/\\/[0-9a-z]{7,25}\\.com\\/(?:assets|build|bundles|chunks|dist|files|j|public|scripts|static)?\\/?(?:js\\/)?[0-9_a-z]{6,16}\\/?[0-9_a-z]{5,120}(?:[-.](?:app|bundle|ma?in|module|prod|index|v\\d|vendor))?(?:\\.js)?(?:\\?r=\\d)?$/",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||torimochi.line-apps.com^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||events.paramount.tech^",
+    "resource": "nooptext",
+    "domains": [
+      "nickjr.com"
+    ]
+  },
+  {
+    "pattern": "||ab.blogs.es/abtest.png^",
+    "resource": "1x1.gif",
+    "domains": [
+      "xataka.com",
+      "trendencias.com"
+    ]
+  },
+  {
+    "pattern": "||bi-tracker-cn.rivergame.net/event/tracker",
+    "resource": "noop.txt"
+  },
+  {
+    "pattern": "/^https:\\/\\/[a-z][0-9][0-9][0-9]\\.[a-z]+\\.com\\/script\\.js$/",
+    "resource": "noopjs",
+    "domains": [
+      "com"
+    ]
+  },
+  {
+    "pattern": "||an.yandex.ru^",
+    "resource": "noopjs",
+    "domains": [
+      "moyaposylka.ru"
+    ]
+  },
+  {
+    "pattern": "||static.eclick.vn^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||blog.skk.moe/_next/data/*/post/*.json",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||2mdn.net/instream/video/client.js",
+    "resource": "noopjs",
+    "domains": [
+      "video.foxnews.com"
+    ]
+  },
+  {
+    "pattern": "||cdn.krxd.net^",
+    "resource": "noopjs",
+    "domains": [
+      "video.foxnews.com"
+    ]
+  },
+  {
+    "pattern": "||amazon-adsystem.com/aax2/amzn_ads.js",
+    "resource": "noopjs",
+    "domains": [
+      "player.performgroup.com"
+    ]
+  },
+  {
+    "pattern": "*/b/ss/*&aqe=",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||bbci.co.uk^*/analytics.js",
+    "resource": "noopjs",
+    "domains": [
+      "bbc.co.uk"
+    ]
+  },
+  {
+    "pattern": "||static.bbc.co.uk/bbcdotcom/*/adverts.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||lexus.com/lexus-share/js/tracking_omn/s_code.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||carambo.la^*/getAngularLayer",
+    "resource": "noopjs",
+    "domains": [
+      "imleagues.com"
+    ]
+  },
+  {
+    "pattern": "||oakley.com/_ui/dist/scripts/vendor/tealium.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||oakleysi.com/_ui/dist/scripts/vendor/tealium.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||camping.info/*/fingerprint2.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||static.clmbtech.com^",
+    "resource": "noopjs",
+    "domains": [
+      "businessinsider.in"
+    ]
+  },
+  {
+    "pattern": "||msavideo-a.akamaihd.net^",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "msn.com"
+    ]
+  },
+  {
+    "pattern": "||adservex.media.net/videoAds.js",
+    "resource": "noopjs",
+    "domains": [
+      "forbes.com"
+    ]
+  },
+  {
+    "pattern": "||gcmgames.com.br/*/google.analytics.trackingcode.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||player.ooyala.com/*/ad-plugin/pulse.min.js",
+    "resource": "noopjs",
+    "domains": [
+      "lpga.com"
+    ]
+  },
+  {
+    "pattern": "||cdn.auth0.com/*/analytics.min.js",
+    "resource": "noopjs",
+    "domains": [
+      "tomsguide.com"
+    ]
+  },
+  {
+    "pattern": "||frog.wix.com/da-client",
+    "resource": "1x1.gif",
+    "domains": [
+      "deviantart.com"
+    ]
+  },
+  {
+    "pattern": "||player.ooyala.com/*/analytics-plugin/",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||vidtech.cbsinteractive.com/*/tracking/comscore/comscore.streaming.",
+    "resource": "noopjs",
+    "domains": [
+      "zdnet.com"
+    ]
+  },
+  {
+    "pattern": "||tag.navdmp.com/",
+    "resource": "noopjs",
+    "domains": [
+      "globoesporte.globo.com"
+    ]
+  },
+  {
+    "pattern": "||src.litix.io/core/*/mux.js",
+    "resource": "noopjs",
+    "domains": [
+      "kanald.com.tr"
+    ]
+  },
+  {
+    "pattern": "||nostv.pt/Scripts/fingerprint2.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||computerworld.com/*/gpt_includes.js",
+    "resource": "googletagservices_gpt.js"
+  },
+  {
+    "pattern": "||tailtarget.com/profiles.js",
+    "resource": "noopjs",
+    "domains": [
+      "superesportes.com.br"
+    ]
+  },
+  {
+    "pattern": "||goducks.com/components/js/analytics.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||tags.bluekai.com/",
+    "resource": "noopjs",
+    "domains": [
+      "6abc.com",
+      "abc30.com",
+      "abc7.com",
+      "abc7chicago.com",
+      "abc7news.com",
+      "abc7ny.com",
+      "abc11.com",
+      "abc13.com"
+    ]
+  },
+  {
+    "pattern": "||miniusa.com/etc/designs/mini/js/vendor/tracking/*",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||px.moatads.com/pixel.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "abcya.com"
+    ]
+  },
+  {
+    "pattern": "||googletagservices.com/tag/js/gpt.js",
+    "resource": "noopjs",
+    "domains": [
+      "ladbible.com"
+    ]
+  },
+  {
+    "pattern": "||pub.doubleverify.com/dvtag/*/pub.js",
+    "resource": "noop.js",
+    "domains": [
+      "bbc.com"
+    ]
+  },
+  {
+    "pattern": "||api.stopad.io/link/*/pixel",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||clustrmaps.com^",
+    "resource": "32x32.png",
+    "domains": [
+      "motls.blogspot.com"
+    ]
+  },
+  {
+    "pattern": "||rtl.de/pf/resources/js/videotracking.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||unileversolutions.com/*/config/analytics.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||farnell.com/*tracking.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "*/videoplayback?expire",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "webmd.com"
+    ]
+  },
+  {
+    "pattern": "*/dw-tracking",
+    "resource": "noopjs",
+    "domains": [
+      "techrepublic.com"
+    ]
+  },
+  {
+    "pattern": "||adtech.redventures.io/lib/*/bidbarrel-techrepublic-",
+    "resource": "noop.js",
+    "domains": [
+      "techrepublic.com",
+      "zdnet.com"
+    ]
+  },
+  {
+    "pattern": "||googlesyndication.com/safeframe/*/container.html",
+    "resource": "noop.html",
+    "domains": [
+      "los40.com"
+    ]
+  },
+  {
+    "pattern": "||streamtheworld.com/ondemand/creative?cat=cm-preroll",
+    "resource": "nooptext",
+    "domains": [
+      "los40.com"
+    ]
+  },
+  {
+    "pattern": "||assets.adobedtm.com/*/satelliteLib",
+    "resource": "noopjs",
+    "domains": [
+      "8world.com"
+    ]
+  },
+  {
+    "pattern": "||player.ooyala.com^",
+    "resource": "noopjs",
+    "domains": [
+      "8world.com"
+    ]
+  },
+  {
+    "pattern": "||scorecardresearch.com/*/plugins/",
+    "resource": "noopjs",
+    "domains": [
+      "8world.com"
+    ]
+  },
+  {
+    "pattern": "||gratis.com/file/*/global/gtm.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||amazonaws.com^",
+    "resource": "nooptext",
+    "domains": [
+      "viu.com"
+    ]
+  },
+  {
+    "pattern": "||fox43.com/assets/js-libs/comscore/comscore.min.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||5newsonline.com/assets/*/comscore.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||widgets.outbrain.com/outbrain.js",
+    "resource": "noopjs",
+    "domains": [
+      "newsbreak.com"
+    ]
+  },
+  {
+    "pattern": "||static.adsafeprotected.com/vans-adapter-google-ima.js",
+    "resource": "noopjs",
+    "domains": [
+      "forbes.com"
+    ]
+  },
+  {
+    "pattern": "||d26b395fwzu5fz.cloudfront.net/keen-tracking-",
+    "resource": "noopjs",
+    "domains": [
+      "campaign.stickr.co"
+    ]
+  },
+  {
+    "pattern": "||sibautomation.com^",
+    "resource": "noopframe"
+  },
+  {
+    "pattern": "||cdn.parsely.com/keys/nfl.com/p.js",
+    "resource": "noop.js",
+    "domains": [
+      "nfl.com"
+    ]
+  },
+  {
+    "pattern": "||slickdeals.net/scripts/*/js-campaign-tracking.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||slickdeals.net/scripts/*/SD_Analytics.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||doubleclick.net/tag/js/gpt.js",
+    "resource": "googletagservices_gpt.js",
+    "domains": [
+      "aristeguinoticias.com"
+    ]
+  },
+  {
+    "pattern": "||googlevideo.com^",
+    "resource": "noopmp4-1s",
+    "domains": [
+      "mlb.com"
+    ]
+  },
+  {
+    "pattern": "*/tegna-tracking.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||lequipe.fr/*/prebid.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||otaserve.net^",
+    "resource": "noop.html",
+    "domains": [
+      "chan.sankakucomplex.com"
+    ]
+  },
+  {
+    "pattern": "||securepubads.g.doubleclick.net/tag/js/gpt.js",
+    "resource": "noop.js",
+    "domains": [
+      "indy100.com"
+    ]
+  },
+  {
+    "pattern": "||myaccount.chicagotribune.com/assets/scripts/tag-manager/googleTag.js",
+    "resource": "googletagmanager.com/gtm.js"
+  },
+  {
+    "pattern": "||static.adsafeprotected.com/vans-adapter-google-ima.js^",
+    "resource": "noopjs",
+    "domains": [
+      "tyla.com"
+    ]
+  },
+  {
+    "pattern": "||epimg.net/t.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "as.com"
+    ]
+  },
+  {
+    "pattern": "||cdn.shopify.com/*assets/pixel.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "metrovac.com"
+    ]
+  },
+  {
+    "pattern": "||news38.de/resources/*",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||tags.news.com.au/prod/heartbeat/*/MediaSDK.min.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||googletagmanager.com/gtag/js",
+    "resource": "noop.js",
+    "domains": [
+      "video.isilive.ca"
+    ]
+  },
+  {
+    "pattern": "||google-analytics.com/analytics.js",
+    "resource": "noopjs",
+    "domains": [
+      "hudsonvalleypost.com",
+      "seacoastcurrent.com",
+      "popcrush.com"
+    ]
+  },
+  {
+    "pattern": "||googletagmanager.com/gtm.js",
+    "resource": "noopjs",
+    "domains": [
+      "hudsonvalleypost.com",
+      "seacoastcurrent.com",
+      "popcrush.com"
+    ]
+  },
+  {
+    "pattern": "||clustrmaps.com^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||googlevideo.com/videoplayback?",
+    "resource": "noop-1s.mp4",
+    "domains": [
+      "safeframe.googlesyndication.com"
+    ]
+  },
+  {
+    "pattern": "||wdr.de/*/tracker/tracker.min.js",
+    "resource": "noop.js",
+    "domains": [
+      "sportschau.de"
+    ]
+  },
+  {
+    "pattern": "||cloudflare.com/cdn-cgi/trace",
+    "resource": "noop.txt",
+    "domains": [
+      "~funimation.com",
+      "~1bit.space",
+      "~1bitspace.com"
+    ]
+  },
+  {
+    "pattern": "||d2r1yp2w7bby2u.cloudfront.net/js/localforage.min.js",
+    "resource": "noopjs",
+    "domains": [
+      "sonyliv.com"
+    ]
+  },
+  {
+    "pattern": "||videoplayerhub.com^",
+    "resource": "noopjs",
+    "domains": [
+      "shockwave.com"
+    ]
+  },
+  {
+    "pattern": "||natureetdecouvertes.com^",
+    "resource": "2x2.png"
+  },
+  {
+    "pattern": "||sammobile.com^*/newrelic.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||plausible.io/js/plausible.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||prebid.elespectador.com^",
+    "resource": "googletagservices_gpt.js"
+  },
+  {
+    "pattern": "||rudaw.net/images/",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "/prebid/*",
+    "resource": "noopjs",
+    "domains": [
+      "sports.yahoo.com"
+    ]
+  },
+  {
+    "pattern": "*",
+    "resource": "noop.js",
+    "domains": [
+      "nissan.co.jp"
+    ]
+  },
+  {
+    "pattern": "||dan-ball.jp/*.gif",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||booking.rm.dk/selvbooking/*/analytics/*",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||elpais.com/t.gif",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||tag.atom.gamedistribution.com^",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||hits.informer.com/log.php",
+    "resource": "1x1.gif",
+    "domains": [
+      "funny.pho.to"
+    ]
+  },
+  {
+    "pattern": "||wpfc.ml^",
+    "resource": "1x1.gif",
+    "domains": [
+      "thestoryexchange.org"
+    ]
+  },
+  {
+    "pattern": "||assets.springserve.com^",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "app.plex.tv"
+    ]
+  },
+  {
+    "pattern": "||lastpass.com/assets/js/analyticsjs.js",
+    "resource": "google-analytics.com/analytics.js"
+  },
+  {
+    "pattern": "||baidu.com/*/track.gif?",
+    "resource": "1x1.gif",
+    "domains": [
+      "jump2.bdimg.com"
+    ]
+  },
+  {
+    "pattern": "||sohu.com/cityjson",
+    "resource": "noopjs",
+    "domains": [
+      "netac.com"
+    ]
+  },
+  {
+    "pattern": "||encar.com/js/*/analytics.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||d1z2jf7jlzjs58.cloudfront.net/p.js",
+    "resource": "noopjs",
+    "domains": [
+      "voici.fr"
+    ]
+  },
+  {
+    "pattern": "||samash.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||arcgis.com/apps/instant/node_modules/templates-common-library/structuralFunctionality/telemetry/AppMeasurement.js^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||maps.arcgis.com/apps/*/AppMeasurement.js^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "/google-tag-manager.min.js",
+    "resource": "googletagmanager_gtm.js",
+    "domains": [
+      "511tactical.com"
+    ]
+  },
+  {
+    "pattern": "||mycourses.pearson.com/shared/static/*/component/ga.min.js",
+    "resource": "google-analytics.com/analytics.js"
+  },
+  {
+    "pattern": "/img/ads/Spinner.png",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||coveo.com^",
+    "resource": "noopjs",
+    "domains": [
+      "basspro.com"
+    ]
+  },
+  {
+    "pattern": "||googleadservices.com/pagead/conversion.js",
+    "resource": "noop.js",
+    "domains": [
+      "ncsoft.jp"
+    ]
+  },
+  {
+    "pattern": "||api.doubtnut.com/v2/web-landing/web-ads-info",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||lightning.cnn.com/launch/",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||startpage.com/sp/adsense/",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||sho.com/www/sho/lib/omniture/AppMeasurement.js",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||ad-link.jp/sugoroku64/static/img/promotion_5/spacer.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "sugoroku64.ad-link.jp"
+    ]
+  },
+  {
+    "pattern": "||shop.motorolasolutions.com/msi-files/libs/dynatrace.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||shop.motorolasolutions.com/msi-files/page-tags/head/dynatrace-loader.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||useinsider.com^",
+    "resource": "2x2.png",
+    "domains": [
+      "akbank.com"
+    ]
+  },
+  {
+    "pattern": "||yext-pixel.com/store_pagespixel^",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "/spacer.gif?",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||nextday.media^",
+    "resource": "noopjs",
+    "domains": [
+      "gpblog.com"
+    ]
+  },
+  {
+    "pattern": "||adobe.com/newrelic.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||dynatrace.com^",
+    "resource": "noopjs",
+    "domains": [
+      "bcbstx.com"
+    ]
+  },
+  {
+    "pattern": "||bauersecure.com/dist/js/prebid/",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "/fingerprint2.min.js",
+    "resource": "fingerprint2.js",
+    "domains": [
+      "~amateuralbum.net"
+    ]
+  },
+  {
+    "pattern": "/fingerprint2.js",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||d347cldnsmtg5x.cloudfront.net/util/1x1.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "aplaceforeverything.co.uk"
+    ]
+  },
+  {
+    "pattern": "||adsafeprotected.com^",
+    "resource": "noopjs",
+    "domains": [
+      "theonion.com"
+    ]
+  },
+  {
+    "pattern": "*.gif",
+    "resource": "1x1.gif",
+    "domains": [
+      "holybooks.com"
+    ]
+  },
+  {
+    "pattern": "||analytics.skroutz.gr/analytics.min.js^",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||munchkin.marketo.net/munchkin.js",
+    "resource": "noop.js",
+    "domains": [
+      "st.com"
+    ]
+  },
+  {
+    "pattern": "/web-vitals.",
+    "resource": "noopjs",
+    "domains": [
+      "amazon.com"
+    ]
+  },
+  {
+    "pattern": "||googletagmanager.com^",
+    "resource": "googletagmanager_gtm.js",
+    "domains": [
+      "economictimes.com",
+      "eisamay.com",
+      "iamgujarat.com",
+      "indiatimes.com",
+      "samayam.com",
+      "vijaykarnataka.com"
+    ]
+  },
+  {
+    "pattern": "||my.goabode.com/assets/js/fp2.min.js",
+    "resource": "fingerprint2.js",
+    "domains": [
+      "my.goabode.com"
+    ]
+  },
+  {
+    "pattern": "||plausible.io^",
+    "resource": "nooptext",
+    "domains": [
+      "you.com"
+    ]
+  },
+  {
+    "pattern": "||ladsp.com/script-sf/",
+    "resource": "noop.js",
+    "domains": [
+      "str.toyokeizai.net"
+    ]
+  },
+  {
+    "pattern": "||stats.wp.com^",
+    "resource": "noopjs",
+    "domains": [
+      "europeanspaceflight.com"
+    ]
+  },
+  {
+    "pattern": "||appboycdn.com^",
+    "resource": "noopjs",
+    "domains": [
+      "animates.co.nz"
+    ]
+  },
+  {
+    "pattern": "||cdn.getblueshift.com/blueshift.js^",
+    "resource": "noopjs",
+    "domains": [
+      "rentcafe.com"
+    ]
+  },
+  {
+    "pattern": "||artstation.com/*/views_tracking/",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "/smartechclient.js^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||tierlists.com^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "/frontend-metrics^",
+    "resource": "nooptext"
+  },
+  {
+    "pattern": "||imasdk.googleapis.com/pal/sdkloader/pal.js",
+    "resource": "noopjs",
+    "domains": [
+      "fox5sandiego.com"
+    ]
+  },
+  {
+    "pattern": "||maps.arcgis.com/apps/instant/lookup/app/utilites/telemetry/appmeasurement.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||imrworldwide.com/conf/",
+    "resource": "noopjs",
+    "domains": [
+      "nbcolympics.com"
+    ]
+  },
+  {
+    "pattern": "/c.gif?",
+    "resource": "1x1.gif",
+    "domains": [
+      "web.skype.com"
+    ]
+  },
+  {
+    "pattern": "||pubscholar.cn/static/common/fingerprint.js^",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||qds.it/wp-content/plugins/digistream/digiplayer/js/videojs.ga.js?",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||qds.it^",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "/analytics/analytics.js^",
+    "resource": "noop.js"
+  },
+  {
+    "pattern": "||lamycosphere.com/cdn/shop/*/assets/pixel.gif",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||wurfl.io/wurfl.js",
+    "resource": "noopjs",
+    "domains": [
+      "smartcharts.net"
+    ]
+  },
+  {
+    "pattern": "||neo.btrl.ro/Scripts/services/fingerprint2.min.js^",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||seguridad.compensar.com/lib/js/fingerprint2.js",
+    "resource": "fingerprint2.js"
+  },
+  {
+    "pattern": "||npttech.com/advertising.js",
+    "resource": "noop.js",
+    "domains": [
+      "the-independent.com"
+    ]
+  },
+  {
+    "pattern": "||oriahcontracting.ca/?local_ga_js=1",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||imasdk.googleapis.com/js/sdkloader/ima3_dai.js",
+    "resource": "noopjs",
+    "domains": [
+      "digi24.ro"
+    ]
+  },
+  {
+    "pattern": "||main.govpilot.com/jet/js/newrelic.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||publisher.caroda.io/videoPlayer/",
+    "resource": "noopjs",
+    "domains": [
+      "online.evropa2.cz"
+    ]
+  },
+  {
+    "pattern": "||adsdk.microsoft.com/ast/ast.js",
+    "resource": "noopjs",
+    "domains": [
+      "prisjakt.no"
+    ]
+  },
+  {
+    "pattern": "||munchkin.marketo.net^",
+    "resource": "noopjs",
+    "domains": [
+      "developer.arm.com"
+    ]
+  },
+  {
+    "pattern": "||gis.railbaltica.org/*/AppMeasurement.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "||adobedtm.com^",
+    "resource": "noopjs",
+    "domains": [
+      "euronews.com"
+    ]
+  },
+  {
+    "pattern": "/appmeasurement.js",
+    "resource": "noopjs",
+    "domains": [
+      "geoportal.kreis-reutlingen.de"
+    ]
+  },
+  {
+    "pattern": "||d2r1yp2w7bby2u.cloudfront.net^",
+    "resource": "noopjs",
+    "domains": [
+      "lionsgateplay.com"
+    ]
+  },
+  {
+    "pattern": "/gtm.js",
+    "resource": "noopjs",
+    "domains": [
+      "post.ch"
+    ]
+  },
+  {
+    "pattern": "||go-mpulse.net/boomerang/",
+    "resource": "noopjs",
+    "domains": [
+      "bradescoseguros.com.br"
+    ]
+  },
+  {
+    "pattern": "||camel3.live/lib/sensorsdata.full.min.js",
+    "resource": "noopjs"
+  },
+  {
+    "pattern": "/evergage.min.js",
+    "resource": "noop.js",
+    "domains": [
+      "homedepot.ca"
+    ]
+  },
+  {
+    "pattern": "||missav78.top/sample/placeholder.jpg",
+    "resource": "1x1.gif"
+  },
+  {
+    "pattern": "||ruamupr.com^",
+    "resource": "noopjs",
+    "domains": [
+      "thegatewaypundit.com"
+    ]
+  },
+  {
+    "pattern": "||adman.gr^",
+    "resource": "noopmp3-0.1s",
+    "domains": [
+      "antenna.gr"
+    ]
+  }
+]
