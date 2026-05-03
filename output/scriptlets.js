@@ -122,7 +122,9 @@
     window.fetch = function (input) {
       var url = typeof input === 'string' ? input : (input && input.url) || '';
       if (!re || re.test(url)) {
-        return Promise.resolve(new Response('', { status: 200 }));
+        // Reject with a network error so callers (and ad-block testers) correctly
+        // see the request as failed rather than an empty successful response.
+        return Promise.reject(new TypeError('Failed to fetch'));
       }
       return _fetch.apply(this, arguments);
     };
@@ -428,8 +430,10 @@
   noXhrIf('google-analytics\\.com/collect');
   noXhrIf('facebook\\.net/en_US/fbevents');
 
-  preventSetTimeout('checkAdBlock|adBlockDetect|detectAdBlock|adsbygoogle|AdBlock|blockadblock');
-  preventSetInterval('checkAdBlock|adBlockDetect|detectAdBlock|blockadblock');
+  // Target known anti-adblocker library names only, not generic "AdBlock" strings
+  // that would also match legitimate ad-block tester detection code.
+  preventSetTimeout('blockadblock|BlockAdBlock|fuckAdBlock|FuckAdBlock');
+  preventSetInterval('blockadblock|BlockAdBlock|fuckAdBlock|FuckAdBlock');
 
   // ── Extracted generic configs ─────────────────────────────────────────────
 
