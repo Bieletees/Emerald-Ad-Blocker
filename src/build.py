@@ -200,6 +200,39 @@ def dedup(rules: list[dict]) -> list[dict]:
     return result
 
 
+_EXCLUSIVE_CONDITIONS = ("if-domain", "unless-domain", "if-top-url", "unless-top-url")
+
+
+def sanitize_rules(rules: list[dict]) -> list[dict]:
+    """
+    Enforce WebKit's constraint: a trigger may have at most one of
+    if-domain, unless-domain, if-top-url, unless-top-url.
+    When a rule has multiple, keep if-domain (most specific) and drop the rest.
+    """
+    result: list[dict] = []
+    n_fixed = 0
+    for rule in rules:
+        t = rule.get("trigger", {})
+        present = [k for k in _EXCLUSIVE_CONDITIONS if k in t]
+        if len(present) <= 1:
+            result.append(rule)
+            continue
+        # More than one condition — fix by keeping if-domain preferentially
+        fixed_trigger = dict(t)
+        if "if-domain" in fixed_trigger or "if-top-url" in fixed_trigger:
+            fixed_trigger.pop("unless-domain", None)
+            fixed_trigger.pop("unless-top-url", None)
+        else:
+            # Only unless-* present (shouldn't happen, but just drop all but first)
+            for k in present[1:]:
+                fixed_trigger.pop(k, None)
+        result.append({"trigger": fixed_trigger, "action": rule["action"]})
+        n_fixed += 1
+    if n_fixed:
+        print(f"    sanitize_rules: fixed {n_fixed} multi-condition trigger(s)")
+    return result
+
+
 # ---------------------------------------------------------------------------
 # Fix original hand-curated rules
 # ---------------------------------------------------------------------------
@@ -460,6 +493,13 @@ def abp_to_wk(line: str, is_exception: bool = False) -> dict | None:
         trigger["resource-type"] = resource_types
     if load_types:
         trigger["load-type"] = load_types
+    # WebKit: a trigger cannot have more than one of if-domain, unless-domain,
+    # if-top-url, unless-top-url. When domain= mixes positive and negated entries
+    # we'd get both if-domain + unless-domain, which causes a compile error.
+    # Prefer if-domain (more specific scope) and discard unless-domain.
+    if if_domains and unless_domains:
+        unless_domains = []
+
     if if_domains:
         trigger["if-domain"] = if_domains
     if unless_domains:
@@ -1040,7 +1080,9 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
     window.fetch = function (input) {
       var url = typeof input === 'string' ? input : (input && input.url) || '';
       if (!re || re.test(url)) {
-        return Promise.resolve(new Response('', { status: 200 }));
+        // Reject with a network error so callers (and ad-block testers) correctly
+        // see the request as failed rather than an empty successful response.
+        return Promise.reject(new TypeError('Failed to fetch'));
       }
       return _fetch.apply(this, arguments);
     };
@@ -1346,8 +1388,10 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
   noXhrIf('google-analytics\\.com/collect');
   noXhrIf('facebook\\.net/en_US/fbevents');
 
-  preventSetTimeout('checkAdBlock|adBlockDetect|detectAdBlock|adsbygoogle|AdBlock|blockadblock');
-  preventSetInterval('checkAdBlock|adBlockDetect|detectAdBlock|blockadblock');
+  // Target known anti-adblocker library names only, not generic "AdBlock" strings
+  // that would also match legitimate ad-block tester detection code.
+  preventSetTimeout('blockadblock|BlockAdBlock|fuckAdBlock|FuckAdBlock');
+  preventSetInterval('blockadblock|BlockAdBlock|fuckAdBlock|FuckAdBlock');
 
   // ── Extracted generic configs ─────────────────────────────────────────────
 
@@ -1758,6 +1802,12 @@ def main() -> None:
     print(f"  trackers   : {len(trackers_merged):,} rules")
     print(f"  exceptions : {len(exceptions_merged):,} rules")
     print(f"  total      : {total:,} rules")
+
+    # ── Sanitize: enforce WebKit single-condition-per-trigger constraint ──────
+    print("\n=== Sanitizing rules (WebKit constraint) ===")
+    adblock_merged = sanitize_rules(adblock_merged)
+    trackers_merged = sanitize_rules(trackers_merged)
+    exceptions_merged = sanitize_rules(exceptions_merged)
 
     # ── Write JSON outputs (with auto-split) ──────────────────────────────────
     print("\n=== Writing output files ===")
