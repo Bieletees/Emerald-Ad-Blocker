@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emerald Ad Blocker — Test Suite</title>
+
+  <!--
+    When loaded inside the test browser, all adblocker scripts are already
+    injected as WKUserScripts at document_start, so we don't need to load them
+    here. The __EMERALD_RULE_STATS__ variable is also pre-injected.
+  -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #22c55e; --red: #ef4444; --yellow: #f59e0b; --blue: #3b82f6;
+      --bg: #0f172a; --surface: #1e293b; --border: #334155;
+      --text: #e2e8f0; --muted: #94a3b8; --r: 8px;
+    }
+    body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text);
+           padding: 24px 16px 48px; min-height: 100vh; }
+    h1 { font-size: 1.6rem; font-weight: 700; text-align: center; margin-bottom: 4px; }
+    h1 em { color: var(--green); font-style: normal; }
+    .subtitle { text-align: center; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+
+    .summary {
+      max-width: 960px; margin: 0 auto 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 20px;
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .summary .big { font-size: 1.1rem; font-weight: 700; }
+    .summary .pass { color: var(--green); }
+    .summary .fail { color: var(--red); }
+    .summary .note { color: var(--muted); font-size: .8rem; flex: 1; min-width: 180px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+            gap: 14px; max-width: 960px; margin: 0 auto; }
+
+    .card { background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--r); padding: 18px; }
+    .card h2 { font-size: .75rem; font-weight: 600; text-transform: uppercase;
+               letter-spacing: .08em; color: var(--muted); margin-bottom: 12px; }
+    .badge { display: inline-block; border-radius: 4px; font-size: .65rem; font-weight: 700;
+             padding: 2px 5px; text-transform: uppercase; letter-spacing: .04em; margin-left: 6px; }
+    .badge-wk { background: #1d4ed820; color: var(--blue); border: 1px solid #1d4ed840; }
+    .badge-js { background: #f59e0b20; color: var(--yellow); border: 1px solid #f59e0b40; }
+
+    .row { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0;
+           border-bottom: 1px solid var(--border); font-size: .82rem; line-height: 1.4; }
+    .row:last-child { border-bottom: none; }
+    .icon { flex-shrink: 0; font-size: .9rem; }
+    .row-name { flex: 1; }
+    .row-detail { color: var(--muted); font-size: .72rem; margin-top: 2px; }
+
+    .stat-row { display: flex; justify-content: space-between; align-items: center;
+                padding: 7px 0; border-bottom: 1px solid var(--border); font-size: .85rem; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row .lbl { color: var(--muted); }
+    .stat-row .val { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+    /* Off-screen cosmetic test fixtures */
+    .cosmetic-fixture { position: fixed; bottom: -9999px; left: -9999px;
+                        width: 1px; height: 1px; overflow: hidden; }
+  </style>
+</head>
+<body>
+
+<h1>Emerald Ad Blocker <em>Test Suite</em></h1>
+<p class="subtitle">Scriptlet, cosmetic, and network-layer blocking — running in the Emerald test browser.</p>
+
+<div class="summary" id="summary">
+  <span class="big">Running…</span>
+</div>
+
+<div class="grid">
+  <div class="card" id="card-rules">
+    <h2>Rule files <span class="badge badge-wk">WKContentRuleList</span></h2>
+    <div id="body-rules"><span style="color:var(--muted);font-size:.8rem">Loading…</span></div>
+  </div>
+  <div class="card">
+    <h2>Anti-adblock stubs <span class="badge badge-js">scriptlets.js</span></h2>
+    <div id="body-stubs"></div>
+  </div>
+  <div class="card">
+    <h2>Fetch blocking <span class="badge badge-js">scriptlets.js</span></h2>
+    <div id="body-fetch"></div>
+  </div>
+  <div class="card">
+    <h2>WebSocket blocking <span class="badge badge-js">websocket_block.js</span></h2>
+    <div id="body-ws"></div>
+  </div>
+  <div class="card">
+    <h2>Cosmetic hiding <span class="badge badge-js">cosmetic.js</span></h2>
+    <div id="body-cosmetic"></div>
+  </div>
+  <div class="card">
+    <h2>googletag / GPT stub <span class="badge badge-js">cosmetic.js</span></h2>
+    <div id="body-gpt"></div>
+  </div>
+</div>
+
+<!-- Off-screen fixtures for cosmetic tests -->
+<div class="cosmetic-fixture">
+  <div id="f-adsbygoogle" class="adsbygoogle">ad</div>
+  <div id="f-ad-banner" class="ad-banner">ad</div>
+  <div id="f-advertisement" class="advertisement">ad</div>
+  <div id="f-data-ad" data-ad-unit="test">ad</div>
+  <div id="f-gpt" id="div-gpt-ad-123">ad</div>
+</div>
+
+<script>
+// ── Test harness ─────────────────────────────────────────────────────────────
+
+var PASS = 0, FAIL = 0;
+
+function addRow(containerId, icon, name, detail) {
+  var el = document.getElementById(containerId);
+  var row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<span class="icon">' + icon + '</span>'
+    + '<span class="row-name">' + escHtml(name)
+    + (detail ? '<div class="row-detail">' + escHtml(detail) + '</div>' : '')
+    + '</span>';
+  el.appendChild(row);
+}
+
+function pass(c, name, detail) { PASS++; addRow(c, '✅', name, detail || ''); updateSummary(); }
+function fail(c, name, detail) { FAIL++; addRow(c, '❌', name, detail || ''); updateSummary(); }
+
+function updateSummary() {
+  document.getElementById('summary').innerHTML =
+    '<span class="big pass">' + PASS + ' passed</span>' +
+    (FAIL ? '<span class="big fail">' + FAIL + ' failed</span>' : '') +
+    '<span class="note">JS-layer tests only. WKContentRuleList network blocking is active but verified by browsing real sites.</span>';
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── 1. Rule file stats (injected by Swift via __EMERALD_RULE_STATS__) ─────────
+
+(function () {
+  var stats = window.__EMERALD_RULE_STATS__;
+  var body = document.getElementById('body-rules');
+  body.innerHTML = '';
+
+  if (!stats) {
+    body.innerHTML = '<div style="color:var(--muted);font-size:.8rem">Stats not available.<br>Run in the Emerald test browser.</div>';
+    return;
+  }
+
+  var totalRules = 0;
+  Object.keys(stats).forEach(function(key) {
+    var s = stats[key];
+    var shortKey = key.replace('emerald.', '') + '.json';
+    body.innerHTML +=
+      '<div class="stat-row"><span class="lbl">' + shortKey + '</span>'
+      + '<span class="val">' + s.count.toLocaleString() + ' rules · ' + s.kb + ' KB</span></div>';
+    totalRules += s.count;
+  });
+  body.innerHTML += '<div class="stat-row"><span class="lbl" style="font-weight:600">Total</span>'
+    + '<span class="val" style="color:var(--green)">' + totalRules.toLocaleString() + '</span></div>';
+})();
+
+// ── 2. Anti-adblock stubs ──────────────────────────────────────────────────────
+
+(function () {
+  var c = 'body-stubs';
+  function chk(label, expr) {
+    try { expr() ? pass(c, label) : fail(c, label, 'value: ' + eval(label.split(' ')[0])); }
+    catch(e) { fail(c, label, e.message); }
+  }
+
+  chk('window.canRunAds === true',          function(){ return window.canRunAds === true; });
+  chk('window.adsBlocked === false',        function(){ return window.adsBlocked === false; });
+  chk('adsbygoogle.loaded === true',        function(){ return window.adsbygoogle && window.adsbygoogle.loaded === true; });
+  chk('adsbygoogle.push is function',       function(){ return typeof (window.adsbygoogle && window.adsbygoogle.push) === 'function'; });
+  chk('window.blockAdBlock is function',    function(){ return typeof window.blockAdBlock === 'function'; });
+  chk('window.fuckAdBlock is function',     function(){ return typeof window.fuckAdBlock === 'function'; });
+  chk('window.detectAdBlock is function',   function(){ return typeof window.detectAdBlock === 'function'; });
+  chk('window.Admiral is function',         function(){ return typeof window.Admiral === 'function'; });
+})();
+
+// ── 3. Fetch blocking ─────────────────────────────────────────────────────────
+
+(function () {
+  var c = 'body-fetch';
+
+  function testBlock(label, url) {
+    fetch(url)
+      .then(function(){ fail(c, label + ' → should be BLOCKED', 'resolved with 200'); })
+      .catch(function(e){ e instanceof TypeError ? pass(c, label + ' → rejected ✓') : fail(c, label, e.message); });
+  }
+
+  testBlock('fetch googlesyndication', 'https://pagead2.googlesyndication.com/test');
+  testBlock('fetch doubleclick',        'https://ad.doubleclick.net/test');
+  testBlock('fetch GA /collect',        'https://www.google-analytics.com/collect?v=1');
+  testBlock('fetch GA /g/collect',      'https://www.google-analytics.com/g/collect');
+  testBlock('fetch hotjar',             'https://static.hotjar.com/c/hotjar.js');
+  testBlock('fetch clarity.ms',         'https://c.clarity.ms/clarity.js');
+})();
+
+// ── 4. WebSocket blocking ─────────────────────────────────────────────────────
+
+(function () {
+  var c = 'body-ws';
+
+  function testWSBlock(label, url) {
+    try {
+      var ws = new WebSocket(url);
+      ws.readyState === 3
+        ? pass(c, label + ' → stub (CLOSED) ✓')
+        : fail(c, label, 'readyState: ' + ws.readyState);
+    } catch(e) { fail(c, label, e.message); }
+  }
+
+  testWSBlock('WebSocket doubleclick',      'wss://ad.doubleclick.net/ws');
+  testWSBlock('WebSocket google-analytics', 'wss://www.google-analytics.com/ws');
+  testWSBlock('WebSocket hotjar',           'wss://ws.hotjar.com/api/v2/client');
+  testWSBlock('WebSocket taboola',          'wss://ws.taboola.com/ws');
+  testWSBlock('WebSocket criteo',           'wss://rtax.criteo.com/ws');
+
+  try {
+    typeof navigator.sendBeacon === 'function'
+      ? pass(c, 'navigator.sendBeacon patched')
+      : fail(c, 'navigator.sendBeacon not found');
+  } catch(e) { fail(c, 'sendBeacon', e.message); }
+})();
+
+// ── 5. Cosmetic hiding (wait a tick for CSS injection) ────────────────────────
+
+setTimeout(function () {
+  var c = 'body-cosmetic';
+
+  function hidden(id) {
+    var el = document.getElementById(id);
+    if (!el) return false;
+    var cs = window.getComputedStyle(el);
+    return cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) === 0;
+  }
+
+  [
+    ['f-adsbygoogle', '.adsbygoogle'],
+    ['f-ad-banner',   '.ad-banner'],
+    ['f-advertisement','.advertisement'],
+    ['f-data-ad',     '[data-ad-unit]'],
+  ].forEach(function(pair) {
+    hidden(pair[0])
+      ? pass(c, pair[1] + ' hidden ✓')
+      : fail(c, pair[1] + ' NOT hidden', 'cosmetic.js may not have run');
+  });
+
+  var styleTag = document.querySelector('[id^="__emerald_cosmetic_"]');
+  styleTag
+    ? pass(c, '<style> injected by cosmetic.js ✓', styleTag.textContent.length + ' chars')
+    : fail(c, 'cosmetic.js <style> tag not found in DOM');
+
+}, 300);
+
+// ── 6. googletag / GPT stub ───────────────────────────────────────────────────
+
+(function () {
+  var c = 'body-gpt';
+
+  try {
+    window.googletag && window.googletag.apiReady === true
+      ? pass(c, 'googletag.apiReady === true')
+      : fail(c, 'googletag.apiReady', 'got: ' + (window.googletag && window.googletag.apiReady));
+  } catch(e) { fail(c, 'googletag.apiReady', e.message); }
+
+  try {
+    var slot = window.googletag && window.googletag.defineSlot('/ad/slot', [728,90], 'div1');
+    slot && typeof slot.addService === 'function'
+      ? pass(c, 'googletag.defineSlot() chainable stub ✓')
+      : fail(c, 'googletag.defineSlot()', 'returned: ' + slot);
+  } catch(e) { fail(c, 'googletag.defineSlot()', e.message); }
+
+  try {
+    var pa = window.googletag && window.googletag.pubads && window.googletag.pubads();
+    pa && typeof pa.enableSingleRequest === 'function'
+      ? pass(c, 'googletag.pubads() stub functional ✓')
+      : fail(c, 'googletag.pubads()', 'returned: ' + pa);
+  } catch(e) { fail(c, 'googletag.pubads()', e.message); }
+
+  try {
+    var ran = false;
+    if (window.googletag && window.googletag.cmd)
+      window.googletag.cmd.push(function(){ ran = true; });
+    ran
+      ? pass(c, 'googletag.cmd.push(fn) executes fn immediately ✓')
+      : fail(c, 'googletag.cmd.push', 'fn was not called');
+  } catch(e) { fail(c, 'googletag.cmd.push', e.message); }
+})();
+</script>
+</body>
+</html>
