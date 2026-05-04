@@ -228,9 +228,11 @@ class BrowserWindowController: NSWindowController, WKNavigationDelegate, WKUIDel
                 print("[TestBrowser] ⚠ Missing: \(name)")
                 continue
             }
-            // scriptlets + websocket_block run in all same-origin frames;
-            // cosmetic + ytadblock only need the main frame.
-            let mainOnly = (name == "cosmetic.js" || name == "ytadblock.js")
+            // All scripts run in main frame only. WebKit tries to inject subframe
+            // scripts into YouTube's sandboxed about:blank iframes and the sandbox
+            // blocks execution before JS runs, producing console errors. Network
+            // blocking (WKContentRuleList) covers subframe requests independently.
+            let mainOnly = true
             let us = WKUserScript(source: src, injectionTime: .atDocumentStart, forMainFrameOnly: mainOnly)
             ucc.addUserScript(us)
             injectedKB += src.utf8.count / 1024
