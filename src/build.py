@@ -200,6 +200,37 @@ def dedup(rules: list[dict]) -> list[dict]:
     return result
 
 
+# ---------------------------------------------------------------------------
+# Upstream filter lists occasionally include rules that block an entire site
+# root rather than a specific ad/tracker endpoint. We maintain an exact-match
+# set of the known-bad url-filter values and drop them at build time.
+# ---------------------------------------------------------------------------
+_BLANKET_DOMAIN_BLOCK_FILTERS: frozenset[str] = frozenset({
+    r"^[a-z]+://([a-z0-9.-]+\.)?reddit\.com",
+    r"^[a-z]+://([a-z0-9.-]+\.)?open\.spotify\.com",
+    r"^[a-z]+://([a-z0-9.-]+\.)?redd\.it",
+    r"^[a-z]+://([a-z0-9.-]+\.)?facebook\.com",
+    r"^[a-z]+://([a-z0-9.-]+\.)?instagram\.com",
+})
+
+
+def drop_main_domain_blocks(rules: list[dict]) -> list[dict]:
+    """Remove block rules that would block an entire safe domain root."""
+    result: list[dict] = []
+    dropped = 0
+    for rule in rules:
+        if rule.get("action", {}).get("type") != "block":
+            result.append(rule)
+            continue
+        if rule.get("trigger", {}).get("url-filter", "") in _BLANKET_DOMAIN_BLOCK_FILTERS:
+            dropped += 1
+            continue
+        result.append(rule)
+    if dropped:
+        print(f"    drop_main_domain_blocks: removed {dropped} blanket domain block(s)")
+    return result
+
+
 _EXCLUSIVE_CONDITIONS = ("if-domain", "unless-domain", "if-top-url", "unless-top-url")
 
 
@@ -590,9 +621,16 @@ def cosmetic_to_native_rules(selectors: list[str]) -> list[dict]:
     # Network blocking rules for ad domains (doubleclick, googlesyndication)
     # still apply — this only skips CSS element hiding.
     COSMETIC_EXCLUDE_DOMAINS = [
+        # Google / YouTube — video players and Google services
         "*youtube.com", "*youtu.be", "*googlevideo.com", "*ytimg.com",
         "*google.com", "*googleapis.com", "*gstatic.com",
         "*googleusercontent.com",
+        # GitHub — complex layout; EasyList selectors can accidentally hide
+        # Primer CSS components and break page width/structure.
+        "*github.com", "*githubusercontent.com",
+        # Spotify — streaming player; cosmetic hiding is not needed and
+        # can interfere with player initialisation.
+        "*spotify.com", "*scdn.co",
     ]
 
     rules: list[dict] = []
@@ -963,6 +1001,23 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
 (function () {
   'use strict';
 
+  // ── Subframe guard ────────────────────────────────────────────────────────
+  // Exit immediately in cross-origin iframes. Injecting scriptlets there
+  // wraps fetch/XHR/timers inside media-player frames and breaks playback.
+  // Fully sandboxed frames (no allow-scripts) are blocked at the WebKit level
+  // before this runs — this guard catches the cross-origin frames that do
+  // execute scripts but must not have their APIs modified.
+  if (window.self !== window.top) {
+    try { window.top.location.href; } catch (e) { return; }
+  }
+
+  // YouTube-specific flag: ytadblock.js owns ad interception on YouTube.
+  // Applying our generic fetch/XHR blocks there breaks the video player
+  // because noFetchIf rejects requests YouTube's player expects to resolve.
+  var _isYT = /(?:^|\.)(?:youtube\.com|youtu\.be|googlevideo\.com|ytimg\.com)$/.test(
+    location.hostname
+  );
+
   var _noop = function () {};
 
   // ── Utilities ─────────────────────────────────────────────────────────────
@@ -1074,14 +1129,15 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
   }
 
   function noFetchIf(pattern) {
+    // On YouTube, ytadblock.js handles fetch interception; doing it here too
+    // causes the video player to break (rejected promises it doesn't expect).
+    if (_isYT) return;
     var re = pattern ? new RegExp(pattern) : null;
     var _fetch = window.fetch;
     if (typeof _fetch !== 'function') return;
     window.fetch = function (input) {
       var url = typeof input === 'string' ? input : (input && input.url) || '';
       if (!re || re.test(url)) {
-        // Reject with a network error so callers (and ad-block testers) correctly
-        // see the request as failed rather than an empty successful response.
         return Promise.reject(new TypeError('Failed to fetch'));
       }
       return _fetch.apply(this, arguments);
@@ -1089,17 +1145,30 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
   }
 
   function noXhrIf(pattern) {
+    if (_isYT) return;
     var re = pattern ? new RegExp(pattern) : null;
     var _open = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function (method, url) {
       if (!re || re.test(url)) {
-        Object.defineProperty(this, '_blocked', { value: true });
+        Object.defineProperty(this, '_blocked', { value: true, configurable: true });
       }
       return _open.apply(this, arguments);
     };
     var _send = XMLHttpRequest.prototype.send;
     XMLHttpRequest.prototype.send = function () {
-      if (this._blocked) return;
+      if (this._blocked) {
+        // Fire a network-error event so callers get proper rejection handling
+        // rather than an XHR that hangs forever.
+        var self = this;
+        setTimeout(function () {
+          try {
+            self.dispatchEvent(new ProgressEvent('error'));
+            self.dispatchEvent(new ProgressEvent('loadend'));
+          } catch (_) {}
+          if (typeof self.onerror === 'function') try { self.onerror(); } catch (_) {}
+        }, 0);
+        return;
+      }
       return _send.apply(this, arguments);
     };
   }
@@ -1575,14 +1644,26 @@ COSMETIC_JS_TEMPLATE = """\
     '[id*="outbrain"]','[class*="outbrain"]',
     '[id*="revcontent"]','[class*="revcontent"]',
     '[class*="sponsored-content"]','[class*="sponsored_content"]',
-    '[id*="sponsored"]','[class*="native-ad"]',
-    'div[id^="ad-"]','div[class^="ad-"]',
-    'div[id$="-ad"]','div[class$="-ad"]',
+    '[class*="native-ad"]',
     '[data-ad-placeholder]','[data-advertisement]',
     '.ad-banner','.ad-container','.ad-wrapper','.ad-slot',
     '.advertisement','.advertising','.advertise',
     'iframe[src*="doubleclick.net"]','iframe[src*="googlesyndication.com"]',
     'iframe[src*="adnxs.com"]','iframe[src*="pubmatic.com"]',
+    // YouTube search sponsored results (cosmetic.js runs even on YT)
+    'ytd-search-pyv-renderer','ytd-promoted-sparkles-web-renderer',
+    'ytd-promoted-sparkles-text-search-renderer','ytd-display-ad-renderer',
+    'ytd-banner-promo-renderer','ytd-statement-banner-renderer',
+    '#masthead-ad',
+    // YouTube watch page ads
+    'ytd-action-companion-ad-renderer','ytd-companion-slot-renderer',
+    'ytd-video-masthead-ad-v3-renderer','ytd-player-legacy-desktop-watch-ads-renderer',
+    'ytd-promoted-video-renderer','ytd-ad-slot-renderer',
+    '#player-ads','.ytp-ad-overlay-container','.ytp-ad-overlay-slot',
+    '.ytp-ad-module',
+    // Reddit sponsored posts (new shreddit UI + old Reddit)
+    'shreddit-ad-post','.promotedlink',
+    '[data-testid="post-container"][data-promoted="true"]',
     EASYLIST_SELECTORS
   ];
 
@@ -1793,6 +1874,9 @@ def main() -> None:
     ]
 
     # adblock.json: curated + upstream + native cosmetic + YouTube safety net (last!)
+    # Note: Spotify and GitHub are excluded from *cosmetic* hiding only
+    # (see COSMETIC_EXCLUDE_DOMAINS). Network-level ad/tracker blocking still
+    # applies on those domains — only element hiding is skipped.
     adblock_merged = dedup(fixed_adblock + adblock_blocks + native_cosmetic) + YOUTUBE_SAFETY_NET
     trackers_merged = dedup(fixed_trackers + tracker_blocks) + YOUTUBE_SAFETY_NET
     exceptions_merged = dedup(all_exceptions)
@@ -1802,6 +1886,11 @@ def main() -> None:
     print(f"  trackers   : {len(trackers_merged):,} rules")
     print(f"  exceptions : {len(exceptions_merged):,} rules")
     print(f"  total      : {total:,} rules")
+
+    # ── Drop blanket main-domain blocks (upstream list false-positives) ──────
+    print("\n=== Dropping blanket main-domain blocks ===")
+    adblock_merged = drop_main_domain_blocks(adblock_merged)
+    trackers_merged = drop_main_domain_blocks(trackers_merged)
 
     # ── Sanitize: enforce WebKit single-condition-per-trigger constraint ──────
     print("\n=== Sanitizing rules (WebKit constraint) ===")
