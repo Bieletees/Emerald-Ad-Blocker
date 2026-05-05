@@ -140,6 +140,9 @@ class BrowserWindowController: NSWindowController, WKNavigationDelegate, WKUIDel
         webView.uiDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.allowsBackForwardNavigationGestures = true
+        // Identify as Safari so sites (e.g. Google) serve their modern UI.
+        // Without Version/X.X Safari/... some sites fall back to basic-HTML mode.
+        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
         if #available(macOS 13.3, *) {
             webView.isInspectable = true   // enables Safari Develop → [Mac] → Emerald
         }

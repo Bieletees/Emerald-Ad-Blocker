@@ -200,6 +200,38 @@ def dedup(rules: list[dict]) -> list[dict]:
     return result
 
 
+# ---------------------------------------------------------------------------
+# Upstream filter lists occasionally include rules that block an entire site
+# root rather than a specific ad/tracker endpoint. We maintain an exact-match
+# set of the known-bad url-filter values and drop them at build time.
+# ---------------------------------------------------------------------------
+_BLANKET_DOMAIN_BLOCK_FILTERS: frozenset[str] = frozenset({
+    # reddit.com — upstream list blocks the entire domain
+    r"^[a-z]+://([a-z0-9.-]+\.)?reddit\.com",
+    # open.spotify.com — blocks the Spotify web player
+    r"^[a-z]+://([a-z0-9.-]+\.)?open\.spotify\.com",
+    # redd.it — reddit short-link domain
+    r"^[a-z]+://([a-z0-9.-]+\.)?redd\.it",
+})
+
+
+def drop_main_domain_blocks(rules: list[dict]) -> list[dict]:
+    """Remove block rules that would block an entire safe domain root."""
+    result: list[dict] = []
+    dropped = 0
+    for rule in rules:
+        if rule.get("action", {}).get("type") != "block":
+            result.append(rule)
+            continue
+        if rule.get("trigger", {}).get("url-filter", "") in _BLANKET_DOMAIN_BLOCK_FILTERS:
+            dropped += 1
+            continue
+        result.append(rule)
+    if dropped:
+        print(f"    drop_main_domain_blocks: removed {dropped} blanket domain block(s)")
+    return result
+
+
 _EXCLUSIVE_CONDITIONS = ("if-domain", "unless-domain", "if-top-url", "unless-top-url")
 
 
@@ -1841,6 +1873,11 @@ def main() -> None:
     print(f"  trackers   : {len(trackers_merged):,} rules")
     print(f"  exceptions : {len(exceptions_merged):,} rules")
     print(f"  total      : {total:,} rules")
+
+    # ── Drop blanket main-domain blocks (upstream list false-positives) ──────
+    print("\n=== Dropping blanket main-domain blocks ===")
+    adblock_merged = drop_main_domain_blocks(adblock_merged)
+    trackers_merged = drop_main_domain_blocks(trackers_merged)
 
     # ── Sanitize: enforce WebKit single-condition-per-trigger constraint ──────
     print("\n=== Sanitizing rules (WebKit constraint) ===")
