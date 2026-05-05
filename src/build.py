@@ -206,12 +206,11 @@ def dedup(rules: list[dict]) -> list[dict]:
 # set of the known-bad url-filter values and drop them at build time.
 # ---------------------------------------------------------------------------
 _BLANKET_DOMAIN_BLOCK_FILTERS: frozenset[str] = frozenset({
-    # reddit.com — upstream list blocks the entire domain
     r"^[a-z]+://([a-z0-9.-]+\.)?reddit\.com",
-    # open.spotify.com — blocks the Spotify web player
     r"^[a-z]+://([a-z0-9.-]+\.)?open\.spotify\.com",
-    # redd.it — reddit short-link domain
     r"^[a-z]+://([a-z0-9.-]+\.)?redd\.it",
+    r"^[a-z]+://([a-z0-9.-]+\.)?facebook\.com",
+    r"^[a-z]+://([a-z0-9.-]+\.)?instagram\.com",
 })
 
 
