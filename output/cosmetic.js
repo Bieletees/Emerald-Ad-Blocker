@@ -83,6 +83,11 @@
     'ytd-promoted-sparkles-text-search-renderer','ytd-display-ad-renderer',
     'ytd-banner-promo-renderer','ytd-statement-banner-renderer',
     '#masthead-ad',
+    'ytd-action-companion-ad-renderer','ytd-companion-slot-renderer',
+    'ytd-video-masthead-ad-v3-renderer','ytd-player-legacy-desktop-watch-ads-renderer',
+    'ytd-promoted-video-renderer','ytd-ad-slot-renderer',
+    '#player-ads','.ytp-ad-overlay-container','.ytp-ad-overlay-slot',
+    '.ytp-ad-module',
     'shreddit-ad-post','.promotedlink',
     '[data-testid="post-container"][data-promoted="true"]',
     
