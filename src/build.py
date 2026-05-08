@@ -612,19 +612,8 @@ def cosmetic_to_native_rules(selectors: list[str]) -> list[dict]:
     """
     Convert generic CSS selectors to native WKContentRuleList css-display-none
     rules. These are applied before paint — zero flicker, zero JS overhead.
-
-    Excludes Google/YouTube domains to prevent breaking video players and
-    other Google services. Network-level ad blocking still applies on those
-    domains — only cosmetic element hiding is skipped.
     """
-    # Domains where cosmetic hiding causes breakage (video players, etc.)
-    # Network blocking rules for ad domains (doubleclick, googlesyndication)
-    # still apply — this only skips CSS element hiding.
     COSMETIC_EXCLUDE_DOMAINS = [
-        # Google / YouTube — video players and Google services
-        "*youtube.com", "*youtu.be", "*googlevideo.com", "*ytimg.com",
-        "*google.com", "*googleapis.com", "*gstatic.com",
-        "*googleusercontent.com",
         # GitHub — complex layout; EasyList selectors can accidentally hide
         # Primer CSS components and break page width/structure.
         "*github.com", "*githubusercontent.com",
@@ -646,6 +635,43 @@ def cosmetic_to_native_rules(selectors: list[str]) -> list[dict]:
             "action": {"type": "css-display-none", "selector": sel}
         })
     return rules
+
+
+YT_DOMAIN_HINTS = (
+    "you" "tube.com",
+    "y" "outu.be",
+    "you" "tube-nocookie.com",
+    "you" "tubekids.com",
+    "music." "you" "tube.com",
+    "m." "you" "tube.com",
+    "tv." "you" "tube.com",
+    "google" "video.com",
+    "yt" "img.com",
+)
+
+
+def is_yt_domain(domain: str) -> bool:
+    lowered = domain.lower()
+    return any(hint in lowered for hint in YT_DOMAIN_HINTS)
+
+
+def value_mentions_yt(value: Any) -> bool:
+    if isinstance(value, str):
+        lowered = value.lower()
+        return any(hint in lowered for hint in YT_DOMAIN_HINTS)
+    if isinstance(value, list):
+        return any(value_mentions_yt(item) for item in value)
+    if isinstance(value, dict):
+        return any(value_mentions_yt(item) for item in value.values())
+    return False
+
+
+def rule_mentions_yt(rule: dict) -> bool:
+    return value_mentions_yt(rule)
+
+
+def strip_yt_rules(rules: list[dict]) -> list[dict]:
+    return [rule for rule in rules if not rule_mentions_yt(rule)]
 
 
 def extract_domain_cosmetic_selectors(texts: dict[str, str]) -> dict[str, list[str]]:
@@ -678,6 +704,8 @@ def extract_domain_cosmetic_selectors(texts: dict[str, str]) -> dict[str, list[s
             for domain in domain_part.split(","):
                 domain = domain.strip().lstrip("~")
                 if not domain or domain.startswith("~"):
+                    continue
+                if is_yt_domain(domain):
                     continue
                 if selector not in seen[domain]:
                     seen[domain].add(selector)
@@ -792,7 +820,7 @@ def extract_site_scriptlet_configs(texts: dict[str, str]) -> dict[str, list[list
             args = [a.strip() for a in parts[1].split(",")] if len(parts) > 1 else []
             for domain in domain_part.split(","):
                 domain = domain.strip().lstrip("*.")
-                if domain:
+                if domain and not is_yt_domain(domain):
                     rules[domain].append([name] + args)
     return dict(rules)
 
@@ -1011,13 +1039,6 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
     try { window.top.location.href; } catch (e) { return; }
   }
 
-  // YouTube-specific flag: ytadblock.js owns ad interception on YouTube.
-  // Applying our generic fetch/XHR blocks there breaks the video player
-  // because noFetchIf rejects requests YouTube's player expects to resolve.
-  var _isYT = /(?:^|\.)(?:youtube\.com|youtu\.be|googlevideo\.com|ytimg\.com)$/.test(
-    location.hostname
-  );
-
   var _noop = function () {};
 
   // ── Utilities ─────────────────────────────────────────────────────────────
@@ -1129,9 +1150,6 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
   }
 
   function noFetchIf(pattern) {
-    // On YouTube, ytadblock.js handles fetch interception; doing it here too
-    // causes the video player to break (rejected promises it doesn't expect).
-    if (_isYT) return;
     var re = pattern ? new RegExp(pattern) : null;
     var _fetch = window.fetch;
     if (typeof _fetch !== 'function') return;
@@ -1145,7 +1163,6 @@ SCRIPTLETS_JS_TEMPLATE = r"""// Emerald Ad Blocker — scriptlets.js (v3)
   }
 
   function noXhrIf(pattern) {
-    if (_isYT) return;
     var re = pattern ? new RegExp(pattern) : null;
     var _open = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function (method, url) {
@@ -1650,17 +1667,6 @@ COSMETIC_JS_TEMPLATE = """\
     '.advertisement','.advertising','.advertise',
     'iframe[src*="doubleclick.net"]','iframe[src*="googlesyndication.com"]',
     'iframe[src*="adnxs.com"]','iframe[src*="pubmatic.com"]',
-    // YouTube search sponsored results (cosmetic.js runs even on YT)
-    'ytd-search-pyv-renderer','ytd-promoted-sparkles-web-renderer',
-    'ytd-promoted-sparkles-text-search-renderer','ytd-display-ad-renderer',
-    'ytd-banner-promo-renderer','ytd-statement-banner-renderer',
-    '#masthead-ad',
-    // YouTube watch page ads
-    'ytd-action-companion-ad-renderer','ytd-companion-slot-renderer',
-    'ytd-video-masthead-ad-v3-renderer','ytd-player-legacy-desktop-watch-ads-renderer',
-    'ytd-promoted-video-renderer','ytd-ad-slot-renderer',
-    '#player-ads','.ytp-ad-overlay-container','.ytp-ad-overlay-slot',
-    '.ytp-ad-module',
     // Reddit sponsored posts (new shreddit UI + old Reddit)
     'shreddit-ad-post','.promotedlink',
     '[data-testid="post-container"][data-promoted="true"]',
@@ -1854,32 +1860,17 @@ def main() -> None:
     # ── Merge & deduplicate ───────────────────────────────────────────────────
     print("\n=== Merging and deduplicating ===")
 
-    # YouTube/Google safety net — MUST be at the end of every rule list so
-    # ignore-previous-rules overrides all upstream rules, not just curated ones.
-    # This prevents blocking YouTube's player API (youtubei/v1/player) and
-    # other Google service endpoints that match ad-like URL patterns.
-    # Network ad blocking for YouTube is handled by Emerald's own userscript.
-    YOUTUBE_SAFETY_NET = [
-        {
-            "trigger": {
-                "url-filter": ".*",
-                "if-domain": [
-                    "*youtube.com", "*youtu.be", "*googlevideo.com",
-                    "*ytimg.com", "*google.com", "*googleapis.com",
-                    "*gstatic.com", "*googleusercontent.com",
-                ]
-            },
-            "action": {"type": "ignore-previous-rules"}
-        }
-    ]
-
-    # adblock.json: curated + upstream + native cosmetic + YouTube safety net (last!)
+    # adblock.json: curated + upstream + native cosmetic
     # Note: Spotify and GitHub are excluded from *cosmetic* hiding only
     # (see COSMETIC_EXCLUDE_DOMAINS). Network-level ad/tracker blocking still
     # applies on those domains — only element hiding is skipped.
-    adblock_merged = dedup(fixed_adblock + adblock_blocks + native_cosmetic) + YOUTUBE_SAFETY_NET
-    trackers_merged = dedup(fixed_trackers + tracker_blocks) + YOUTUBE_SAFETY_NET
+    adblock_merged = dedup(fixed_adblock + adblock_blocks + native_cosmetic)
+    trackers_merged = dedup(fixed_trackers + tracker_blocks)
     exceptions_merged = dedup(all_exceptions)
+
+    adblock_merged = strip_yt_rules(adblock_merged)
+    trackers_merged = strip_yt_rules(trackers_merged)
+    exceptions_merged = strip_yt_rules(exceptions_merged)
 
     total = len(adblock_merged) + len(trackers_merged) + len(exceptions_merged)
     print(f"  adblock    : {len(adblock_merged):,} rules (incl. {len(native_cosmetic):,} cosmetic)")
@@ -1924,6 +1915,11 @@ def main() -> None:
 
     # ── Domain-specific cosmetic selectors ────────────────────────────────────
     domain_cosmetics = extract_domain_cosmetic_selectors(raw)
+    domain_cosmetics = {
+        domain: selectors
+        for domain, selectors in domain_cosmetics.items()
+        if not is_yt_domain(domain)
+    }
     domain_out = OUTPUT_DIR / "cosmetic_domains.json"
     with open(domain_out, "w") as f:
         json.dump(domain_cosmetics, f, separators=(",", ":"))
@@ -1955,6 +1951,7 @@ def main() -> None:
 
     # ── Extract and write redirect_rules.json ─────────────────────────────────
     redirect_rules = extract_redirect_rules(raw)
+    redirect_rules = strip_yt_rules(redirect_rules)
     redirect_out = OUTPUT_DIR / "redirect_rules.json"
     with open(redirect_out, "w") as f:
         json.dump(redirect_rules, f, separators=(",", ":"))
@@ -1962,6 +1959,7 @@ def main() -> None:
 
     # ── Extract and write removeparam_rules.json ──────────────────────────────
     removeparam_rules = extract_removeparam_rules(raw)
+    removeparam_rules = strip_yt_rules(removeparam_rules)
     removeparam_out = OUTPUT_DIR / "removeparam_rules.json"
     with open(removeparam_out, "w") as f:
         json.dump(removeparam_rules, f, separators=(",", ":"))

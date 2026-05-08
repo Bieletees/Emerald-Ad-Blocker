@@ -3077,5 +3077,12 @@ lnk.to,smarturl.it##+js(set, linkfire.tracking, {})
 ! https://github.com/uBlockOrigin/uAssets/issues/7164
 ||pornhub.*/redirect/$doc,urlskip=/(https%253A%252F%252F[^?#]+)/ -uricomponent -uricomponent
 
+! https://github.com/uBlockOrigin/uAssets/issues/31536
+pooembed.eu##+js(no-xhr-if, body:pageview method:POST)
+||poocloud.in/api/event
+
+! https://github.com/uBlockOrigin/uAssets/issues/32838
+||amazonaws.com/telemetry.bydata/obv2/bydataAnalytics.js
+
 ! Merge in resource-abuse.txt
 !#include resource-abuse.txt

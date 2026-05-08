@@ -15,13 +15,6 @@
     try { window.top.location.href; } catch (e) { return; }
   }
 
-  // YouTube-specific flag: ytadblock.js owns ad interception on YouTube.
-  // Applying our generic fetch/XHR blocks there breaks the video player
-  // because noFetchIf rejects requests YouTube's player expects to resolve.
-  var _isYT = /(?:^|\.)(?:youtube\.com|youtu\.be|googlevideo\.com|ytimg\.com)$/.test(
-    location.hostname
-  );
-
   var _noop = function () {};
 
   // ── Utilities ─────────────────────────────────────────────────────────────
@@ -133,9 +126,6 @@
   }
 
   function noFetchIf(pattern) {
-    // On YouTube, ytadblock.js handles fetch interception; doing it here too
-    // causes the video player to break (rejected promises it doesn't expect).
-    if (_isYT) return;
     var re = pattern ? new RegExp(pattern) : null;
     var _fetch = window.fetch;
     if (typeof _fetch !== 'function') return;
@@ -149,7 +139,6 @@
   }
 
   function noXhrIf(pattern) {
-    if (_isYT) return;
     var re = pattern ? new RegExp(pattern) : null;
     var _open = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function (method, url) {
