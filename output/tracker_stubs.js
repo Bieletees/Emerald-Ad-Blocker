@@ -17,7 +17,8 @@
   'use strict';
 
   // ── Domain guard: skip on safe domains ────────────────────────────────
-  // Google Workspace depends on gtag/dataLayer/ga for functional purposes.
+  // Google Workspace and Google account pages depend on gtag/dataLayer/ga
+  // for functional purposes.
   // DownDetector's API paths match tracker patterns.
   // Spotify uses analytics infrastructure tied to playback functionality.
   var _hostname = window.location.hostname;
