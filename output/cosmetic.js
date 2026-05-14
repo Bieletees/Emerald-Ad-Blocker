@@ -5,7 +5,9 @@
   'use strict';
 
   // ── Domain guard: skip CSS hiding on sites where generic ad selectors ──
-  // match functional UI elements (album art, player controls, etc.)
+  // match functional UI elements (album art, player controls, Gmail, etc.)
+  // v3.2: added Google domains — selectors like .ad-container and
+  // [data-google-query-id] were hiding Gmail UI and the 9-dots menu.
   var _cosHost = window.location.hostname;
   var _skipCSSHiding = /\.(spotify\.com|scdn\.co)$/.test(_cosHost) ||
       /\.(google|googleapis|gstatic)\.com$/.test(_cosHost);
@@ -118,7 +120,7 @@
     '.ytd-display-ad-renderer',
     '.video-ads.ytp-ad-module',
     '.ytp-ad-overlay-container',
-
+    
   ];
 
   var _allSelectors = SELECTORS.join(',');

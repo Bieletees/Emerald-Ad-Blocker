@@ -1129,6 +1129,9 @@ arstechnica.com,dermnetnz.org##.gsc-webResult a[data-cturl]:remove-attr(/^data-c
 !#if !ext_ubol
 ! Block Attribution reporting
 www.youtube.com##+js(no-xhr-if, /\/api\/stats\/atr\?.+?&rt=\d+\.\d+.+?&volume=\d+&cbr=.+?&fexp=v1%[-%0-9C]{300\,}&.+?&muted=\d(&vis=3)?&docid=/ method:POST)
+
+! 1st-party google tag manager script
+/^https:\/\/(www\.)?[a-z0-9]+\.[a-z]+(\.[a-z]+)?\/[a-z0-9]{4}\/$/$script,1p,match-case
 !#endif
 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213240
@@ -1907,10 +1910,6 @@ forum.blu-ray.com##+js(ra, onclick|oncontextmenu|onmouseover, a[href][onclick*="
 ! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-10437157
 ||onual.com/*^link_t=$doc,uritransform=/#[^\/?]+//
 onual.com##+js(href-sanitizer, a.btn[href^="https://zxro.com/u/?url=http"], ?url)
-
-! https://github.com/AdguardTeam/AdguardFilters/issues/181699
-globo.com##+js(trusted-set, libAnalytics, json: {"status":{"dataAvailable":false}\,"data":{}})
-globo.com##+js(set, libAnalytics.data.get, noopFunc)
 
 ! https://github.com/uBlockOrigin/uAssets/issues/25826
 ||videovak.com/log/
@@ -3083,6 +3082,9 @@ pooembed.eu##+js(no-xhr-if, body:pageview method:POST)
 
 ! https://github.com/uBlockOrigin/uAssets/issues/32838
 ||amazonaws.com/telemetry.bydata/obv2/bydataAnalytics.js
+
+! https://github.com/uBlockOrigin/uAssets/issues/32896
+||slate.com/analytics
 
 ! Merge in resource-abuse.txt
 !#include resource-abuse.txt
