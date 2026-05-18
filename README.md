@@ -1,6 +1,6 @@
 # Emerald Ad Blocker
 
-A WKContentRuleList-based ad and tracker blocker for iOS/macOS browsers built on WebKit.  Rules are compiled from [EasyList](https://easylist.to/), [EasyPrivacy](https://easylist.to/), [uBlock Origin](https://github.com/uBlockOrigin/uAssets), and [Peter Lowe's list](https://pgl.yoyo.org/adservers/), then merged with a hand-curated baseline and written as ready-to-use JSON + JavaScript files.
+A WKContentRuleList-based ad and tracker blocker for iOS/macOS browsers built on WebKit.  Rules are compiled from [EasyList](https://easylist.to/), [EasyPrivacy](https://easylist.to/), [uBlock Origin](https://github.com/uBlockOrigin/uAssets), AdGuard, and [Peter Lowe's list](https://pgl.yoyo.org/adservers/), then merged with a hand-curated baseline and written as ready-to-use JSON + JavaScript files.
 
 ---
 
