@@ -9,20 +9,19 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   update:
     name: Fetch, convert and commit updated lists
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Run build pipeline
-        run: python src/build.py
+      - name: Build filter lists
+        run: cd src/BuildTool && swift run
 
       - name: Check for changes
         id: changes
@@ -49,7 +48,7 @@ jobs:
 
       - name: Open pull request with updated lists
         if: steps.changes.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           branch: chore/update-filter-lists
           commit-message: 'chore: update filter lists'
