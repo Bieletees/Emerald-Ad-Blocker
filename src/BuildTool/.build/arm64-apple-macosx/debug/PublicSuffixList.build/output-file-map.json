@@ -1,0 +1,29 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/swift-psl/Sources/PublicSuffixList/ByteArraySuffixTrie.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/ByteArraySuffixTrie.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/ByteArraySuffixTrie.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/ByteArraySuffixTrie~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/ByteArraySuffixTrie.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/swift-psl/Sources/PublicSuffixList/PublicSuffixList.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/PublicSuffixList.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/PublicSuffixList.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/PublicSuffixList~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/PublicSuffixList.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/swift-psl/Sources/PublicSuffixList/SuffixTrie.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/SuffixTrie.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/SuffixTrie.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/SuffixTrie~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/SuffixTrie.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/DerivedSources/resource_bundle_accessor.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/resource_bundle_accessor.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/resource_bundle_accessor.swiftdeps"
+  }
+}

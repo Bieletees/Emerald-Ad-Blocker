@@ -1,0 +1,77 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/EngineMeta.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/EngineMeta.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/EngineMeta.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/EngineMeta~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/EngineMeta.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/FilterEngine.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngine.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngine.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngine.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/FilterEngineSerialization.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngineSerialization.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngineSerialization.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngineSerialization~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterEngineSerialization.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/FilterRule.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRule.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRule.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRule~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRule.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/FilterRuleSerialization.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleSerialization.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleSerialization.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleSerialization~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleSerialization.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/FilterRuleStorage.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleStorage.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleStorage.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleStorage~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FilterRuleStorage.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/Request.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Request.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Request.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Request~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Request.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/Schema.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Schema.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Schema.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Schema~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/Schema.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/Utils/ByteArrayTrie.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/ByteArrayTrie.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/ByteArrayTrie.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/ByteArrayTrie~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/ByteArrayTrie.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/Utils/FileLock.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FileLock.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FileLock.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FileLock~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/FileLock.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/Utils/TrieNode.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/TrieNode.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/TrieNode.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/TrieNode~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/TrieNode.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/FilterEngine/WebExtension.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/WebExtension.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/WebExtension.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/WebExtension~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/FilterEngine.build/WebExtension.swiftdeps"
+  }
+}

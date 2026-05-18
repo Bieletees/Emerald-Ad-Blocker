@@ -1,0 +1,81 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "punycodeswift",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/gumob/PunycodeSwift.git",
+          "name" : "Punycode"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "30a462bdb4398ea835a3585472229e0d74b36ba5",
+            "version" : "3.0.0"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "PunycodeSwift"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "safariconverterlib",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/AdguardTeam/SafariConverterLib.git",
+          "name" : "ContentBlockerConverter"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "828f709a7a2ea6699e3788a5fcf492bfe24be560",
+            "version" : "4.2.2"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "SafariConverterLib"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "swift-argument-parser",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/apple/swift-argument-parser",
+          "name" : "swift-argument-parser"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
+            "version" : "1.5.0"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "swift-argument-parser"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "swift-psl",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/ameshkov/swift-psl",
+          "name" : "swift-psl"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "292764e5efb4c8434c80c0d8d48a07ea70aecc17",
+            "version" : "1.1.142"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "swift-psl"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

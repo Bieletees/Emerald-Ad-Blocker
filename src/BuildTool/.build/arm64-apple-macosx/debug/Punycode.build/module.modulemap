@@ -1,0 +1,4 @@
+module Punycode {
+    header "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode-Swift.h"
+    requires objc
+}

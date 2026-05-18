@@ -1,0 +1,29 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/CommandLineWrapper/BuildEngineCommand.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/BuildEngineCommand.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/BuildEngineCommand.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/BuildEngineCommand~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/BuildEngineCommand.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/CommandLineWrapper/ConvertCommand.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/ConvertCommand.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/ConvertCommand.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/ConvertCommand~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/ConvertCommand.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/CommandLineWrapper/Utils.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/Utils.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/Utils.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/Utils~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/Utils.swiftdeps"
+  },
+  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/SafariConverterLib/Sources/CommandLineWrapper/main.swift": {
+    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/main.d",
+    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/main.swift.o",
+    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/CommandLineWrapper.build/main.swiftdeps"
+  }
+}

@@ -1,0 +1,4 @@
+module ArgumentParser {
+    header "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/ArgumentParser.build/ArgumentParser-Swift.h"
+    requires objc
+}
