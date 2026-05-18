@@ -1,0 +1,64 @@
+name: Update Filter Lists
+
+on:
+  schedule:
+    - cron: '0 2 * * 0'   # every Sunday at 02:00 UTC
+  workflow_dispatch:        # allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  update:
+    name: Fetch, convert and commit updated lists
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build filter lists
+        run: cd src/BuildTool && swift run
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet output/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Show diff summary
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          echo "### Changed files"
+          git diff --stat output/
+          echo ""
+          echo "### Rule counts"
+          for f in output/adblock.json output/trackers.json output/exceptions.json; do
+            if [ -f "$f" ]; then
+              count=$(python3 -c "import json; print(len(json.load(open('$f'))))")
+              echo "$f: $count rules"
+            fi
+          done
+
+      - name: Open pull request with updated lists
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/update-filter-lists
+          commit-message: 'chore: update filter lists'
+          title: 'chore: weekly filter list update'
+          body: |
+            Automated update from upstream filter lists.
+
+            Run `python src/build.py` to verify locally.
+          delete-branch: true
+
+      - name: No changes detected
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No filter list changes detected."
