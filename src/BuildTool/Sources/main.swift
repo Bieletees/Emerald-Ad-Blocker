@@ -110,17 +110,52 @@ func convertAndWrite(rules: [String], outputName: String) -> Int {
         progress: nil
     )
 
+    // Parse the JSON, strip non-ASCII rules, append first-party exception
+    var finalJSON = result.safariRulesJSON
+    var ruleCount = result.safariRulesCount
+
+    if let jsonData = finalJSON.data(using: .utf8),
+       var rulesArray = try? JSONSerialization.jsonObject(with: jsonData) as? [[String: Any]] {
+
+        // Strip rules with non-ASCII in url-filter or selector
+        let beforeCount = rulesArray.count
+        rulesArray = rulesArray.filter { rule in
+            let trigger = rule["trigger"] as? [String: Any] ?? [:]
+            let action = rule["action"] as? [String: Any] ?? [:]
+            let urlFilter = trigger["url-filter"] as? String ?? ""
+            let selector = action["selector"] as? String ?? ""
+            return urlFilter.allSatisfy(\.isASCII) && selector.allSatisfy(\.isASCII)
+        }
+        let stripped = beforeCount - rulesArray.count
+        if stripped > 0 {
+            print("    Stripped \(stripped) rules with non-ASCII characters")
+        }
+
+        // Append first-party exception at the end
+        rulesArray.append([
+            "trigger": ["url-filter": ".*", "load-type": ["first-party"]],
+            "action": ["type": "ignore-previous-rules"]
+        ])
+
+        ruleCount = rulesArray.count
+
+        if let outputData = try? JSONSerialization.data(withJSONObject: rulesArray, options: []),
+           let outputString = String(data: outputData, encoding: .utf8) {
+            finalJSON = outputString
+        }
+    }
+
     let path = outputDir.appendingPathComponent(outputName)
-    try? result.safariRulesJSON.write(to: path, atomically: true, encoding: .utf8)
+    try? finalJSON.write(to: path, atomically: true, encoding: .utf8)
 
     let size = (try? Data(contentsOf: path).count) ?? 0
-    print("  Wrote output/\(outputName) (\(result.safariRulesCount) rules, \(size / 1024) KB)")
+    print("  Wrote output/\(outputName) (\(ruleCount) rules, \(size / 1024) KB)")
 
     if result.errorsCount > 0 {
         print("    ⚠ \(result.errorsCount) conversion errors (rules skipped)")
     }
 
-    return result.safariRulesCount
+    return ruleCount
 }
 
 // MARK: - JS File Generation
@@ -289,10 +324,14 @@ print("\n  Total: \(adRules.count) ad rules, \(trackerRules.count) tracker rules
 
 // Add safe-site exception rules for sites whose APIs match tracker patterns
 let safeExceptions = [
-    // Never block first-party requests — only block trackers loaded cross-site.
-    // This prevents sites from breaking when their own APIs match tracker patterns.
-    "@@||*^$~third-party",
-    // Kahoot — requires Amplitude and GTM for app initialization
+    // First-party exception is injected directly into JSON (SafariConverterLib
+    // rejects wildcard exceptions as "too wide"). See convertAndWrite().
+    // StatCounter — own domain matches tracker patterns in EasyPrivacy
+    "@@||statcounter.com^$domain=statcounter.com",
+    "@@||*.statcounter.com^$domain=statcounter.com",
+    // Kahoot — own domains + required third-party dependencies
+    "@@||kahoot.it^$domain=kahoot.it|kahoot.com",
+    "@@||kahoot.com^$domain=kahoot.it|kahoot.com",
     "@@||cdn.amplitude.com^$domain=kahoot.it|kahoot.com",
     "@@||googletagmanager.com/gtm.js$domain=kahoot.it|kahoot.com",
     "@@||sentry.io^$domain=kahoot.it|kahoot.com",

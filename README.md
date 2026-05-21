@@ -1,6 +1,6 @@
 # Emerald Ad Blocker
 
-A WKContentRuleList-based ad and tracker blocker for iOS/macOS browsers built on WebKit.  Rules are compiled from [EasyList](https://easylist.to/), [EasyPrivacy](https://easylist.to/), [uBlock Origin](https://github.com/uBlockOrigin/uAssets), AdGuard, and [Peter Lowe's list](https://pgl.yoyo.org/adservers/), then merged with a hand-curated baseline and written as ready-to-use JSON + JavaScript files.
+A WKContentRuleList-based ad and tracker blocker for iOS/macOS browsers built on WebKit. Rules are compiled from [EasyList](https://easylist.to/), [EasyPrivacy](https://easylist.to/), [AdGuard](https://github.com/AdguardTeam/AdguardFilters) (Safari-optimized), [uBlock Origin](https://github.com/uBlockOrigin/uAssets), and [Peter Lowe's list](https://pgl.yoyo.org/adservers/) using [AdGuard's SafariConverterLib](https://github.com/AdguardTeam/SafariConverterLib), then written as ready-to-use JSON + JavaScript files.
 
 ---
 
@@ -13,15 +13,28 @@ Emerald-Ad-Blocker/
 │   └── trackers.json           #   Tracker/analytics block rules
 │
 ├── src/
-│   └── build.py                # Build pipeline — run this to regenerate output/
+│   ├── BuildTool/              # Swift build pipeline (primary)
+│   │   ├── Package.swift
+│   │   └── Sources/
+│   │       ├── main.swift      #   Fetches lists, converts via SafariConverterLib
+│   │       └── JSTemplates.swift #  JS output file templates
+│   └── build.py                # Python build pipeline (legacy fallback)
 │
 ├── output/                     # Generated files — bundle these in your app
 │   ├── adblock.json            #   WKContentRuleList (ads)
 │   ├── trackers.json           #   WKContentRuleList (trackers)
+│   ├── exceptions.json         #   WKContentRuleList (safe-site exceptions)
 │   ├── cosmetic.js             #   WKUserScript — CSS hiding + anti-adblock stubs
+│   ├── scriptlets.js           #   WKUserScript — uBO-style scriptlet engine
 │   ├── tracker_stubs.js        #   WKUserScript — silently stubs tracker JS APIs
-│   ├── ytadblocker.js          #   WKUserScript — YouTube ad blocker
-│   └── SWIFT_INTEGRATION.md   #   Full Swift wiring guide
+│   ├── websocket_block.js      #   WKUserScript — WebSocket/WebRTC blocking
+│   ├── cosmetic_domains.json   #   Per-domain CSS selectors (sidecar)
+│   ├── scriptlet_rules.json    #   Per-domain scriptlet configs (sidecar)
+│   ├── removeparam_rules.json  #   URL tracking parameter rules (sidecar)
+│   ├── redirect_rules.json     #   Surrogate resource mappings (sidecar)
+│   └── SWIFT_INTEGRATION.md    #   Full Swift wiring guide
+│
+├── .cache/                     # Cached upstream list downloads
 │
 └── .github/
     └── workflows/
@@ -33,92 +46,83 @@ Emerald-Ad-Blocker/
 ## Output files
 
 ### `output/adblock.json`
+
 WKContentRuleList JSON compiled from:
-- Hand-curated `Files/adblock.json` (CDN-bug-fixed, deduplicated)
+
 - EasyList network filters
-- uBlock Origin network filters
+- AdGuard Base, Social, Annoyances, and Mobile filters (Safari-specific builds)
+- uBlock Origin unbreak rules (exceptions only)
 
 ### `output/trackers.json`
+
 WKContentRuleList JSON compiled from:
-- Hand-curated `Files/trackers.json` (fixed, deduplicated)
+
 - EasyPrivacy
+- AdGuard Tracking Protection filter (Safari-specific build)
 - Peter Lowe's Ad and tracking server list
 
+### `output/exceptions.json`
+
+WKContentRuleList `ignore-previous-rules` entries for sites whose first-party APIs overlap with tracker patterns (Google Workspace, YouTube, Kahoot, StatCounter, DownDetector).
+
 ### `output/cosmetic.js`
-WKUserScript injected at `document_start`.  It:
-1. Stubs anti-adblock detection APIs (`window.canRunAds`, `adsbygoogle`, `googletag`)
-2. Injects CSS `display: none` rules for known ad containers using EasyList cosmetic selectors
+
+WKUserScript injected at `document_start`. It:
+
+1. Stubs anti-adblock detection APIs (`window.canRunAds`, `adsbygoogle`, `googletag`, bait element spoofing)
+2. Injects CSS `display: none` rules for known ad containers
 3. Installs a `MutationObserver` that hides dynamically injected ad nodes
+4. Applies YouTube-specific cosmetic hiding (ad slots, masthead, overlay ads)
+
+### `output/scriptlets.js`
+
+WKUserScript injected at `document_start`. Implements uBO-style scriptlets (`set-constant`, `no-fetch-if`, `no-xhr-if`, `prevent-setTimeout`, etc.) with per-domain configs extracted from upstream filter lists.
 
 ### `output/tracker_stubs.js`
-WKUserScript injected at `document_start`.  Silently no-ops the JS APIs of:
+
+WKUserScript injected at `document_start`. Silently no-ops the JS APIs of:
 Google Analytics, Facebook Pixel, Mixpanel, Amplitude, Hotjar, Heap, FullStory,
 Segment, Intercom, Drift, TikTok Pixel, Pinterest Tag, Criteo, Twitter Pixel,
-Snapchat Pixel, LinkedIn Insight, Microsoft Clarity, Mouseflow, Lucky Orange,
-VWO, Optimizely, Braze.
+Snapchat Pixel, LinkedIn Insight, Microsoft Clarity, Mouseflow.
 
-### `output/ytadblocker.js`
-WKUserScript injected at `document_start`.  It blocks the following:
-Video and Shorts ads,
-Suggestion ads,
-YouTube ad tracking.
+### `output/websocket_block.js`
 
-### `output/SWIFT_INTEGRATION.md`
-Step-by-step Swift code showing how to:
-- Compile and attach the two content rule lists
-- Inject both user scripts at `documentStart`
-- Implement a per-site whitelist toggle
-- Auto-update lists in the background
+WKUserScript injected at `document_start`. Blocks WebSocket connections to known tracker domains and prevents WebRTC IP leaks.
+
+### Sidecar data files
+
+- `cosmetic_domains.json` — per-domain CSS selectors for site-specific cosmetic filtering
+- `scriptlet_rules.json` — per-domain scriptlet configs for browser-side injection
+- `removeparam_rules.json` — URL tracking parameter stripping rules
+- `redirect_rules.json` — surrogate resource mappings for `$redirect` rules
 
 ---
 
 ## Running the build
 
-Requirements: **Python 3.11+**, standard library only (no third-party packages).
-
-```bash
-python src/build.py
-```
-
-The script will:
-1. Load `Files/adblock.json` and `Files/trackers.json`
-2. Remove CDN-blocking false positives (`cloudflare.com`, `fastly.net`, `gstatic.com`, `akamaized.net`, broad `amazonaws.com`)
-3. Remove non-ad-network entries (`vimeo.com`, `wistia.com`, `disqus.com`, `aarp.org`, …)
-4. Deduplicate (~40 duplicate rules in the originals)
-5. Fetch EasyList, EasyPrivacy, uBlock, and Peter Lowe's list from their canonical URLs
-6. Convert ABP/uBlock filter syntax to WKContentRuleList JSON
-7. Merge, deduplicate, and cap at the 149 000-rule WebKit limit
-8. Write `output/adblock.json`, `output/trackers.json`, and `output/cosmetic.js`
-
-Expected output:
+Requirements: **macOS** with **Swift 5.9+** (Xcode Command Line Tools).
 
 ```
-=== Loading original hand-curated rules ===
-  adblock.json : 185 rules
-  trackers.json: 7 rules
-
-=== Fixing original rules ===
-  adblock.json → removed 1 CDN rules, 1 non-ad-network rules, 40 duplicates → 143 kept
-  ...
-
-=== Fetching upstream filter lists ===
-  Fetching easylist … OK (...)
-  ...
-
-=== Writing output files ===
-  Wrote output/adblock.json
-  Wrote output/trackers.json
-  Wrote output/cosmetic.js
-
-=== Done ✓ ===
+cd src/BuildTool && swift run
 ```
+
+The build tool will:
+
+1. Fetch EasyList, EasyPrivacy, AdGuard (Base, Tracking, Social, Annoyances, Mobile), Peter Lowe's, and uBlock unbreak from their canonical URLs
+2. Convert all filters to WKContentRuleList JSON via SafariConverterLib
+3. Add safe-site exception rules for YouTube, Kahoot, StatCounter, and Google Workspace
+4. Generate JS output files (cosmetic hiding, scriptlets, tracker stubs, WebSocket blocking)
+5. Write all output files
+
+The legacy Python pipeline (`python src/build.py`) is kept as a reference but is no longer used by CI.
 
 ---
 
 ## Automated weekly updates
 
-`.github/workflows/update-lists.yml` runs every Sunday at 02:00 UTC.  It:
-1. Runs `python src/build.py`
+`.github/workflows/update-lists.yml` runs every Sunday at 02:00 UTC. It:
+
+1. Runs `cd src/BuildTool && swift run` on `macos-latest`
 2. Checks whether any output file changed
 3. If so, opens a pull request on the `chore/update-filter-lists` branch with a diff summary and rule counts
 
@@ -128,7 +132,7 @@ You can also trigger it manually from the **Actions** tab.
 
 ## Swift integration (quick start)
 
-Full code is in [`output/SWIFT_INTEGRATION.md`](output/SWIFT_INTEGRATION.md).  The one-minute version:
+Full code is in [`output/SWIFT_INTEGRATION.md`](output/SWIFT_INTEGRATION.md). The one-minute version:
 
 ```swift
 // 1. Compile and attach content rule lists.
@@ -141,7 +145,7 @@ config.userContentController.add(adList)
 config.userContentController.add(trackerList)
 
 // 2. Inject user scripts at document start.
-for source in [cosmeticJS, trackerStubsJS] {
+for source in [cosmeticJS, scriptletsJS, trackerStubsJS, websocketBlockJS] {
     config.userContentController.addUserScript(
         WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     )
