@@ -131,9 +131,25 @@ func convertAndWrite(rules: [String], outputName: String) -> Int {
             print("    Stripped \(stripped) rules with non-ASCII characters")
         }
 
-        // Append first-party exception at the end
+        // Append first-party exception at the end — only for resource types
+        // sites need to function (document, script, CSS, font, fetch, etc.)
+        // but NOT images or media, so first-party ad banners still get blocked.
         rulesArray.append([
-            "trigger": ["url-filter": ".*", "load-type": ["first-party"]],
+            "trigger": [
+                "url-filter": ".*",
+                "load-type": ["first-party"],
+                "resource-type": ["document", "script", "style-sheet", "font", "fetch", "raw", "websocket", "ping", "popup"]
+            ],
+            "action": ["type": "ignore-previous-rules"]
+        ])
+
+        // Kahoot blanket exception — kahoot.it makes cross-origin API calls
+        // to kahoot.com backends which WebKit treats as third-party.
+        rulesArray.append([
+            "trigger": [
+                "url-filter": ".*",
+                "if-domain": ["*kahoot.it", "*kahoot.com"]
+            ],
             "action": ["type": "ignore-previous-rules"]
         ])
 
@@ -386,6 +402,52 @@ try? trackerStubsJS.write(to: stubsPath, atomically: true, encoding: .utf8)
 print("  Wrote output/tracker_stubs.js")
 
 print("\n=== Done ✓ ===")
+
+// MARK: - Compile verification
+
+import WebKit
+
+print("\n=== Verifying WKContentRuleList compilation ===")
+
+let ruleFiles = ["adblock.json", "trackers.json", "exceptions.json"]
+var allPassed = true
+
+for file in ruleFiles {
+    let filePath = outputDir.appendingPathComponent(file)
+    guard let json = try? String(contentsOf: filePath, encoding: .utf8) else {
+        print("  ✗ \(file): could not read file")
+        allPassed = false
+        continue
+    }
+
+    let semaphore = DispatchSemaphore(value: 0)
+    var compileError: Error?
+
+    WKContentRuleListStore.default().compileContentRuleList(
+        forIdentifier: "verify.\(file)",
+        encodedContentRuleList: json
+    ) { _, error in
+        compileError = error
+        semaphore.signal()
+    }
+    semaphore.wait()
+
+    if let error = compileError {
+        print("  ✗ \(file): COMPILE FAILED — \(error.localizedDescription)")
+        allPassed = false
+    } else {
+        print("  ✓ \(file): compiles OK")
+        // Clean up the test entry from the store
+        WKContentRuleListStore.default().removeContentRuleList(forIdentifier: "verify.\(file)") { _ in }
+    }
+}
+
+if allPassed {
+    print("\n  All rule lists compile successfully. Ready to ship.\n")
+} else {
+    print("\n  ⚠ Some rule lists failed to compile. Fix before pushing.\n")
+}
+
 print("""
 
   Output files:
