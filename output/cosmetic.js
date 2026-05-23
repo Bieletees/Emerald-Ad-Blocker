@@ -153,32 +153,23 @@
     }).observe(document.documentElement, { childList: true, subtree: true });
   }
 
-  // ── 2b. YouTube-specific cosmetic hiding ──────────────────────────────────
+  // ── 2b. YouTube sponsored content removal ─────────────────────────────────
+  // ytadblock.js handles video ads at the data level. This catches sponsored
+  // recommendations that load dynamically via SPA navigation.
+  // Uses JS-only removal (no <style> injection) to avoid detection.
   if (/^(www\.|m\.|music\.)?youtube\.com$/.test(_cosHost)) {
-    var YT_AD_SELECTORS = [
-      'ytd-ad-slot-renderer','ytd-promoted-sparkles-web-renderer',
-      'ytd-display-ad-renderer','ytd-promoted-video-renderer',
-      'ytd-compact-promoted-video-renderer',
-      'ytd-player-legacy-desktop-watch-ads-renderer',
-      'ytd-banner-promo-renderer','#player-ads','#masthead-ad',
-      '.video-ads.ytp-ad-module','.ytp-ad-overlay-container',
-    ];
-    var _ytStyle = document.createElement('style');
-    _ytStyle.id = '__emerald_yt_cosmetic__';
-    _ytStyle.textContent = YT_AD_SELECTORS.join(',\n') + ' { display: none !important; height: 0 !important; overflow: hidden !important; }';
-    function injectYTCSS() { (document.head || document.documentElement).appendChild(_ytStyle); }
-    if (document.head || document.documentElement) { injectYTCSS(); }
-    else { document.addEventListener('DOMContentLoaded', injectYTCSS, { once: true }); }
-
-    var _ytHidden = new WeakSet(); var _ytPending = false;
-    var _ytAll = YT_AD_SELECTORS.join(',');
+    var _ytPending = false;
+    var _ytSelectors = 'ytd-ad-slot-renderer,ytd-promoted-sparkles-web-renderer,ytd-display-ad-renderer,ytd-promoted-video-renderer,ytd-compact-promoted-video-renderer,ytd-banner-promo-renderer,#masthead-ad';
     new MutationObserver(function () {
       if (!_ytPending) {
         _ytPending = true;
         requestAnimationFrame(function () {
           _ytPending = false;
-          try { var els = document.querySelectorAll(_ytAll);
-            for (var i = 0; i < els.length; i++) { if (!_ytHidden.has(els[i])) { els[i].style.setProperty('display', 'none', 'important'); _ytHidden.add(els[i]); } }
+          try {
+            var els = document.querySelectorAll(_ytSelectors);
+            for (var i = 0; i < els.length; i++) {
+              els[i].remove();
+            }
           } catch (_) {}
         });
       }
