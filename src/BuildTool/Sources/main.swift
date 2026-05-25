@@ -361,6 +361,8 @@ let safeExceptions = [
     "@@||googleapis.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
     "@@||gstatic.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
     "@@||google.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
+    // Microsoft MakeCode — depends on Application Insights telemetry for functionality
+    "@@||dc.services.visualstudio.com^$domain=makecode.com|makecode.microbit.org|arcade.makecode.com|pxt.io",
 ]
 print("  Adding \(safeExceptions.count) safe-site exception rules")
 adRules.append(contentsOf: safeExceptions)
@@ -403,50 +405,9 @@ print("  Wrote output/tracker_stubs.js")
 
 print("\n=== Done ✓ ===")
 
-// MARK: - Compile verification
-
-import WebKit
-
-print("\n=== Verifying WKContentRuleList compilation ===")
-
-let ruleFiles = ["adblock.json", "trackers.json", "exceptions.json"]
-var allPassed = true
-
-for file in ruleFiles {
-    let filePath = outputDir.appendingPathComponent(file)
-    guard let json = try? String(contentsOf: filePath, encoding: .utf8) else {
-        print("  ✗ \(file): could not read file")
-        allPassed = false
-        continue
-    }
-
-    let semaphore = DispatchSemaphore(value: 0)
-    var compileError: Error?
-
-    WKContentRuleListStore.default().compileContentRuleList(
-        forIdentifier: "verify.\(file)",
-        encodedContentRuleList: json
-    ) { _, error in
-        compileError = error
-        semaphore.signal()
-    }
-    semaphore.wait()
-
-    if let error = compileError {
-        print("  ✗ \(file): COMPILE FAILED — \(error.localizedDescription)")
-        allPassed = false
-    } else {
-        print("  ✓ \(file): compiles OK")
-        // Clean up the test entry from the store
-        WKContentRuleListStore.default().removeContentRuleList(forIdentifier: "verify.\(file)") { _ in }
-    }
-}
-
-if allPassed {
-    print("\n  All rule lists compile successfully. Ready to ship.\n")
-} else {
-    print("\n  ⚠ Some rule lists failed to compile. Fix before pushing.\n")
-}
+// NOTE: WKContentRuleList compile verification removed from the build tool.
+// It requires an active NSApplication run loop which isn't available in
+// headless CI (GitHub Actions). Use the test browser to verify compilation locally.
 
 print("""
 

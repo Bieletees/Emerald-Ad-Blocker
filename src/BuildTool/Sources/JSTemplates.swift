@@ -17,8 +17,8 @@ let websocketBlockJS = #"""
       /downdetector\.com$/.test(_wsHost) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_wsHost) ||
       /^(www\.)?youtubekids\.com$/.test(_wsHost) ||
-      /\.statcounter\.com$/.test(_wsHost) ||
-      /\.(kahoot\.it|kahoot\.com)$/.test(_wsHost)) {
+      /(^|\.)statcounter\.com$/.test(_wsHost) ||
+      /(^|\.)kahoot\.(it|com)$/.test(_wsHost)) {
     return;
   }
 
@@ -116,8 +116,8 @@ let trackerStubsJS = #"""
       /downdetector\.com$/.test(_hostname) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_hostname) ||
       /^(www\.)?youtubekids\.com$/.test(_hostname) ||
-      /\.statcounter\.com$/.test(_hostname) ||
-      /\.(kahoot\.it|kahoot\.com)$/.test(_hostname)) {
+      /(^|\.)statcounter\.com$/.test(_hostname) ||
+      /(^|\.)kahoot\.(it|com)$/.test(_hostname)) {
     return;
   }
 
@@ -178,8 +178,8 @@ func buildCosmeticJS() -> String {
       /\.(google|googleapis|gstatic)\.com$/.test(_cosHost) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_cosHost) ||
       /^(www\.)?youtubekids\.com$/.test(_cosHost) ||
-      /\.statcounter\.com$/.test(_cosHost) ||
-      /\.(kahoot\.it|kahoot\.com)$/.test(_cosHost);
+      /(^|\.)statcounter\.com$/.test(_cosHost) ||
+      /(^|\.)kahoot\.(it|com)$/.test(_cosHost);
 
   // ── 1. Anti-adblock stubs ────────────────────────────────────────────────
   try { Object.defineProperty(window, 'canRunAds', { get: function () { return true; }, configurable: true }); } catch (_) {}
@@ -376,8 +376,8 @@ func buildScriptletsJS(siteConfigs: [String: [[String]]]) -> String {
       /downdetector\.com$/.test(_scriptletHost) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_scriptletHost) ||
       /^(www\.)?youtubekids\.com$/.test(_scriptletHost) ||
-      /\.statcounter\.com$/.test(_scriptletHost) ||
-      /\.(kahoot\.it|kahoot\.com)$/.test(_scriptletHost)) {
+      /(^|\.)statcounter\.com$/.test(_scriptletHost) ||
+      /(^|\.)kahoot\.(it|com)$/.test(_scriptletHost)) {
     return;
   }
 
