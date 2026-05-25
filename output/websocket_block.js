@@ -9,8 +9,8 @@
       /downdetector\.com$/.test(_wsHost) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_wsHost) ||
       /^(www\.)?youtubekids\.com$/.test(_wsHost) ||
-      /\.statcounter\.com$/.test(_wsHost) ||
-      /\.(kahoot\.it|kahoot\.com)$/.test(_wsHost)) {
+      /(^|\.)statcounter\.com$/.test(_wsHost) ||
+      /(^|\.)kahoot\.(it|com)$/.test(_wsHost)) {
     return;
   }
 

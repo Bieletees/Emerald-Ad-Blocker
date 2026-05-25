@@ -1,3 +1,9 @@
+// Emerald domain guard: WKUserScript ignores @match, so check manually.
+// Without this, vBlockTube runs on Google Workspace and violates Trusted Types CSP.
+if (!/^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(window.location.hostname) &&
+    !/^(www\.)?youtubekids\.com$/.test(window.location.hostname)) {
+  /* not YouTube — skip */
+} else {
 // ==UserScript==
 // @name         vBlockTube
 // @namespace    https://www.github.com/vippium/
@@ -6681,3 +6687,4 @@ ytd-video-secondary-info-renderer .yt-chip-cloud-chip-renderer,
     make_popup_draggable(popup, header);
   }
 })();
+} // end Emerald domain guard

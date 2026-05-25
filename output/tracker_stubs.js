@@ -10,8 +10,8 @@
       /downdetector\.com$/.test(_hostname) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_hostname) ||
       /^(www\.)?youtubekids\.com$/.test(_hostname) ||
-      /\.statcounter\.com$/.test(_hostname) ||
-      /\.(kahoot\.it|kahoot\.com)$/.test(_hostname)) {
+      /(^|\.)statcounter\.com$/.test(_hostname) ||
+      /(^|\.)kahoot\.(it|com)$/.test(_hostname)) {
     return;
   }
 
