@@ -1,9 +1,9 @@
 import Foundation
 
 extension Foundation.Bundle {
-    static let module: Bundle = {
+    static nonisolated let module: Bundle = {
         let mainPath = Bundle.main.bundleURL.appendingPathComponent("swift-psl_PublicSuffixList.bundle").path
-        let buildPath = "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/swift-psl_PublicSuffixList.bundle"
+        let buildPath = "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/swift-psl_PublicSuffixList.bundle"
 
         let preferredBundle = Bundle(path: mainPath)
 

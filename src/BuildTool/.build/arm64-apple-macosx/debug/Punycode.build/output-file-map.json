@@ -1,23 +1,26 @@
 {
   "": {
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/master.swiftdeps"
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/primary.swiftdeps"
   },
-  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/PunycodeSwift/Sources/Extensions.swift": {
-    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.d",
-    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.swift.o",
-    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions~partial.swiftmodule",
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.swiftdeps"
+  "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/PunycodeSwift/Sources/Extensions.swift": {
+    "dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.d",
+    "object": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.swift.o",
+    "swiftmodule": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.swiftdeps",
+    "diagnostics": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Extensions.dia"
   },
-  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/PunycodeSwift/Sources/Helpers.swift": {
-    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.d",
-    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.swift.o",
-    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers~partial.swiftmodule",
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.swiftdeps"
+  "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/PunycodeSwift/Sources/Helpers.swift": {
+    "dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.d",
+    "object": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.swift.o",
+    "swiftmodule": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers~partial.swiftmodule",
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.swiftdeps",
+    "diagnostics": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Helpers.dia"
   },
-  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/PunycodeSwift/Sources/Punycode.swift": {
-    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.d",
-    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.swift.o",
-    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode~partial.swiftmodule",
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.swiftdeps"
+  "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/checkouts/PunycodeSwift/Sources/Punycode.swift": {
+    "dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.d",
+    "object": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.swift.o",
+    "swiftmodule": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode~partial.swiftmodule",
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.swiftdeps",
+    "diagnostics": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/Punycode.build/Punycode.dia"
   }
 }

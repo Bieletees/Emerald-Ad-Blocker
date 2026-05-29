@@ -1,17 +1,19 @@
 {
   "": {
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/master.swiftdeps"
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/primary.swiftdeps"
   },
-  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/Sources/JSTemplates.swift": {
-    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.d",
-    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.swift.o",
-    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates~partial.swiftmodule",
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.swiftdeps"
+  "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/Sources/JSTemplates.swift": {
+    "dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.d",
+    "object": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.swift.o",
+    "swiftmodule": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates~partial.swiftmodule",
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.swiftdeps",
+    "diagnostics": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/JSTemplates.dia"
   },
-  "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/Sources/main.swift": {
-    "dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.d",
-    "object": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.swift.o",
-    "swiftmodule": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main~partial.swiftmodule",
-    "swift-dependencies": "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.swiftdeps"
+  "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/Sources/main.swift": {
+    "dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.d",
+    "object": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.swift.o",
+    "swiftmodule": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.swiftdeps",
+    "diagnostics": "/Users/nathantracey/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/EmeraldBuildTool.build/main.dia"
   }
 }
