@@ -8,10 +8,10 @@
 !
 !For more information about this list, see: https://pgl.yoyo.org/adservers/
 !----
-!Last modified: Fri, 15 May 2026 14:05:55 GMT
+!Last modified: Thu, 28 May 2026 19:19:26 GMT
 !Homepage:      https://pgl.yoyo.org/adservers/
 !Format:        adblockplus
-!Entries:       3510
+!Entries:       3508
 !Credits:       Peter Lowe - pgl@yoyo.org - pgl on github - https://pgl.yoyo.org/
 !This URL:      https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0&mimetype=plaintext
 !Policy:        https://pgl.yoyo.org/adservers/policy.php
@@ -263,6 +263,7 @@
 ||adjustnetwork.com^
 ||adk2.com^
 ||adkora.com^
+||adktrack124.xyz^
 ||adland.ru^
 ||adlegend.com^
 ||adlightning.com^
@@ -870,7 +871,6 @@
 ||analytics.ext.go-tellm.com^
 ||analytics.google.com^
 ||analytics.htmedia.in^
-||analytics.icons8.com^
 ||analytics.inlinemanual.com^
 ||analytics.jst.ai^
 ||analytics.justuno.com^
@@ -1147,6 +1147,7 @@
 ||buysellads.com^
 ||buzzonclick.com^
 ||bwp.download.com^
+||c.apple.com^
 ||c.bigmir.net^
 ||c1exchange.com^
 ||c212.net^
@@ -1317,7 +1318,6 @@
 ||cloudguppy.com^
 ||clrstm.com^
 ||cluster.adultworld.com^
-||clustrmaps.com^
 ||cmp.dmgmediaprivacy.co.uk^
 ||cmvrclicks000.com^
 ||cnomy.com^
@@ -2290,7 +2290,6 @@
 ||munchkin.marketo.net^
 ||mundanenail.com^
 ||mushroomgods.com^
-||musiccounter.ru^
 ||muteknife.com^
 ||muwmedia.com^
 ||mxptint.net^
@@ -2678,7 +2677,6 @@
 ||rapidcounter.com^
 ||raresummer.com^
 ||rate.ru^
-||ratings.lycos.com^
 ||rayjump.com^
 ||rcadserver.com^
 ||re-direct.pl^
@@ -2716,6 +2714,7 @@
 ||reklamdsp.com^
 ||relmaxtop.com^
 ||rememberdiscussion.com^
+||remox.com^
 ||report-1.appmetrica.webvisor.com^
 ||report-2.appmetrica.webvisor.com^
 ||report-partners.appmetrica.yandex.net^
@@ -3238,7 +3237,6 @@
 ||tracking.netalerts.io^
 ||tracking.olx-st.com^
 ||tracking.orixa-media.com^
-||tracking.shopstyle.com^
 ||tracking.wetter.at^
 ||tracking01.walmart.com^
 ||tracking101.com^
@@ -3263,7 +3261,6 @@
 ||trafficz.com^
 ||traffiq.com^
 ||trafic.ro^
-||traktrafficflow.com^
 ||tranquilplume.com^
 ||travis.bosscasinos.com^
 ||trck.a8.net^
@@ -3412,6 +3409,7 @@
 ||webcounter.cz^
 ||webcounter.goweb.de^
 ||webgains.com^
+||webiqonline.com^
 ||weborama.com^
 ||weborama.fr^
 ||webpower.com^

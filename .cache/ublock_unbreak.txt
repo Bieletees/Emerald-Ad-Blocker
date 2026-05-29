@@ -3980,6 +3980,12 @@ variety.com##^html > head > link[rel="canonical"]:not([href*="/video/"]):upward(
 @@||connatix.com^$script,domain=deadline.com
 deadline.com#@#.cnx-player-wrapper
 
+! ex.co
+! https://github.com/uBlockOrigin/uAssets/issues/33077
+@@||ex.co/player/$script,domain=standard.co.uk
+@@||cdn.ex.co^$image,media,domain=standard.co.uk
+@@||cdn.ex.co/content/$xhr
+
 ! https://github.com/uBlockOrigin/uAssets/issues/17000
 mediaite.com#@#.adthrive-video-player
 mediaite.com##.adthrive-video-player:style(padding-bottom: 0 !important;)
@@ -4995,6 +5001,7 @@ realmadryt.pl##.rmpl-adsense-desktop
 ! https://github.com/uBlockOrigin/uAssets/issues/23076
 reclameaqui.com.br##section#home > #hero.pinned:style(position: absolute !important;)
 reclameaqui.com.br###page-header > header:style(position: absolute !important;)
+reclameaqui.com.br##+js(rpnt, script, !function, 'setTimeout((()=>{document.querySelectorAll("a[href]").forEach((e=>{Object.keys(e).forEach((t=>{t.startsWith("__reactProps")&&"function"==typeof e[t].onClick&&e[t].onClick.toString().includes("preventDefault")&&(e[t].onClick=void 0)}))}))}),3e3);!function')
 
 ! https://github.com/easylist/easylist/issues/18715
 ||guinsters286nedril.com^$badfilter
@@ -5681,9 +5688,6 @@ developer.arm.com##+js(set, Munchkin.init, noopFunc)
 ! https://www.sportnahrung-engel.de/engel-nutrition-meta-fire.html - reviews breakage
 @@||widgets.trustedshops.com/reviews/tsSticker/$domain=sportnahrung-engel.de
 ||widgets.trustedshops.com/reviews/tsSticker/*.gif?$important
-
-! https://github.com/uBlockOrigin/uAssets/issues/28438
-io.google##+js(aeld, click, Event)
 
 ! https://github.com/easylist/easylist/issues/21841
 sterkinekor.com##+js(set, ttd_dom_ready, noopFunc)

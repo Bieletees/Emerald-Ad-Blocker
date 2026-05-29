@@ -4,12 +4,15 @@
   'use strict';
 
   var _cosHost = window.location.hostname;
+  if (/(^|\.)kahoot\.(it|com)$/.test(_cosHost) ||
+      /(^|\.)statcounter\.com$/.test(_cosHost)) {
+    return;
+  }
+
   var _skipCSSHiding = /\.(spotify\.com|scdn\.co)$/.test(_cosHost) ||
       /\.(google|googleapis|gstatic)\.com$/.test(_cosHost) ||
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_cosHost) ||
-      /^(www\.)?youtubekids\.com$/.test(_cosHost) ||
-      /(^|\.)statcounter\.com$/.test(_cosHost) ||
-      /(^|\.)kahoot\.(it|com)$/.test(_cosHost);
+      /^(www\.)?youtubekids\.com$/.test(_cosHost);
 
   // ── 1. Anti-adblock stubs ────────────────────────────────────────────────
   try { Object.defineProperty(window, 'canRunAds', { get: function () { return true; }, configurable: true }); } catch (_) {}

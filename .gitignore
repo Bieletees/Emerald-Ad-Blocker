@@ -1,0 +1,4 @@
+# Build artifacts
+src/BuildTool/.build/
+.DS_Store
+**/.DS_Store
