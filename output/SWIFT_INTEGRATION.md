@@ -190,16 +190,19 @@ func makeWebViewConfiguration() async throws -> WKWebViewConfiguration {
 
 ## 2. Injecting WKUserScripts at documentStart
 
-All JS files must run *before* any page script; use `.atDocumentStart` and inject into `.allFrames` so iframes are covered too.
+**Core scripts** run on every page and must be injected at `.atDocumentStart`.
+**`ytadblock.js`** is 230 KB+ and should **only** be injected on YouTube domains.
+Injecting it on every page forces WebKit to parse 230 KB of JavaScript on every
+navigation, which noticeably slows page loads on sites like Kahoot.
 
 ```swift
 import WebKit
 
 extension WKUserContentController {
 
-    /// Add all Emerald user-scripts.
+    /// Add the lightweight Emerald scripts (runs on every page).
     func addEmeraldScripts() {
-        for filename in ["cosmetic", "tracker_stubs", "ytadblock"] {
+        for filename in ["scriptlets", "tracker_stubs", "websocket_block", "cosmetic"] {
             guard
                 let url    = Bundle.main.url(forResource: filename, withExtension: "js"),
                 let source = try? String(contentsOf: url, encoding: .utf8)
@@ -216,16 +219,50 @@ extension WKUserContentController {
 }
 ```
 
-Add the call into your configuration builder:
+### YouTube-only injection for ytadblock.js
+
+`ytadblock.js` must only be injected on YouTube pages. Add and remove it
+dynamically based on the navigation URL:
 
 ```swift
-func makeWebViewConfiguration() async throws -> WKWebViewConfiguration {
-    let config = WKWebViewConfiguration()
-    // … attach rule lists (see section 1) …
-    config.userContentController.addEmeraldScripts()
-    return config
+class BrowserController {
+
+    private var ytScript: WKUserScript?
+    private var ytInjected = false
+
+    /// Call once at startup to load the script source.
+    func loadYTScript() {
+        guard let url = Bundle.main.url(forResource: "ytadblock", withExtension: "js"),
+              let src = try? String(contentsOf: url, encoding: .utf8) else { return }
+        ytScript = WKUserScript(source: src, injectionTime: .atDocumentStart,
+                                forMainFrameOnly: true)
+    }
+
+    /// Call from webView(_:didStartProvisionalNavigation:) or
+    /// webView(_:decidePolicyFor:) with the navigating URL.
+    func updateYTScript(for url: URL?, ucc: WKUserContentController) {
+        guard let script = ytScript else { return }
+        let isYT = url?.host.map { host in
+            host.hasSuffix("youtube.com") || host.hasSuffix("youtubekids.com")
+        } ?? false
+
+        if isYT && !ytInjected {
+            ucc.addUserScript(script)
+            ytInjected = true
+        } else if !isYT && ytInjected {
+            let others = ucc.userScripts.filter { $0 !== script }
+            ucc.removeAllUserScripts()
+            others.forEach { ucc.addUserScript($0) }
+            ytInjected = false
+        }
+    }
 }
 ```
+
+> **Why this matters:** `ytadblock.js` contains the full vBlockTube userscript
+> (~230 KB). Even though a domain guard at the top skips execution on non-YouTube
+> pages, the JavaScript engine must still **parse** the entire file on every
+> injection. Conditional injection eliminates this overhead entirely.
 
 ---
 
@@ -347,9 +384,11 @@ Task.detached(priority: .background) {
 
 ```swift
 @MainActor
-class BrowserViewController: UIViewController {
+class BrowserViewController: UIViewController, WKNavigationDelegate {
 
     private var webView: WKWebView!
+    private var ytScript: WKUserScript?
+    private var ytInjected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -360,6 +399,7 @@ class BrowserViewController: UIViewController {
         let config = (try? await makeWebViewConfiguration()) ?? WKWebViewConfiguration()
         webView = WKWebView(frame: view.bounds, configuration: config)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        webView.navigationDelegate = self
         view.addSubview(webView)
         webView.load(URLRequest(url: URL(string: "https://example.com")!))
     }
@@ -374,10 +414,37 @@ class BrowserViewController: UIViewController {
         config.userContentController.add(ads)
         config.userContentController.add(trackers)
 
-        // 2. User scripts.
+        // 2. Core user scripts (lightweight, every page).
         config.userContentController.addEmeraldScripts()
 
+        // 3. YouTube ad blocker (heavy, YouTube only).
+        if let url = Bundle.main.url(forResource: "ytadblock", withExtension: "js"),
+           let src = try? String(contentsOf: url, encoding: .utf8) {
+            ytScript = WKUserScript(source: src, injectionTime: .atDocumentStart,
+                                    forMainFrameOnly: true)
+        }
+
         return config
+    }
+
+    // MARK: — YouTube script injection
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
+        guard let script = ytScript else { return }
+        let isYT = webView.url?.host.map { host in
+            host.hasSuffix("youtube.com") || host.hasSuffix("youtubekids.com")
+        } ?? false
+        let ucc = webView.configuration.userContentController
+
+        if isYT && !ytInjected {
+            ucc.addUserScript(script)
+            ytInjected = true
+        } else if !isYT && ytInjected {
+            let others = ucc.userScripts.filter { $0 !== script }
+            ucc.removeAllUserScripts()
+            others.forEach { ucc.addUserScript($0) }
+            ytInjected = false
+        }
     }
 
     // MARK: — Whitelist toggle (call from your UI)
