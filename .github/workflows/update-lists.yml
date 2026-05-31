@@ -23,7 +23,10 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: Build filter lists
-        run: cd src/BuildTool && swift run
+        run: |
+          cd src/BuildTool
+          swift package resolve
+          swift run
 
       - name: Check for changes
         id: changes
