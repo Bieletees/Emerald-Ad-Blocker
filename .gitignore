@@ -2,3 +2,5 @@
 src/BuildTool/.build/
 .DS_Store
 **/.DS_Store
+src/BuildTool/.build/
+TestApp/.build/
