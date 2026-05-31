@@ -26,6 +26,7 @@ jobs:
         run: |
           cd src/BuildTool
           rm -rf .build
+          git submodule deinit --all -f 2>/dev/null || true
           swift package resolve
           swift run
 
