@@ -1,4 +1,0 @@
-module PublicSuffixList {
-    header "/Users/runner/work/Emerald-Ad-Blocker/Emerald-Ad-Blocker/src/BuildTool/.build/arm64-apple-macosx/debug/PublicSuffixList.build/PublicSuffixList-Swift.h"
-    requires objc
-}
