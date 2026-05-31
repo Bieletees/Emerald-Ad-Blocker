@@ -1,9 +1,9 @@
 [Adblock Plus 1.1]
-! Version: 202605291425
+! Version: 202605311534
 ! Title: EasyPrivacy
-! Last modified: 29 May 2026 14:25 UTC
+! Last modified: 31 May 2026 15:34 UTC
 ! Expires: 4 days (update frequency)
-! Commit: 9187aaae505b852ccc5efb3a66cbc2c77875762c
+! Commit: ec6ef5bec0e7582ee76b800350fd4a1cd74f7f38
 ! *** easylist:template_header.txt ***
 ! 
 ! Please report any unblocked adverts or problems
@@ -3036,8 +3036,8 @@ _WebVitalsReporter_
 /rrweb.js
 /rrweb.min.js
 ! DNS checks
-/DNSCheck.js
-/DNSChecker.js
+/DNSCheck.js$domain=~github.com
+/DNSChecker.js$domain=~github.com
 ! hawkeye
 /hawk.js
 /hawkeye.js
@@ -6718,6 +6718,7 @@ omni.soundestlink.com$image
 ||aliveachiever.com^
 ||allnewhost.com^
 ||alloutdubstep.com^
+||alloytitans.com^
 ||allsunflowers.com^
 ||allthelogs.com^
 ||alltypo.com^
@@ -6796,6 +6797,7 @@ omni.soundestlink.com$image
 ||basketballbelieve.com^
 ||baskettexture.com^
 ||bastingart.com^
+||battleburst.com^
 ||battlekite.com^
 ||bawdybalance.com^
 ||beamvolcano.com^
@@ -9928,6 +9930,7 @@ $third-party,xmlhttprequest,domain=opensubtitles.org
 ||682a5845.b-cdn.net^
 ||99widgets.com/counters/
 ||9w2zed1szg.execute-api.us-east-1.amazonaws.com^
+||a.cineflix.st^
 ||a.emea01.idio.episerver.net^
 ||a.getflowbox.com^
 ||a.hcaptcha.com^
@@ -11091,6 +11094,7 @@ $third-party,xmlhttprequest,domain=opensubtitles.org
 ||fst-ec.perimeterx.net^
 ||ftimg.net/js/log.js?
 ||ftm.fluencyinc.co^
+||fubuki-umami.space/api/script.js
 ||fudge.ai/metrics?
 ||future-fie-assets.co.uk^
 ||future-price.co.uk^
@@ -15640,6 +15644,7 @@ $third-party,xmlhttprequest,domain=opensubtitles.org
 ||messenger.com/ajax/bnzai?
 ||metacrawler.com/pingback
 ||metis.truecaller.com^
+||metrics-a.wbx2.com^
 ||metrics.audius.co^
 ||metrics.bangbros.com^
 ||metrics.camsoda.com^
@@ -16484,6 +16489,7 @@ $third-party,xmlhttprequest,domain=opensubtitles.org
 ||trx3.famousfix.com^
 ||try.elevenlabs.io/pr/js
 ||ts.delfi.lt^
+||tsa.webex.com^
 ||tsmate.com/api/metrics
 ||tubepornstars.com/js/analytics
 ||tubi.io/datascience/logging?
@@ -55216,6 +55222,7 @@ bitdefender.com##body[style="opacity: 0;"]:style(opacity: 1 !important;)
 @@||bam.nr-data.net^$script,domain=kapwing.com
 @@||bgp.he.net/images/flags/*.gif?$image,~third-party
 @@||bjjhq.com/HttpCombiner.ashx?$script,~third-party
+@@||blackbaud.net/proxy/api/track/
 @@||blackcircles.ca^$script,~third-party
 @@||blueconic.net/bostonglobemedia.js$domain=bostonglobe.com
 @@||board-game.co.uk/cdn-cgi/zaraz/s.js$script,~third-party
