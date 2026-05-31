@@ -50,6 +50,7 @@ jobs:
         if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT_TOKEN }}
           branch: chore/update-filter-lists
           commit-message: 'chore: update filter lists'
           title: 'chore: weekly filter list update'
