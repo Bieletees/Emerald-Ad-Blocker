@@ -25,6 +25,7 @@ jobs:
       - name: Build filter lists
         run: |
           cd src/BuildTool
+          rm -rf .build
           swift package resolve
           swift run
 
