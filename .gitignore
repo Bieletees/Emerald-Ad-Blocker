@@ -4,3 +4,4 @@ src/BuildTool/.build/
 **/.DS_Store
 src/BuildTool/.build/
 TestApp/.build/
+src/BuildTool/.build/
