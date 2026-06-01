@@ -19,9 +19,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Build filter lists
-        run: cd src/BuildTool && swift run
+        run: |
+          cd src/BuildTool
+          rm -rf .build
+          git submodule deinit --all -f 2>/dev/null || true
+          swift package resolve
+          swift run
 
       - name: Check for changes
         id: changes
@@ -50,6 +57,7 @@ jobs:
         if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT_TOKEN }}
           branch: chore/update-filter-lists
           commit-message: 'chore: update filter lists'
           title: 'chore: weekly filter list update'
