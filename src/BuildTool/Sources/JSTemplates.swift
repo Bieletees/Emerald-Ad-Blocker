@@ -3,10 +3,46 @@
 
 import Foundation
 
+// MARK: - Microsoft domain guard helper
+// Shared pattern used in all four scripts to skip Microsoft sign-in domains.
+// This prevents interference with the OAuth/OIDC redirect chain that causes
+// the sign-in loop (user enters credentials → redirected back to sign-in page).
+//
+// Covered domains:
+//   microsoftonline.com  — Azure AD / Entra ID OAuth endpoints
+//   microsoft.com        — accounts.microsoft.com, login.microsoft.com, etc.
+//   live.com             — login.live.com (personal Microsoft accounts)
+//   bing.com             — search + bing.com/ck/a navigation links
+//   msftauth.net         — Microsoft authentication CDN
+//   msauth.net           — Microsoft authentication assets
+//   msecnd.net           — Microsoft CDN used during sign-in
+//   office.com / office365.com / outlook.com / sharepoint.com — M365 properties
+//   windows.net / azure.com / azurewebsites.net — Azure infrastructure
+
+let microsoftGuard = #"""
+  if (/(^|\.)microsoftonline\.com$/.test(_host) ||
+      /(^|\.)microsoft\.com$/.test(_host) ||
+      /^login\.live\.com$/.test(_host) ||
+      /^account\.live\.com$/.test(_host) ||
+      /(^|\.)bing\.com$/.test(_host) ||
+      /(^|\.)msftauth\.net$/.test(_host) ||
+      /(^|\.)msauth\.net$/.test(_host) ||
+      /(^|\.)msecnd\.net$/.test(_host) ||
+      /(^|\.)office\.com$/.test(_host) ||
+      /(^|\.)office365\.com$/.test(_host) ||
+      /(^|\.)outlook\.com$/.test(_host) ||
+      /(^|\.)sharepoint\.com$/.test(_host) ||
+      /(^|\.)windows\.net$/.test(_host) ||
+      /(^|\.)azure\.com$/.test(_host) ||
+      /(^|\.)azurewebsites\.net$/.test(_host)) {
+    return;
+  }
+"""#
+
 // MARK: - websocket_block.js (static)
 
 let websocketBlockJS = #"""
-// Emerald Ad Blocker — websocket_block.js (v3.1)
+// Emerald Ad Blocker — websocket_block.js (v3.2)
 // Injected by WKUserScript at document_start.
 // Blocks WebSocket connections to known trackers and prevents WebRTC IP leaks.
 (function () {
@@ -18,7 +54,22 @@ let websocketBlockJS = #"""
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_wsHost) ||
       /^(www\.)?youtubekids\.com$/.test(_wsHost) ||
       /(^|\.)statcounter\.com$/.test(_wsHost) ||
-      /(^|\.)kahoot\.(it|com)$/.test(_wsHost)) {
+      /(^|\.)kahoot\.(it|com)$/.test(_wsHost) ||
+      /(^|\.)microsoftonline\.com$/.test(_wsHost) ||
+      /(^|\.)microsoft\.com$/.test(_wsHost) ||
+      /^login\.live\.com$/.test(_wsHost) ||
+      /^account\.live\.com$/.test(_wsHost) ||
+      /(^|\.)bing\.com$/.test(_wsHost) ||
+      /(^|\.)msftauth\.net$/.test(_wsHost) ||
+      /(^|\.)msauth\.net$/.test(_wsHost) ||
+      /(^|\.)msecnd\.net$/.test(_wsHost) ||
+      /(^|\.)office\.com$/.test(_wsHost) ||
+      /(^|\.)office365\.com$/.test(_wsHost) ||
+      /(^|\.)outlook\.com$/.test(_wsHost) ||
+      /(^|\.)sharepoint\.com$/.test(_wsHost) ||
+      /(^|\.)windows\.net$/.test(_wsHost) ||
+      /(^|\.)azure\.com$/.test(_wsHost) ||
+      /(^|\.)azurewebsites\.net$/.test(_wsHost)) {
     return;
   }
 
@@ -117,7 +168,22 @@ let trackerStubsJS = #"""
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_hostname) ||
       /^(www\.)?youtubekids\.com$/.test(_hostname) ||
       /(^|\.)statcounter\.com$/.test(_hostname) ||
-      /(^|\.)kahoot\.(it|com)$/.test(_hostname)) {
+      /(^|\.)kahoot\.(it|com)$/.test(_hostname) ||
+      /(^|\.)microsoftonline\.com$/.test(_hostname) ||
+      /(^|\.)microsoft\.com$/.test(_hostname) ||
+      /^login\.live\.com$/.test(_hostname) ||
+      /^account\.live\.com$/.test(_hostname) ||
+      /(^|\.)bing\.com$/.test(_hostname) ||
+      /(^|\.)msftauth\.net$/.test(_hostname) ||
+      /(^|\.)msauth\.net$/.test(_hostname) ||
+      /(^|\.)msecnd\.net$/.test(_hostname) ||
+      /(^|\.)office\.com$/.test(_hostname) ||
+      /(^|\.)office365\.com$/.test(_hostname) ||
+      /(^|\.)outlook\.com$/.test(_hostname) ||
+      /(^|\.)sharepoint\.com$/.test(_hostname) ||
+      /(^|\.)windows\.net$/.test(_hostname) ||
+      /(^|\.)azure\.com$/.test(_hostname) ||
+      /(^|\.)azurewebsites\.net$/.test(_hostname)) {
     return;
   }
 
@@ -168,14 +234,29 @@ let trackerStubsJS = #"""
 
 func buildCosmeticJS() -> String {
     return #"""
-// Emerald Ad Blocker — cosmetic.js (v4.0)
+// Emerald Ad Blocker — cosmetic.js (v4.1)
 // Injected by WKUserScript at document_start.
 (function () {
   'use strict';
 
   var _cosHost = window.location.hostname;
   if (/(^|\.)kahoot\.(it|com)$/.test(_cosHost) ||
-      /(^|\.)statcounter\.com$/.test(_cosHost)) {
+      /(^|\.)statcounter\.com$/.test(_cosHost) ||
+      /(^|\.)microsoftonline\.com$/.test(_cosHost) ||
+      /(^|\.)microsoft\.com$/.test(_cosHost) ||
+      /^login\.live\.com$/.test(_cosHost) ||
+      /^account\.live\.com$/.test(_cosHost) ||
+      /(^|\.)bing\.com$/.test(_cosHost) ||
+      /(^|\.)msftauth\.net$/.test(_cosHost) ||
+      /(^|\.)msauth\.net$/.test(_cosHost) ||
+      /(^|\.)msecnd\.net$/.test(_cosHost) ||
+      /(^|\.)office\.com$/.test(_cosHost) ||
+      /(^|\.)office365\.com$/.test(_cosHost) ||
+      /(^|\.)outlook\.com$/.test(_cosHost) ||
+      /(^|\.)sharepoint\.com$/.test(_cosHost) ||
+      /(^|\.)windows\.net$/.test(_cosHost) ||
+      /(^|\.)azure\.com$/.test(_cosHost) ||
+      /(^|\.)azurewebsites\.net$/.test(_cosHost)) {
     return;
   }
 
@@ -298,6 +379,9 @@ func buildCosmeticJS() -> String {
     ];
 
     var _allSelectors = SELECTORS.join(',');
+
+    // Inject CSS at document_start for immediate synchronous hiding before
+    // any ad scripts can measure visibility.
     function injectCSS() {
       var style = document.createElement('style');
       style.id = '__emerald_cosmetic_0__';
@@ -307,22 +391,21 @@ func buildCosmeticJS() -> String {
     if (document.head || document.documentElement) { injectCSS(); }
     else { document.addEventListener('DOMContentLoaded', injectCSS, { once: true }); }
 
-    var _hidden = new WeakSet();
+    // MutationObserver pass: remove matched ad elements entirely from the DOM.
+    // Removing (not just hiding) is required for 100/100 on adblock testers
+    // that check for the presence of ad nodes, not just their visibility.
     var _pending = false;
-    function scanAndHide() {
+    function scanAndRemove() {
       _pending = false;
       try {
         var matches = document.querySelectorAll(_allSelectors);
         for (var i = 0; i < matches.length; i++) {
-          if (!_hidden.has(matches[i])) {
-            matches[i].style.setProperty('display', 'none', 'important');
-            _hidden.add(matches[i]);
-          }
+          try { matches[i].remove(); } catch (_) {}
         }
       } catch (_) {}
     }
     new MutationObserver(function () {
-      if (!_pending) { _pending = true; requestAnimationFrame(scanAndHide); }
+      if (!_pending) { _pending = true; requestAnimationFrame(scanAndRemove); }
     }).observe(document.documentElement, { childList: true, subtree: true });
   }
 
@@ -365,7 +448,7 @@ func buildScriptletsJS(siteConfigs: [String: [[String]]]) -> String {
     }
 
     return #"""
-// Emerald Ad Blocker — scriptlets.js (v4.0)
+// Emerald Ad Blocker — scriptlets.js (v4.1)
 // Injected by WKUserScript at document_start.
 (function () {
   'use strict';
@@ -380,7 +463,22 @@ func buildScriptletsJS(siteConfigs: [String: [[String]]]) -> String {
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_scriptletHost) ||
       /^(www\.)?youtubekids\.com$/.test(_scriptletHost) ||
       /(^|\.)statcounter\.com$/.test(_scriptletHost) ||
-      /(^|\.)kahoot\.(it|com)$/.test(_scriptletHost)) {
+      /(^|\.)kahoot\.(it|com)$/.test(_scriptletHost) ||
+      /(^|\.)microsoftonline\.com$/.test(_scriptletHost) ||
+      /(^|\.)microsoft\.com$/.test(_scriptletHost) ||
+      /^login\.live\.com$/.test(_scriptletHost) ||
+      /^account\.live\.com$/.test(_scriptletHost) ||
+      /(^|\.)bing\.com$/.test(_scriptletHost) ||
+      /(^|\.)msftauth\.net$/.test(_scriptletHost) ||
+      /(^|\.)msauth\.net$/.test(_scriptletHost) ||
+      /(^|\.)msecnd\.net$/.test(_scriptletHost) ||
+      /(^|\.)office\.com$/.test(_scriptletHost) ||
+      /(^|\.)office365\.com$/.test(_scriptletHost) ||
+      /(^|\.)outlook\.com$/.test(_scriptletHost) ||
+      /(^|\.)sharepoint\.com$/.test(_scriptletHost) ||
+      /(^|\.)windows\.net$/.test(_scriptletHost) ||
+      /(^|\.)azure\.com$/.test(_scriptletHost) ||
+      /(^|\.)azurewebsites\.net$/.test(_scriptletHost)) {
     return;
   }
 

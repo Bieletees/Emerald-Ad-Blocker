@@ -153,6 +153,34 @@ func convertAndWrite(rules: [String], outputName: String) -> Int {
             "action": ["type": "ignore-previous-rules"]
         ])
 
+        // Microsoft blanket exception — Microsoft's sign-in flow (OAuth/OIDC)
+        // chains across login.microsoftonline.com, login.live.com,
+        // accounts.microsoft.com, and microsoft.com. Any blocked request in
+        // this chain causes the redirect loop where the user is asked to sign
+        // in again immediately after doing so.
+        rulesArray.append([
+            "trigger": [
+                "url-filter": ".*",
+                "if-domain": [
+                    "*microsoftonline.com",
+                    "*microsoft.com",
+                    "*live.com",
+                    "*bing.com",
+                    "*msftauth.net",
+                    "*msecnd.net",
+                    "*msauth.net",
+                    "*office.com",
+                    "*office365.com",
+                    "*sharepoint.com",
+                    "*outlook.com",
+                    "*windows.net",
+                    "*azure.com",
+                    "*azurewebsites.net"
+                ]
+            ],
+            "action": ["type": "ignore-previous-rules"]
+        ])
+
         ruleCount = rulesArray.count
 
         if let outputData = try? JSONSerialization.data(withJSONObject: rulesArray, options: []),
@@ -369,6 +397,25 @@ let safeExceptions = [
     "@@||google.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
     // Microsoft MakeCode — depends on Application Insights telemetry for functionality
     "@@||dc.services.visualstudio.com^$domain=makecode.com|makecode.microbit.org|arcade.makecode.com|pxt.io",
+    // Microsoft sign-in — the OAuth/OIDC chain spans login.microsoftonline.com,
+    // login.live.com, accounts.microsoft.com, and many microsoft.com subdomains.
+    // Any blocked request in this chain causes the redirect loop.
+    "@@||microsoftonline.com^",
+    "@@||microsoft.com^",
+    "@@||live.com^$domain=login.live.com|account.live.com|microsoft.com|microsoftonline.com|office.com|outlook.com",
+    "@@||msftauth.net^",
+    "@@||msecnd.net^$domain=microsoft.com|microsoftonline.com|bing.com|live.com|office.com|outlook.com|windows.com",
+    "@@||msauth.net^",
+    "@@||windows.net^$domain=microsoft.com|microsoftonline.com|azure.com",
+    "@@||azure.com^",
+    "@@||office.com^",
+    "@@||office365.com^",
+    "@@||sharepoint.com^",
+    "@@||outlook.com^",
+    "@@||azurewebsites.net^",
+    // Bing — bing.com/ck/a redirect links were being blocked by EasyList
+    // tracker rules (ck/a pattern looks like a click tracker).
+    "@@||bing.com^",
 ]
 print("  Adding \(safeExceptions.count) safe-site exception rules")
 adRules.append(contentsOf: safeExceptions)
