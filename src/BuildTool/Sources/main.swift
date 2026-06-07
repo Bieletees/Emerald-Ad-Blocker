@@ -143,6 +143,50 @@ func convertAndWrite(rules: [String], outputName: String) -> Int {
             "action": ["type": "ignore-previous-rules"]
         ])
 
+        // Re-block common ad URL patterns AFTER the ignore-previous-rules entry.
+        // Rules placed after ignore-previous-rules are not suppressed by it,
+        // so these will block even first-party ad fetches that the exception
+        // above would otherwise unblock.
+        //
+        // Patterns are conservative to avoid false positives:
+        //   - Path segments that only appear in ad delivery endpoints
+        //   - Known ad script filenames served as first-party proxied resources
+        //   - Tracking pixel endpoints (1x1 GIF/PNG paths)
+        //
+        // WKContentRuleList regex subset: no lookahead/lookbehind, ASCII only.
+        let adReblockPatterns: [(urlFilter: String, resourceTypes: [String])] = [
+            // Ad delivery path segments
+            ("/ads/",              ["script", "fetch", "raw", "image"]),
+            ("/advert/",          ["script", "fetch", "raw", "image"]),
+            ("/banner/",          ["script", "fetch", "raw", "image"]),
+            ("/banners/",         ["script", "fetch", "raw", "image"]),
+            ("/ad-server/",       ["script", "fetch", "raw"]),
+            ("/adserver/",        ["script", "fetch", "raw"]),
+            ("/adservice/",       ["script", "fetch", "raw"]),
+            ("/pagead/",          ["script", "fetch", "raw"]),
+            // Known first-party-proxied ad script filenames
+            ("/adsbygoogle\\.js", ["script"]),
+            ("/gpt\\.js",         ["script"]),
+            ("/prebid\\.js",      ["script"]),
+            // Tracking pixel patterns (1x1 images, impression beacons)
+            ("/pixel\\.gif",      ["image", "fetch", "raw"]),
+            ("/pixel\\.png",      ["image", "fetch", "raw"]),
+            ("/1\\.gif",          ["image", "fetch", "raw"]),
+            ("/tracking\\.gif",   ["image", "fetch", "raw"]),
+            ("/impression\\.gif", ["image", "fetch", "raw"]),
+            ("/beacon\\.gif",     ["image", "fetch", "raw"]),
+        ]
+
+        for pattern in adReblockPatterns {
+            rulesArray.append([
+                "trigger": [
+                    "url-filter": pattern.urlFilter,
+                    "resource-type": pattern.resourceTypes
+                ],
+                "action": ["type": "block"]
+            ])
+        }
+
         // Kahoot blanket exception — kahoot.it makes cross-origin API calls
         // to kahoot.com backends which WebKit treats as third-party.
         rulesArray.append([
