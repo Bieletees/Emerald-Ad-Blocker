@@ -410,6 +410,96 @@ for list in filterLists {
 
 print("\n  Total: \(adRules.count) ad rules, \(trackerRules.count) tracker rules\n")
 
+// MARK: - Custom blocking rules
+// ABP-format rules for domains not covered (or under-covered) by the
+// upstream filter lists (EasyList, AdGuard Base Safari, EasyPrivacy).
+// These are appended to adRules before conversion so SafariConverterLib
+// compiles them into the WKContentRuleList JSON alongside upstream rules.
+let customBlockRules: [String] = [
+    // ── Microsoft / Bing ads ──────────────────────────────────────────────
+    // bat.bing.com: Bing Ads Universal Event Tracking (UET) beacon
+    // bingads.microsoft.com: Bing Ads API / JS SDK loader
+    // ads.microsoft.com: Microsoft Advertising portal CDN assets
+    "||bat.bing.com^",
+    "||bingads.microsoft.com^",
+    "||ads.microsoft.com^",
+
+    // ── Unity Ads ─────────────────────────────────────────────────────────
+    // Covers auction, webview, config, adserver, and any future subdomains.
+    "||unityads.unity3d.com^",
+
+    // ── Yahoo / Verizon Media ads ─────────────────────────────────────────
+    "||gemini.yahoo.com^",
+    "||ads.host.yahooinc.com^",
+    "||udcm.yahoo.com^",
+    "||log.fc.yahoo.com^",
+    "||adtech.yahooinc.com^",
+
+    // ── TikTok ads ────────────────────────────────────────────────────────
+    // ads-api: TikTok for Business API
+    // ads-sg: Southeast-Asia ad delivery endpoint
+    // business-api: TikTok Business Center API
+    "||ads-api.tiktok.com^",
+    "||ads-sg.tiktok.com^",
+    "||business-api.tiktok.com^",
+
+    // ── Apple iAd / AdServices ────────────────────────────────────────────
+    // iadsdk: Legacy iAd SDK used in hybrid/WebView apps
+    // api-adservices: SKAdNetwork attribution API (privacy-preserving but still tracking)
+    "||iadsdk.apple.com^",
+    "||api-adservices.apple.com^",
+
+    // ── Facebook Audience Network ─────────────────────────────────────────
+    "||an.facebook.com^",
+
+    // ── Dynamic Yield ─────────────────────────────────────────────────────
+    // A/B testing + personalisation platform used for ad targeting.
+    "||cdn.dynamicyield.com^",
+
+    // ── JW Player ad serving ──────────────────────────────────────────────
+    "||g.jwpsrv.com^",
+    "||ssl.p.jwpcdn.com^",
+
+    // ── Impact (affiliate / conversion tracking) ──────────────────────────
+    "||impact.com^",
+    "||ad.impact.com^",
+
+    // ── FingerprintJS ────────────────────────────────────────────────────
+    // Browser fingerprinting-as-a-service, used for ad fraud detection
+    // and cross-site identity linking.
+    "||fingerprintjs.com^",
+
+    // ── The Trade Desk ────────────────────────────────────────────────────
+    // Demand-side platform (programmatic ad buying).
+    "||thetradedesk.com^",
+
+    // ── Kochava (mobile attribution / tracking) ───────────────────────────
+    "||kochava.com^",
+    "||control.kochava.com^",
+
+    // ── Oppo OEM tracking ─────────────────────────────────────────────────
+    "||data.ads.oppomobile.com^",
+    "||adx.ads.oppomobile.com^",
+    "||ck.ads.oppomobile.com^",
+    "||adsfs.oppomobile.com^",
+
+    // ── Realme OEM tracking ───────────────────────────────────────────────
+    "||bdapi-ads.realmemobile.com^",
+    "||bdapi-in-ads.realmemobile.com^",
+
+    // ── Yandex analytics / AppMetrica ─────────────────────────────────────
+    "||appmetrica.yandex.ru^",
+    "||metrika.yandex.ru^",
+
+    // ── VK ads ───────────────────────────────────────────────────────────
+    "||ads.vk.com^",
+
+    // ── Quora tracking pixel ──────────────────────────────────────────────
+    "||pixel.quora.com^",
+]
+print("  Adding \(customBlockRules.count) custom blocking rules")
+adRules.append(contentsOf: customBlockRules)
+
 // Add safe-site exception rules for sites whose APIs match tracker patterns
 let safeExceptions = [
     // First-party exception is injected directly into JSON (SafariConverterLib
@@ -460,6 +550,20 @@ let safeExceptions = [
     // Bing — bing.com/ck/a redirect links were being blocked by EasyList
     // tracker rules (ck/a pattern looks like a click tracker).
     "@@||bing.com^",
+    // Microsoft cross-domain infrastructure — M365 properties load assets from
+    // shared Microsoft CDNs and auth backends across domain boundaries.
+    // These exceptions ensure that visiting any Microsoft property (Outlook,
+    // Teams, SharePoint, Office Online) doesn't break due to third-party
+    // requests to Microsoft's own infra being classified as trackers.
+    "@@||*.microsoft.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.microsoftonline.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.live.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.msn.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.office.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.office365.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.sharepoint.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.gfx.ms^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||*.s-microsoft.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
 ]
 print("  Adding \(safeExceptions.count) safe-site exception rules")
 adRules.append(contentsOf: safeExceptions)
