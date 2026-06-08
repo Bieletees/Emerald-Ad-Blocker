@@ -1,7 +1,7 @@
 /// Emerald Ad Blocker — Build Tool (Swift + SafariConverterLib)
 ///
 /// Single-command build that generates ALL output files:
-///   - adblock.json, trackers.json, exceptions.json (via SafariConverterLib)
+///   - adblock.json, trackers.json, annoyances.json, exceptions.json (via SafariConverterLib)
 ///   - cosmetic.js, scriptlets.js, websocket_block.js, tracker_stubs.js
 ///   - scriptlet_rules.json, cosmetic_domains.json
 ///   - redirect_rules.json, removeparam_rules.json
@@ -36,7 +36,7 @@ struct FilterList {
     let name: String
     let url: String
     let category: Category
-    enum Category { case ads, trackers, removeparam }
+    enum Category { case ads, trackers, annoyances, removeparam }
 }
 
 let filterLists: [FilterList] = [
@@ -45,8 +45,8 @@ let filterLists: [FilterList] = [
     .init(name: "peter_lowe", url: "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0&mimetype=plaintext", category: .trackers),
     .init(name: "adguard_base", url: "https://filters.adtidy.org/extension/safari/filters/2.txt", category: .ads),
     .init(name: "adguard_tracking", url: "https://filters.adtidy.org/extension/safari/filters/3.txt", category: .trackers),
-    .init(name: "adguard_social", url: "https://filters.adtidy.org/extension/safari/filters/4.txt", category: .ads),
-    .init(name: "adguard_annoyances", url: "https://filters.adtidy.org/extension/safari/filters/14.txt", category: .ads),
+    .init(name: "adguard_social", url: "https://filters.adtidy.org/extension/safari/filters/4.txt", category: .annoyances),
+    .init(name: "adguard_annoyances", url: "https://filters.adtidy.org/extension/safari/filters/14.txt", category: .annoyances),
     .init(name: "adguard_mobile", url: "https://filters.adtidy.org/extension/safari/filters/11.txt", category: .ads),
     .init(name: "adguard_url_tracking", url: "https://filters.adtidy.org/android/filters/17.txt", category: .removeparam),
     .init(name: "ublock_unbreak", url: "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt", category: .ads),
@@ -104,7 +104,7 @@ func convertAndWrite(rules: [String], outputName: String) -> Int {
     let converter = ContentBlockerConverter()
     let result = converter.convertArray(
         rules: rules,
-        safariVersion: .safari15,
+        safariVersion: .safari16_4,
         advancedBlocking: false,
         maxJsonSizeBytes: nil,
         progress: nil
@@ -388,6 +388,7 @@ print("=== Fetching upstream filter lists ===")
 var allTexts: [String: String] = [:]
 var adRules: [String] = []
 var trackerRules: [String] = []
+var annoyancesRules: [String] = []
 
 for list in filterLists {
     let text = fetchList(list)
@@ -403,12 +404,14 @@ for list in filterLists {
         adRules.append(contentsOf: lines)
     case .trackers:
         trackerRules.append(contentsOf: lines)
+    case .annoyances:
+        annoyancesRules.append(contentsOf: lines)
     case .removeparam:
         break // handled in writeJSFiles
     }
 }
 
-print("\n  Total: \(adRules.count) ad rules, \(trackerRules.count) tracker rules\n")
+print("\n  Total: \(adRules.count) ad rules, \(trackerRules.count) tracker rules, \(annoyancesRules.count) annoyances rules\n")
 
 // MARK: - Custom blocking rules
 // ABP-format rules for domains not covered (or under-covered) by the
@@ -605,17 +608,19 @@ let safeExceptions = [
 print("  Adding \(safeExceptions.count) safe-site exception rules")
 adRules.append(contentsOf: safeExceptions)
 trackerRules.append(contentsOf: safeExceptions)
+annoyancesRules.append(contentsOf: safeExceptions)
 
 // Convert to Safari JSON
 print("=== Converting rules (SafariConverterLib) ===")
 let adCount = convertAndWrite(rules: adRules, outputName: "adblock.json")
 let trkCount = convertAndWrite(rules: trackerRules, outputName: "trackers.json")
+let annCount = convertAndWrite(rules: annoyancesRules, outputName: "annoyances.json")
 
 // Exceptions standalone file
-let exceptionRules = (adRules + trackerRules).filter { $0.hasPrefix("@@") }
+let exceptionRules = (adRules + trackerRules + annoyancesRules).filter { $0.hasPrefix("@@") }
 _ = convertAndWrite(rules: exceptionRules, outputName: "exceptions.json")
 
-print("\n  Total rules compiled: \(adCount + trkCount)")
+print("\n  Total rules compiled: \(adCount + trkCount + annCount)")
 
 // Generate sidecar JSON files
 print("\n=== Generating sidecar data files ===")
@@ -652,6 +657,7 @@ print("""
   Output files:
     output/adblock.json          ← WKContentRuleList (ads)
     output/trackers.json         ← WKContentRuleList (trackers)
+    output/annoyances.json       ← WKContentRuleList (annoyances / cookie banners)
     output/exceptions.json       ← WKContentRuleList (exceptions)
     output/cosmetic.js           ← WKUserScript (CSS hiding + anti-detection)
     output/scriptlets.js         ← WKUserScript (scriptlet engine + site configs)
