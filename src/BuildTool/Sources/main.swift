@@ -500,13 +500,26 @@ let customBlockRules: [String] = [
 print("  Adding \(customBlockRules.count) custom blocking rules")
 adRules.append(contentsOf: customBlockRules)
 
-// Add safe-site exception rules for sites whose APIs match tracker patterns
+// Add safe-site exception rules for sites whose APIs match tracker patterns.
+//
+// SCOPING POLICY: Every exception MUST carry a $domain= qualifier that limits
+// it to the Microsoft/partner property where the resource is legitimately
+// needed. Unscoped exceptions (no $domain=) would whitelist the host globally
+// and silently cancel out customBlockRules entries for ad/tracking subdomains
+// like bat.bing.com, bingads.microsoft.com, and ads.microsoft.com.
+//
+// The Microsoft blanket if-domain exception appended in convertAndWrite() is
+// intentionally kept for WKContentRuleList (it fires only when the *page* is
+// on a Microsoft domain), but the ABP-format safeExceptions here must all be
+// domain-scoped so they don't leak into third-party contexts.
 let safeExceptions = [
     // First-party exception is injected directly into JSON (SafariConverterLib
     // rejects wildcard exceptions as "too wide"). See convertAndWrite().
+
     // StatCounter — own domain matches tracker patterns in EasyPrivacy
     "@@||statcounter.com^$domain=statcounter.com",
     "@@||*.statcounter.com^$domain=statcounter.com",
+
     // Kahoot — own domains + required third-party dependencies
     "@@||kahoot.it^$domain=kahoot.it|kahoot.com",
     "@@||kahoot.com^$domain=kahoot.it|kahoot.com",
@@ -519,42 +532,66 @@ let safeExceptions = [
     "@@||hotjar.io^$domain=kahoot.it|kahoot.com",
     "@@||onetrust.com^$domain=kahoot.it|kahoot.com",
     "@@||accounts.google.com^$domain=kahoot.it|kahoot.com",
+
     // YouTube — ad blocking handled by ytadblock.js, don't block infra
     "@@||googlevideo.com^$domain=youtube.com|youtu.be|music.youtube.com",
     "@@||ytimg.com^$domain=youtube.com|youtu.be|music.youtube.com",
     "@@||ggpht.com^$domain=youtube.com|youtu.be|music.youtube.com",
     "@@||youtube.com^$domain=youtube.com|music.youtube.com",
     "@@||googleapis.com^$domain=youtube.com|youtu.be|music.youtube.com",
+
     // Google Workspace — needs Google's own infrastructure (cross-domain)
     "@@||googleapis.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
     "@@||gstatic.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
     "@@||google.com^$domain=docs.google.com|sheets.google.com|slides.google.com|drive.google.com|mail.google.com|calendar.google.com|meet.google.com|accounts.google.com",
+
     // Microsoft MakeCode — depends on Application Insights telemetry for functionality
     "@@||dc.services.visualstudio.com^$domain=makecode.com|makecode.microbit.org|arcade.makecode.com|pxt.io",
-    // Microsoft sign-in — the OAuth/OIDC chain spans login.microsoftonline.com,
-    // login.live.com, accounts.microsoft.com, and many microsoft.com subdomains.
-    // Any blocked request in this chain causes the redirect loop.
-    "@@||microsoftonline.com^",
-    "@@||microsoft.com^",
-    "@@||live.com^$domain=login.live.com|account.live.com|microsoft.com|microsoftonline.com|office.com|outlook.com",
-    "@@||msftauth.net^",
-    "@@||msecnd.net^$domain=microsoft.com|microsoftonline.com|bing.com|live.com|office.com|outlook.com|windows.com",
-    "@@||msauth.net^",
-    "@@||windows.net^$domain=microsoft.com|microsoftonline.com|azure.com",
-    "@@||azure.com^",
-    "@@||office.com^",
-    "@@||office365.com^",
-    "@@||sharepoint.com^",
-    "@@||outlook.com^",
-    "@@||azurewebsites.net^",
-    // Bing — bing.com/ck/a redirect links were being blocked by EasyList
-    // tracker rules (ck/a pattern looks like a click tracker).
-    "@@||bing.com^",
+
+    // Microsoft sign-in & core infrastructure — scoped to Microsoft-owned domains only.
+    //
+    // IMPORTANT: bat.bing.com, bingads.microsoft.com, and ads.microsoft.com are
+    // intentionally NOT whitelisted here. They are third-party ad/tracking hosts
+    // that must remain blocked on non-Microsoft sites. The $domain= list below
+    // covers only the Microsoft properties where the sign-in chain and core
+    // product functionality legitimately require these requests.
+    //
+    // microsoftonline.com — OAuth/OIDC token endpoint, needed on all MS properties
+    "@@||microsoftonline.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com|bing.com|msn.com|xbox.com|azure.com",
+    // login.live.com / account.live.com — Microsoft Account (MSA) sign-in
+    "@@||live.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com|bing.com",
+    // msftauth.net — Microsoft federated auth CDN (ESTS)
+    "@@||msftauth.net^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com|bing.com",
+    // msecnd.net — Microsoft CDN for auth pages and Office assets
+    "@@||msecnd.net^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com|bing.com",
+    // msauth.net — Microsoft auth redirect helper
+    "@@||msauth.net^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com|bing.com",
+    // windows.net — Azure Storage / Azure AD tenant endpoints used by M365
+    "@@||windows.net^$domain=microsoft.com|microsoftonline.com|azure.com|office.com|office365.com|sharepoint.com",
+    // azure.com — Azure portal and resource endpoints
+    "@@||azure.com^$domain=microsoft.com|microsoftonline.com|azure.com|office.com|office365.com",
+    // azurewebsites.net — Azure-hosted first-party Microsoft web apps
+    "@@||azurewebsites.net^$domain=microsoft.com|microsoftonline.com|azure.com|office.com|office365.com",
+    // office.com / office365.com — Office Online, M365 portal
+    "@@||office.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com",
+    "@@||office365.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com",
+    // sharepoint.com — SharePoint Online and OneDrive
+    "@@||sharepoint.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com",
+    // outlook.com — Outlook Web App
+    "@@||outlook.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com",
+    // microsoft.com — general Microsoft infra, scoped to MS properties only
+    // Excludes bat.bing.com / bingads.microsoft.com / ads.microsoft.com which
+    // are ad subdomains and must remain blocked everywhere.
+    "@@||microsoft.com^$domain=microsoft.com|microsoftonline.com|live.com|outlook.com|office.com|office365.com|sharepoint.com|bing.com|msn.com|xbox.com|azure.com",
+    // bing.com — Bing search results page functionality.
+    // bat.bing.com (UET tracker) is a subdomain and is explicitly blocked in
+    // customBlockRules; the @@||bing.com^ exception is scoped to MS domains
+    // so it cannot unblock bat.bing.com on third-party sites.
+    "@@||bing.com^$domain=bing.com|microsoft.com|microsoftonline.com|live.com|msn.com|outlook.com|office.com",
+
     // Microsoft cross-domain infrastructure — M365 properties load assets from
     // shared Microsoft CDNs and auth backends across domain boundaries.
-    // These exceptions ensure that visiting any Microsoft property (Outlook,
-    // Teams, SharePoint, Office Online) doesn't break due to third-party
-    // requests to Microsoft's own infra being classified as trackers.
+    // These are all domain-scoped to Microsoft properties only.
     "@@||*.microsoft.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
     "@@||*.microsoftonline.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
     "@@||*.live.com^$domain=microsoft.com|live.com|microsoftonline.com|bing.com|outlook.com|office.com|office365.com|sharepoint.com",
