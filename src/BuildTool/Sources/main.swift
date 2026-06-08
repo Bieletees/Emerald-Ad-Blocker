@@ -40,16 +40,29 @@ struct FilterList {
 }
 
 let filterLists: [FilterList] = [
-    .init(name: "easylist", url: "https://easylist.to/easylist/easylist.txt", category: .ads),
-    .init(name: "easyprivacy", url: "https://easylist.to/easylist/easyprivacy.txt", category: .trackers),
-    .init(name: "peter_lowe", url: "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0&mimetype=plaintext", category: .trackers),
+    // ── Ads ───────────────────────────────────────────────────────────────
+    // AdGuard Base Safari (filter 2) is a superset of EasyList for Safari —
+    // it includes all of EasyList plus AdGuard-specific rules, so we only
+    // need one of the two. Dropping EasyList removes ~30k duplicate rules
+    // and prevents adblock.json from hitting the 150k rule cap.
     .init(name: "adguard_base", url: "https://filters.adtidy.org/extension/safari/filters/2.txt", category: .ads),
+    // uBlock unbreak — critical allow-list for sites broken by aggressive blocking
+    .init(name: "ublock_unbreak", url: "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt", category: .ads),
+    // adguard_mobile (filter 11) overlaps ~95% with adguard_base on mobile web;
+    // removed to cut input size. Re-add if mobile-specific ad networks become a problem.
+
+    // ── Trackers ──────────────────────────────────────────────────────────
+    .init(name: "easyprivacy", url: "https://easylist.to/easylist/easyprivacy.txt", category: .trackers),
     .init(name: "adguard_tracking", url: "https://filters.adtidy.org/extension/safari/filters/3.txt", category: .trackers),
+    // Peter Lowe: tiny (~3k rules), catches unique ad-serving hosts not in the above two
+    .init(name: "peter_lowe", url: "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0&mimetype=plaintext", category: .trackers),
+
+    // ── Annoyances ────────────────────────────────────────────────────────
     .init(name: "adguard_social", url: "https://filters.adtidy.org/extension/safari/filters/4.txt", category: .annoyances),
     .init(name: "adguard_annoyances", url: "https://filters.adtidy.org/extension/safari/filters/14.txt", category: .annoyances),
-    .init(name: "adguard_mobile", url: "https://filters.adtidy.org/extension/safari/filters/11.txt", category: .ads),
+
+    // ── URL parameter stripping ───────────────────────────────────────────
     .init(name: "adguard_url_tracking", url: "https://filters.adtidy.org/android/filters/17.txt", category: .removeparam),
-    .init(name: "ublock_unbreak", url: "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt", category: .ads),
 ]
 
 // MARK: - Fetching with cache
