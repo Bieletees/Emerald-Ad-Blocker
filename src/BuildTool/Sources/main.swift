@@ -386,9 +386,15 @@ try? FileManager.default.createDirectory(at: outputDir, withIntermediateDirector
 // Fetch all lists
 print("=== Fetching upstream filter lists ===")
 var allTexts: [String: String] = [:]
-var adRules: [String] = []
-var trackerRules: [String] = []
-var annoyancesRules: [String] = []
+
+// Use OrderedSet so rules from overlapping upstream lists (e.g. EasyList and
+// AdGuard Base Safari share hundreds of identical entries) are deduplicated
+// before being handed to SafariConverterLib. This shrinks the input arrays,
+// speeds up conversion, and reduces the size of the output JSON files while
+// still preserving the original rule ordering (first occurrence wins).
+var adRulesSet: OrderedSet<String> = []
+var trackerRulesSet: OrderedSet<String> = []
+var annoyancesRulesSet: OrderedSet<String> = []
 
 for list in filterLists {
     let text = fetchList(list)
@@ -401,17 +407,22 @@ for list in filterLists {
 
     switch list.category {
     case .ads:
-        adRules.append(contentsOf: lines)
+        for line in lines { adRulesSet.insert(line) }
     case .trackers:
-        trackerRules.append(contentsOf: lines)
+        for line in lines { trackerRulesSet.insert(line) }
     case .annoyances:
-        annoyancesRules.append(contentsOf: lines)
+        for line in lines { annoyancesRulesSet.insert(line) }
     case .removeparam:
         break // handled in writeJSFiles
     }
 }
 
-print("\n  Total: \(adRules.count) ad rules, \(trackerRules.count) tracker rules, \(annoyancesRules.count) annoyances rules\n")
+// Extract deduplicated arrays before appending custom rules
+var adRules: [String] = adRulesSet.elements
+var trackerRules: [String] = trackerRulesSet.elements
+var annoyancesRules: [String] = annoyancesRulesSet.elements
+
+print("\n  Total after dedup: \(adRules.count) ad rules, \(trackerRules.count) tracker rules, \(annoyancesRules.count) annoyances rules\n")
 
 // MARK: - Custom blocking rules
 // ABP-format rules for domains not covered (or under-covered) by the
@@ -671,6 +682,35 @@ print("""
 """)
 
 // MARK: - Helpers
+
+/// A minimal ordered set backed by a Dictionary for O(1) membership tests and
+/// an Array for stable insertion-order iteration.  Swift's standard library
+/// has no built-in ordered set, and importing swift-collections just for this
+/// would add a heavyweight dependency.  This implementation is intentionally
+/// simple: insertions are O(1) amortised, iteration is O(n), and there is no
+/// removal support (not needed here).
+struct OrderedSet<Element: Hashable>: ExpressibleByArrayLiteral {
+    private(set) var elements: [Element] = []
+    private var seen: [Element: Void] = [:]
+
+    init() {}
+    init(arrayLiteral elements: Element...) {
+        for e in elements { insert(e) }
+    }
+
+    /// Inserts `element` if it has not been seen before.
+    /// Returns `true` when the element was actually inserted.
+    @discardableResult
+    mutating func insert(_ element: Element) -> Bool {
+        guard seen[element] == nil else { return false }
+        seen[element] = ()
+        elements.append(element)
+        return true
+    }
+
+    var count: Int { elements.count }
+    var isEmpty: Bool { elements.isEmpty }
+}
 
 func sha256(_ data: Data) -> String {
     var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
