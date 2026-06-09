@@ -3941,13 +3941,14 @@ dailypost.co.uk,dailystar.co.uk,mirror.co.uk##+js(nano-stb, (null), 5000, 0.001)
 ! https://github.com/uBlockOrigin/uAssets/issues/25116
 ! https://www.sport24.gr/football/olympiakos-panathinaikos-1-0-me-gkol-playstation-sto-94-o-moyzakitis-esteile-toys-erythroleykoys-sta-imitelika.10454103.html
 ! https://github.com/uBlockOrigin/uAssets/issues/32031
+! https://github.com/uBlockOrigin/uAssets/issues/33135
 ||connatix.com^$badfilter
 ||connatix.com^$3p
 ||connatix.com^$3p,removeparam=cid
 ||connatix.com^$3p,removeparam=pid
-app.kultivi.com,hollywoodreporter.com,huffpost.com,sacbee.com,sport-fm.gr,sport24.gr,sportal.gr,tvline.com,w3schools.com#@#.cnx-player-wrapper
-app.kultivi.com,hollywoodreporter.com,huffpost.com,sacbee.com,sport-fm.gr,sport24.gr,tvline.com,w3schools.com#@#[id^="jwplayer"]
-@@||connatix.com/*connatix.player.$3p,script,domain=accesousa.com|accuweather.com|adweek.com|app.kultivi.com|bellinghamherald.com|bnd.com|bradenton.com|centredaily.com|charlotteobserver.com|easternstandardtimes.com|elnuevoherald.com|flkeysnews.com|fresnobee.com|heraldonline.com|heraldsun.com|hollywoodreporter.com|huffpost.com|idahostatesman.com|indiewire.com|islandpacket.com|interestingengineering.com|kansas.com|kansascity.com|kentucky.com|ledger-enquirer.com|loot.tv|macon.com|mahoningmatters.com|mcclatchydc.com|mercedsunstar.com|miamiherald.com|modbee.com|myrtlebeachonline.com|newsobserver.com|reuters.com|sacbee.com|sanluisobispo.com|sport-fm.gr|sport24.gr|sportal.gr|star-telegram.com|sunherald.com|thenewstribune.com|theolympian.com|thestate.com|tri-cityherald.com|tvline.com|variety.com|w3schools.com
+app.kultivi.com,hollywoodreporter.com,huffpost.com,kultivi.com,sacbee.com,sport-fm.gr,sport24.gr,sportal.gr,tvline.com,w3schools.com#@#.cnx-player-wrapper
+app.kultivi.com,hollywoodreporter.com,huffpost.com,kultivi.com,sacbee.com,sport-fm.gr,sport24.gr,tvline.com,w3schools.com#@#[id^="jwplayer"]
+@@||connatix.com/*connatix.player.$3p,script,domain=accesousa.com|accuweather.com|adweek.com|app.kultivi.com|bellinghamherald.com|bnd.com|bradenton.com|centredaily.com|charlotteobserver.com|easternstandardtimes.com|elnuevoherald.com|flkeysnews.com|fresnobee.com|heraldonline.com|heraldsun.com|hollywoodreporter.com|huffpost.com|idahostatesman.com|indiewire.com|islandpacket.com|interestingengineering.com|kansas.com|kansascity.com|kentucky.com|kultivi.com|ledger-enquirer.com|loot.tv|macon.com|mahoningmatters.com|mcclatchydc.com|mercedsunstar.com|miamiherald.com|modbee.com|myrtlebeachonline.com|newsobserver.com|reuters.com|sacbee.com|sanluisobispo.com|sport-fm.gr|sport24.gr|sportal.gr|star-telegram.com|sunherald.com|thenewstribune.com|theolympian.com|thestate.com|tri-cityherald.com|tvline.com|variety.com|w3schools.com
 @@||connatix.com/*.css$3p,css
 @@||cds.connatix.com/*/elLoader.$3p,script
 @@||cds.connatix.com/*/player.renderer.$3p,script
@@ -4169,9 +4170,9 @@ pcwelt.de#@#a[href^="https://pvn.saturn.de/"]
 ! https://github.com/uBlockOrigin/uAssets/issues/23767
 ! https://www.reddit.com/r/uBlockOrigin/comments/1iybutj/adblock_detected_at_skywareinventory/
 @@||scylla.wgplayer.com/f_webp/$image
-@@||universal.wgplayer.com/tag/$script,domain=atarisalon.com|brightygames.com|sisigames.com|yoho.games
-@@||wgplayer.com/*/wgAds.$script,domain=atarisalon.com|brightygames.com|pastelkattogames.com|sisigames.com|yoho.games
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$script,domain=atarisalon.com|brightygames.com|sisigames.com|yoho.games
+@@||universal.wgplayer.com/tag/$script,domain=atarisalon.com|brightygames.com|sisigames.com|toongo.io|yoho.games
+@@||wgplayer.com/*/wgAds.$script,domain=atarisalon.com|brightygames.com|pastelkattogames.com|sisigames.com|toongo.io|yoho.games
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$script,domain=atarisalon.com|brightygames.com|sisigames.com|toongo.io|yoho.games
 brightygames.com,yoho.games##^html > head > meta[property="og:url"]:not([content*="/games/"], [content*="/play/"]):upward(1) > script:has-text(wgplayer)
 sisigames.com##^#index-games:upward(html) > head > script:has-text(wgplayer)
 ! videos
@@ -5526,9 +5527,6 @@ visible.com##+js(set, adobe, {})
 hagerty.com##+js(set, MT, {})
 hagerty.com##+js(set, MT.track, noopFunc)
 
-! https://www.reddit.com/r/uBlockOrigin/comments/1hp40q7/ublock_origin_blocks_this_site_httpsxlivesexcom/
-||xlivesex.com^$badfilter
-
 ! https://www.wionews.com/videos/political-turmoil-deepens-in-south-korea - no video 
 @@||ads.pubmatic.com/AdServer/js/pwt/$script,domain=cdn.thepublive.com
 
@@ -5972,3 +5970,12 @@ amboss.com##+js(set, ambossAnalytics.getUserAttribution, noopFunc)
 
 ! https://github.com/uBlockOrigin/uAssets/issues/32955
 proxyorb.com##+js(aeld, load, dataset.ready, elements, script[src^="https://www.googletagmanager.com/gtag/js?id="])
+
+! https://github.com/uBlockOrigin/uAssets/issues/33159
+||criteo.com^$xhr,redirect=noop.txt,from=makro.plazavea.com.pe
+
+! https://github.com/uBlockOrigin/uAssets/issues/33134
+@@||googletagmanager.com/gtm.js$script,domain=app.conte.it
+
+! https://github.com/uBlockOrigin/uAssets/issues/33218
+@@||stadt-zuerich.ch/etc/clientlibs/stzh/analytics/$script,1p

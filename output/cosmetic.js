@@ -1,11 +1,26 @@
-// Emerald Ad Blocker — cosmetic.js (v4.0)
+// Emerald Ad Blocker — cosmetic.js (v4.1)
 // Injected by WKUserScript at document_start.
 (function () {
   'use strict';
 
   var _cosHost = window.location.hostname;
   if (/(^|\.)kahoot\.(it|com)$/.test(_cosHost) ||
-      /(^|\.)statcounter\.com$/.test(_cosHost)) {
+      /(^|\.)statcounter\.com$/.test(_cosHost) ||
+      /(^|\.)microsoftonline\.com$/.test(_cosHost) ||
+      /(^|\.)microsoft\.com$/.test(_cosHost) ||
+      /^login\.live\.com$/.test(_cosHost) ||
+      /^account\.live\.com$/.test(_cosHost) ||
+      /(^|\.)bing\.com$/.test(_cosHost) ||
+      /(^|\.)msftauth\.net$/.test(_cosHost) ||
+      /(^|\.)msauth\.net$/.test(_cosHost) ||
+      /(^|\.)msecnd\.net$/.test(_cosHost) ||
+      /(^|\.)office\.com$/.test(_cosHost) ||
+      /(^|\.)office365\.com$/.test(_cosHost) ||
+      /(^|\.)outlook\.com$/.test(_cosHost) ||
+      /(^|\.)sharepoint\.com$/.test(_cosHost) ||
+      /(^|\.)windows\.net$/.test(_cosHost) ||
+      /(^|\.)azure\.com$/.test(_cosHost) ||
+      /(^|\.)azurewebsites\.net$/.test(_cosHost)) {
     return;
   }
 
@@ -128,6 +143,9 @@
     ];
 
     var _allSelectors = SELECTORS.join(',');
+
+    // Inject CSS at document_start for immediate synchronous hiding before
+    // any ad scripts can measure visibility.
     function injectCSS() {
       var style = document.createElement('style');
       style.id = '__emerald_cosmetic_0__';
@@ -137,22 +155,21 @@
     if (document.head || document.documentElement) { injectCSS(); }
     else { document.addEventListener('DOMContentLoaded', injectCSS, { once: true }); }
 
-    var _hidden = new WeakSet();
+    // MutationObserver pass: remove matched ad elements entirely from the DOM.
+    // Removing (not just hiding) is required for 100/100 on adblock testers
+    // that check for the presence of ad nodes, not just their visibility.
     var _pending = false;
-    function scanAndHide() {
+    function scanAndRemove() {
       _pending = false;
       try {
         var matches = document.querySelectorAll(_allSelectors);
         for (var i = 0; i < matches.length; i++) {
-          if (!_hidden.has(matches[i])) {
-            matches[i].style.setProperty('display', 'none', 'important');
-            _hidden.add(matches[i]);
-          }
+          try { matches[i].remove(); } catch (_) {}
         }
       } catch (_) {}
     }
     new MutationObserver(function () {
-      if (!_pending) { _pending = true; requestAnimationFrame(scanAndHide); }
+      if (!_pending) { _pending = true; requestAnimationFrame(scanAndRemove); }
     }).observe(document.documentElement, { childList: true, subtree: true });
   }
 
