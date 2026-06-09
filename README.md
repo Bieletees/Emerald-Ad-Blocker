@@ -70,7 +70,7 @@ WKContentRuleList JSON compiled from:
 
 ### `output/exceptions.json`
 
-WKContentRuleList `ignore-previous-rules` entries for sites whose first-party APIs overlap with tracker patterns (Google Workspace, YouTube, Kahoot, StatCounter, DownDetector).
+WKContentRuleList `ignore-previous-rules` entries for sites whose first-party APIs overlap with tracker patterns (Google Workspace, YouTube, Kahoot, StatCounter, Microsoft, MakeCode).
 
 ### `output/cosmetic.js`
 
@@ -117,7 +117,7 @@ The build tool will:
 
 1. Fetch AdGuard Base, AdGuard Tracking, AdGuard Social, AdGuard Annoyances, AdGuard URL Tracking (all Safari-optimized), EasyPrivacy, Peter Lowe's, and uBlock unbreak from their canonical URLs
 2. Convert all filters to WKContentRuleList JSON via SafariConverterLib
-3. Add safe-site exception rules for YouTube, Kahoot, StatCounter, Google Workspace, and Microsoft
+3. Add safe-site exception rules for YouTube, Kahoot, StatCounter, Google Workspace, Microsoft, and MakeCode
 4. Generate JS output files (cosmetic hiding, scriptlets, tracker stubs, WebSocket blocking)
 5. Write all output files: `adblock.json`, `trackers.json`, `annoyances.json`, `exceptions.json`, and sidecar JSON files
 
