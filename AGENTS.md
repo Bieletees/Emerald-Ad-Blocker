@@ -25,6 +25,7 @@ src/BuildTool/          Swift CLI that fetches upstream filter lists, converts t
 output/                 Generated files consumed by the Emerald browser
   adblock.json          WKContentRuleList JSON (ads)
   trackers.json         WKContentRuleList JSON (trackers)
+  annoyances.json       WKContentRuleList JSON (cookie banners, social widgets)
   exceptions.json       WKContentRuleList JSON (exceptions only)
   cosmetic.js           WKUserScript — CSS hiding + anti-detection + bait element protection
   scriptlets.js         WKUserScript — scriptlet engine with per-domain configs
@@ -169,20 +170,20 @@ Use the TestApp (`cd TestApp && swift run`) to verify changes locally. It loads 
 
 ## Upstream Filter Lists
 
-The build tool fetches from these sources (defined in `main.swift`):
+The build tool fetches from these sources (defined in `filterLists` in `main.swift`):
 
-| List | Category | Notes |
-|------|----------|-------|
-| EasyList | ads | Core ABP-format ad blocking |
-| EasyPrivacy | trackers | Core tracker blocking |
-| Peter Lowe's | trackers | Domain-level blocking |
-| AdGuard Base (Safari) | ads | Safari-optimized from filters.adtidy.org |
-| AdGuard Tracking (Safari) | trackers | Safari-optimized |
-| AdGuard Social (Safari) | ads | Social widget blocking |
-| AdGuard Annoyances (Safari) | ads | Cookie notices, newsletters |
-| AdGuard Mobile (Safari) | ads | Mobile-specific rules |
-| AdGuard URL Tracking (Android) | removeparam | URL parameter stripping data |
-| uBlock Unbreak | ads | Exception rules to fix false positives |
+| List | Category | Output file | Notes |
+|------|----------|-------------|-------|
+| AdGuard Base (Safari) | ads | `adblock.json` | Safari-optimized from filters.adtidy.org (filter 2) |
+| uBlock Unbreak | ads | `adblock.json` | Exception rules to fix false positives |
+| EasyPrivacy | trackers | `trackers.json` | Core ABP-format tracker blocking |
+| AdGuard Tracking (Safari) | trackers | `trackers.json` | Safari-optimized (filter 3) |
+| Peter Lowe's | trackers | `trackers.json` | Domain-level blocking; ~3 k rules catching hosts not in the above two |
+| AdGuard Social (Safari) | annoyances | `annoyances.json` | Social widget blocking (filter 4) |
+| AdGuard Annoyances (Safari) | annoyances | `annoyances.json` | Cookie notices, newsletters (filter 14) |
+| AdGuard URL Tracking (Android) | removeparam | sidecar JSON | URL parameter stripping data (filter 17) |
+
+> **Note:** EasyList (the general ad-blocking list) is **not** fetched. AdGuard Base Safari (filter 2) is a Safari-optimized superset that covers the same rules without the many EasyList entries that are incompatible with WKContentRuleList.
 
 ---
 

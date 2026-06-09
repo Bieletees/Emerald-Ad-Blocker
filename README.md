@@ -1,6 +1,6 @@
 # Emerald Ad Blocker
 
-A WKContentRuleList-based ad and tracker blocker for iOS/macOS browsers built on WebKit. Rules are compiled from [EasyList](https://easylist.to/), [EasyPrivacy](https://easylist.to/), [AdGuard](https://github.com/AdguardTeam/AdguardFilters) (Safari-optimized), [uBlock Origin](https://github.com/uBlockOrigin/uAssets), and [Peter Lowe's list](https://pgl.yoyo.org/adservers/) using [AdGuard's SafariConverterLib](https://github.com/AdguardTeam/SafariConverterLib), then written as ready-to-use JSON + JavaScript files.
+A WKContentRuleList-based ad and tracker blocker for iOS/macOS browsers built on WebKit. Rules are compiled from [AdGuard filters](https://github.com/AdguardTeam/AdguardFilters) (Safari-optimized), [EasyPrivacy](https://easylist.to/), [uBlock Origin unbreak rules](https://github.com/uBlockOrigin/uAssets), and [Peter Lowe's list](https://pgl.yoyo.org/adservers/) using [AdGuard's SafariConverterLib](https://github.com/AdguardTeam/SafariConverterLib), then written as ready-to-use JSON + JavaScript files.
 
 ---
 
@@ -23,6 +23,7 @@ Emerald-Ad-Blocker/
 ├── output/                     # Generated files — bundle these in your app
 │   ├── adblock.json            #   WKContentRuleList (ads)
 │   ├── trackers.json           #   WKContentRuleList (trackers)
+│   ├── annoyances.json         #   WKContentRuleList (cookie banners, social widgets)
 │   ├── exceptions.json         #   WKContentRuleList (safe-site exceptions)
 │   ├── cosmetic.js             #   WKUserScript — CSS hiding + anti-adblock stubs
 │   ├── scriptlets.js           #   WKUserScript — uBO-style scriptlet engine
@@ -32,7 +33,7 @@ Emerald-Ad-Blocker/
 │   ├── scriptlet_rules.json    #   Per-domain scriptlet configs (sidecar)
 │   ├── removeparam_rules.json  #   URL tracking parameter rules (sidecar)
 │   ├── redirect_rules.json     #   Surrogate resource mappings (sidecar)
-│   └── SWIFT_INTEGRATION.md    #   Full Swift wiring guide
+│   └── SWIFT_INTEGRATION.md   #   Full Swift wiring guide
 │
 ├── .cache/                     # Cached upstream list downloads
 │
@@ -49,8 +50,7 @@ Emerald-Ad-Blocker/
 
 WKContentRuleList JSON compiled from:
 
-- EasyList network filters
-- AdGuard Base, Social, Annoyances, and Mobile filters (Safari-specific builds)
+- AdGuard Base filter (Safari-specific build, filter 2)
 - uBlock Origin unbreak rules (exceptions only)
 
 ### `output/trackers.json`
@@ -58,8 +58,15 @@ WKContentRuleList JSON compiled from:
 WKContentRuleList JSON compiled from:
 
 - EasyPrivacy
-- AdGuard Tracking Protection filter (Safari-specific build)
+- AdGuard Tracking Protection filter (Safari-specific build, filter 3)
 - Peter Lowe's Ad and tracking server list
+
+### `output/annoyances.json`
+
+WKContentRuleList JSON compiled from:
+
+- AdGuard Social Media filter (Safari-specific build, filter 4)
+- AdGuard Annoyances filter (Safari-specific build, filter 14) — cookie notices, newsletter popups
 
 ### `output/exceptions.json`
 
@@ -93,7 +100,7 @@ WKUserScript injected at `document_start`. Blocks WebSocket connections to known
 
 - `cosmetic_domains.json` — per-domain CSS selectors for site-specific cosmetic filtering
 - `scriptlet_rules.json` — per-domain scriptlet configs for browser-side injection
-- `removeparam_rules.json` — URL tracking parameter stripping rules
+- `removeparam_rules.json` — URL tracking parameter stripping rules (from AdGuard URL Tracking filter)
 - `redirect_rules.json` — surrogate resource mappings for `$redirect` rules
 
 ---
@@ -108,11 +115,11 @@ cd src/BuildTool && swift run
 
 The build tool will:
 
-1. Fetch EasyList, EasyPrivacy, AdGuard (Base, Tracking, Social, Annoyances, Mobile), Peter Lowe's, and uBlock unbreak from their canonical URLs
+1. Fetch AdGuard Base, AdGuard Tracking, AdGuard Social, AdGuard Annoyances, AdGuard URL Tracking (all Safari-optimized), EasyPrivacy, Peter Lowe's, and uBlock unbreak from their canonical URLs
 2. Convert all filters to WKContentRuleList JSON via SafariConverterLib
-3. Add safe-site exception rules for YouTube, Kahoot, StatCounter, and Google Workspace
+3. Add safe-site exception rules for YouTube, Kahoot, StatCounter, Google Workspace, and Microsoft
 4. Generate JS output files (cosmetic hiding, scriptlets, tracker stubs, WebSocket blocking)
-5. Write all output files
+5. Write all output files: `adblock.json`, `trackers.json`, `annoyances.json`, `exceptions.json`, and sidecar JSON files
 
 The legacy Python pipeline (`python src/build.py`) is kept as a reference but is no longer used by CI.
 
@@ -137,12 +144,15 @@ Full code is in [`output/SWIFT_INTEGRATION.md`](output/SWIFT_INTEGRATION.md). Th
 ```swift
 // 1. Compile and attach content rule lists.
 let store = WKContentRuleListStore.default()!
-let adList      = try await store.compileContentRuleList(forIdentifier: "emerald.adblock",
-                      encodedContentRuleList: adblockJSON)
-let trackerList = try await store.compileContentRuleList(forIdentifier: "emerald.trackers",
-                      encodedContentRuleList: trackersJSON)
+let adList        = try await store.compileContentRuleList(forIdentifier: "emerald.adblock",
+                        encodedContentRuleList: adblockJSON)
+let trackerList   = try await store.compileContentRuleList(forIdentifier: "emerald.trackers",
+                        encodedContentRuleList: trackersJSON)
+let annoyanceList = try await store.compileContentRuleList(forIdentifier: "emerald.annoyances",
+                        encodedContentRuleList: annoyancesJSON)
 config.userContentController.add(adList)
 config.userContentController.add(trackerList)
+config.userContentController.add(annoyanceList)
 
 // 2. Inject user scripts at document start.
 for source in [cosmeticJS, scriptletsJS, trackerStubsJS, websocketBlockJS] {
