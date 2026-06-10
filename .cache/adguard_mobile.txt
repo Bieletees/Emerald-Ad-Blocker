@@ -1,9 +1,9 @@
-! Checksum: hS2jQPqQC+EX/hzCP7QRYw
-! Diff-Path: ../patches/11/11-s-1780067718-3600.patch
+! Checksum: Jivk0/ut3u9x25J4EHVnPQ
+! Diff-Path: ../patches/11/11-s-1780919120-3600.patch
 ! Title: AdGuard Mobile Ads filter
 ! Description: Filter for all known mobile ad networks. Useful for mobile devices.
-! Version: 2.0.69.99
-! TimeUpdated: 2026-05-29T15:12:08+00:00
+! Version: 2.0.70.15
+! TimeUpdated: 2026-06-08T11:42:06+00:00
 ! Expires: 5 days (update frequency)
 ! Homepage: https://github.com/AdguardTeam/AdGuardFilters
 ! License: https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE
@@ -68,6 +68,9 @@
 ||banners-slb.mobile.yandex.net^
 ||banners.mobile.yandex.net^
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/117330
+! Line
+||a.line.me^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/117115
 ! Yahoo
 ||app.ssp.yahoo.com^
@@ -171,6 +174,7 @@
 ||startup.mobile.webvisor.com^
 ||startup-mobile.ap.yandex-net.ru^
 !
+||uibjh29vqc.com^
 ||ads.heytapmobi.com^
 ||adsfs.heytapimage.com^
 ||shiyifacaisalzc.com^
@@ -2458,7 +2462,7 @@ handelsblatt.com,moyens.net,ign.com,gazeteduvar.com.tr,innpoland.pl,wired.com,sp
 ! ##.ads
 keisanki.me,kalporn.com,canalporno.com,serviporno.com,livechat-ero.net,kingautos.net,ranky-ranking.net,memo.onl.jp,daily-sun.com,home.kingsoft.jp,berkem.ru,pixiv.net,cartoonpornvideos.com,m.economictimes.com,m.mistrzowie.org,up.ymgt.xyz,google.de,www-bento-de.cdn.ampproject.org,m-economictimes-com.cdn.ampproject.org,winfuture.de##.ads
 ! ##.ad
-healthyplace.com,qlife.jp,wiki.yjsnpi.nu,opinion.cw.com.tw,aidoly.net,celeby-media.net,kyun2-girls.com,hapiee.com,2ch-c.net,4p.de,www-cbc-ca.cdn.ampproject.org,m.geboren.am,dictionary.com,transfermarkt.de,iyf.tv,macwelt.de,pcwelt.de,xataka.com.mx,shikiho.toyokeizai.net,newsee-media.com,rank1-media.com,m.proporn.com,sugoren.com,dailynewsonline.jp,yakuji.co.jp,asahi.com,m.winporn.com,slate.com,sankei.com,gameranbu.jp,seiga.nicovideo.jp,m.arukikata.co.jp,setn.com,hateblo.jp,hatenablog.com,hatenablog.jp,hatenadiary.com,hatenadiary.jp,hatenadiary.org,syosetu.org##.ad
+healthyplace.com,qlife.jp,wiki.yjsnpi.nu,opinion.cw.com.tw,aidoly.net,celeby-media.net,kyun2-girls.com,hapiee.com,2ch-c.net,4p.de,www-cbc-ca.cdn.ampproject.org,m.geboren.am,dictionary.com,transfermarkt.de,iyf.tv,macwelt.de,pcwelt.de,xataka.com.mx,shikiho.toyokeizai.net,newsee-media.com,rank1-media.com,m.proporn.com,sugoren.com,dailynewsonline.jp,yakuji.co.jp,asahi.com,m.winporn.com,slate.com,sankei.com,gameranbu.jp,seiga.nicovideo.jp,m.arukikata.co.jp,setn.com,hatenadiary.com,hatenadiary.jp,syosetu.org##.ad
 ! ##.Ad
 chip.de,gamesworld.de,fnn.jp##.Ad
 ! ##body .banner
@@ -2469,6 +2473,35 @@ sp.manga.nicovideo.jp##div[style^="--ads-width:"]
 !
 ! SECTION: Regular rules
 !
+||yxshufang.com/public/060819.js
+umanity.jp##.sp_big_banner_top
+modelviewer.lol##main > div.sticky > div.mb-4:has(div#mobile-banner)
+haberler.com##.new3card:has(> .MHH_VIDEO)
+haberler.com##.mobile-reklam-card
+haberler.com##.MHL_VIDEO
+clutchpoints.com##.not-prose > div.md\:hidden:has(script[src^="https://subscribe-forms.beehiiv.com/"])
+clutchpoints.com##div.flex.border:has(> div[class] > .ad-slot)
+gbnews.com##.ad-sticky-footer-mobile
+hochi.news##.sub__head:has(+ .job-list-wrap)
+hochi.news##div[style="min-width:320px;min-height:160px;text-align:center;margin:20px 0 0 0;"]
+onedio.co##.playvid-container
+onedio.co##.bg-white.u-center
+techtimes.com##.page-top-mobile-video
+motortrend.com##header[data-ids="GlobalHeader"] ~ div.align-center:has(> div.items-center > div[data-testid="article_top_ad-mobile"])
+motortrend.com##section[data-testid="chapter"] > div[class*="TextElement"] > div:has(> div.items-center > div[data-ad])
+just-auto.com##.mpu-ad-container
+just-auto.com###Sgpollsputhere
+autoevolution.com##.ad300x50
+u.gg##.champion-recommended-build > .media-query
+bo3.gg##.c-banner-limited-offer
+bo3.gg##.c-baaanners-custom
+planetrugby.com##div[style="height: 300px;"]
+speedcafe.com###anchor-container
+youjizz.com###englishMobPr
+tporn.xxx##.video__header
+dosgamesarchive.com###banner_mobile
+moskvichmag.ru##.article__inline-banner-divider
+moskvichmag.ru##.article__sidebar-sticky
 news.mynavi.jp###js-mnsp_inread
 arabalar.com.tr##div.elementor[data-elementor-post-type="page"] > section[data-settings]:has(div.elementor-widget ins.adsbygoogle)
 sportspyder.com##header > div[class^="_spacer_"]
@@ -8232,6 +8265,7 @@ contexto.me#$#.top-ad-padding { padding-top: 15px !important; }
 ! !SECTION: Regular rules
 !
 ! TXXX network/tubecorp/Adultnext
+tporn.xxx##.video__header
 bdsmx.tube,manysex.com,manysex.tube,inporn.com##.video__wrapper > div.header__item
 txxxporn.tube,txxx.*##.video-conten > div[class] > div[class]:has(> div[class] > div[style="height: 100px;"])
 porn-latina.com,gfthai.com,lesbigo.com,boobse.com,ourgay.tube,xshemale.tube,pornl.tube,fuxxx.com,keporn.vip,keporn.com,peporn.com,teen21.com,pornuse.com,uanal.com##.content > [class$="wrapper"] > section
@@ -8494,6 +8528,8 @@ livejournal.com##div[id^="billboard_mobile_"]
 !
 !
 !+ NOT_OPTIMIZED
+hatenadiary.org,hatenablog.com,hatenablog.jp,hateblo.jp##.ad
+!+ NOT_OPTIMIZED
 itc.ua##.image-100
 !+ NOT_OPTIMIZED
 techxplore.com##.ads-container
@@ -8674,7 +8710,6 @@ adguard.info,adguard.com,adguard.app##.hello_from_adguard_ext
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129011
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121406
 ! https://github.com/AdguardTeam/AdguardFilters/issues/117751
-! https://github.com/AdguardTeam/AdguardFilters/issues/117330
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116014
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115498
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114506

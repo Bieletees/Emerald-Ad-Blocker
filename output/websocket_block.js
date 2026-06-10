@@ -1,4 +1,4 @@
-// Emerald Ad Blocker — websocket_block.js (v3.1)
+// Emerald Ad Blocker — websocket_block.js (v3.2)
 // Injected by WKUserScript at document_start.
 // Blocks WebSocket connections to known trackers and prevents WebRTC IP leaks.
 (function () {
@@ -10,7 +10,22 @@
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_wsHost) ||
       /^(www\.)?youtubekids\.com$/.test(_wsHost) ||
       /(^|\.)statcounter\.com$/.test(_wsHost) ||
-      /(^|\.)kahoot\.(it|com)$/.test(_wsHost)) {
+      /(^|\.)kahoot\.(it|com)$/.test(_wsHost) ||
+      /(^|\.)microsoftonline\.com$/.test(_wsHost) ||
+      /(^|\.)microsoft\.com$/.test(_wsHost) ||
+      /^login\.live\.com$/.test(_wsHost) ||
+      /^account\.live\.com$/.test(_wsHost) ||
+      /(^|\.)bing\.com$/.test(_wsHost) ||
+      /(^|\.)msftauth\.net$/.test(_wsHost) ||
+      /(^|\.)msauth\.net$/.test(_wsHost) ||
+      /(^|\.)msecnd\.net$/.test(_wsHost) ||
+      /(^|\.)office\.com$/.test(_wsHost) ||
+      /(^|\.)office365\.com$/.test(_wsHost) ||
+      /(^|\.)outlook\.com$/.test(_wsHost) ||
+      /(^|\.)sharepoint\.com$/.test(_wsHost) ||
+      /(^|\.)windows\.net$/.test(_wsHost) ||
+      /(^|\.)azure\.com$/.test(_wsHost) ||
+      /(^|\.)azurewebsites\.net$/.test(_wsHost)) {
     return;
   }
 

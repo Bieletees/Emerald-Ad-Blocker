@@ -11,7 +11,22 @@
       /^(www\.|m\.|music\.|tv\.)?youtube\.com$/.test(_hostname) ||
       /^(www\.)?youtubekids\.com$/.test(_hostname) ||
       /(^|\.)statcounter\.com$/.test(_hostname) ||
-      /(^|\.)kahoot\.(it|com)$/.test(_hostname)) {
+      /(^|\.)kahoot\.(it|com)$/.test(_hostname) ||
+      /(^|\.)microsoftonline\.com$/.test(_hostname) ||
+      /(^|\.)microsoft\.com$/.test(_hostname) ||
+      /^login\.live\.com$/.test(_hostname) ||
+      /^account\.live\.com$/.test(_hostname) ||
+      /(^|\.)bing\.com$/.test(_hostname) ||
+      /(^|\.)msftauth\.net$/.test(_hostname) ||
+      /(^|\.)msauth\.net$/.test(_hostname) ||
+      /(^|\.)msecnd\.net$/.test(_hostname) ||
+      /(^|\.)office\.com$/.test(_hostname) ||
+      /(^|\.)office365\.com$/.test(_hostname) ||
+      /(^|\.)outlook\.com$/.test(_hostname) ||
+      /(^|\.)sharepoint\.com$/.test(_hostname) ||
+      /(^|\.)windows\.net$/.test(_hostname) ||
+      /(^|\.)azure\.com$/.test(_hostname) ||
+      /(^|\.)azurewebsites\.net$/.test(_hostname)) {
     return;
   }
 
