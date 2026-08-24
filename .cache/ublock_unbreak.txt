@@ -432,7 +432,7 @@ calgarysun.com,canoe.com,edmontonsun.com,financialpost.com,nationalpost.com,otta
 @@/wp-content/plugins/popup-builder-$image,css,script,1p
 
 ! https://github.com/uBlockOrigin/uAssets/issues/2460#issuecomment-395008661
-motherless.com#@#iframe[style]
+motherless.xxx#@#iframe[style]
 
 ! https://forums.lanik.us/viewtopic.php?f=64&t=40973
 @@||static.bbc.co.uk/radio/player/*/script/logger.js$script,domain=bbc.co.uk
@@ -1320,6 +1320,12 @@ as.com,caracol.com.co,los40.com##+js(set, DTM.trackAsyncPV, noopFunc)
 
 ! https://github.com/uBlockOrigin/uAssets/issues/7910
 @@||metacritic.com/js/omniture/uuid.js$script,1p
+! https://github.com/uBlockOrigin/uAssets/issues/33587
+metacritic.com##+js(rpnt, script, appName:"metacritic", appName:"etacritic")
+/etacritic/*$xhr,uritransform=/\/etacritic\//\/metacritic\//,domain=metacritic.com
+!#if ext_ubol
+/(.*)\/etacritic\/(.*)/$xhr,uritransform=//$1\/metacritic\/$2/,domain=metacritic.com
+!#endif
 
 ! https://github.com/uBlockOrigin/uAssets/issues/6539
 @@||pinpng.com^$css,1p
@@ -3960,14 +3966,19 @@ app.kultivi.com,hollywoodreporter.com,huffpost.com,kultivi.com,sacbee.com,sport-
 @@||vid.connatix.com^$3p,media,xhr
 @@||cds.connatix.com/p/*/elements.ui.$3p,script
 @@||cds.connatix.com/*/hls$script,3p
+@@||assets.connatix.com/Elements/*-player-$script
 ! https://www.reddit.com/r/uBlockOrigin/comments/1837a7a/video_not_playing_on_kansascom/
-@@||cds.connatix.com/p/*/cSyncRemoteEntry.js^$3p,script
+! @@||cds.connatix.com/p/*/cSyncRemoteEntry.js^$3p,script
 #@#.wps-player-wrap
 ! https://www.thestate.com/sports/college/university-of-south-carolina/usc-baseball/article276291411.html no need connatix
 bellinghamherald.com,bnd.com,bradenton.com,centredaily.com,charlotteobserver.com,flkeysnews.com,fresnobee.com,heraldonline.com,heraldsun.com,idahostatesman.com,islandpacket.com,kansas.com,kansascity.com,kentucky.com,ledger-enquirer.com,macon.com,mahoningmatters.com,mcclatchydc.com,mercedsunstar.com,miamiherald.com,modbee.com,myrtlebeachonline.com,newsobserver.com,sacbee.com,sanluisobispo.com,star-telegram.com,sunherald.com##^html:not(:has(video)) > head > script:has-text(connatix.com)
 loot.tv##^html:not(:has(#connatixPlayerID)) > head > script[src*="connatix"]
 thestate.com##^html > head > script:has-text(connatix.id):upward(1) > script:has-text(window.cnx)
 variety.com##^html > head > link[rel="canonical"]:not([href*="/video/"]):upward(1) > script[src*="connatix"]
+! https://github.com/uBlockOrigin/uAssets/issues/33707
+@@||connatix.com/player.js$3p,script,domain=decider.com|nypost.com|pagesix.com
+@@||connatix.com/*connatix.player.$3p,script,domain=decider.com|nypost.com|pagesix.com
+decider.com,nypost.com,pagesix.com#@#.cnx-player-wrapper
 
 ! connatix.com recommended articles/videos
 ! https://github.com/uBlockOrigin/uAssets/issues/10867
@@ -4886,6 +4897,7 @@ socket.pearsoned.com##+js(set, initializeNewRelic, noopFunc)
 @@||jssdkcdns.mparticle.com/js/*/mparticle.js$script,domain=cwtv.com
 @@||googleadservices.com/pagead/conversion_async.js^$script,domain=cwtv.com
 @@||googletagmanager.com/gtm.js^$script,domain=cwtv.com
+||imasdk.googleapis.com/js/sdkloader/ima3.js$redirect=google-ima.js,domain=cwtv.com
 
 ! https://github.com/uBlockOrigin/uAssets/issues/22423
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima.js,domain=memurlar.net
@@ -5895,7 +5907,7 @@ mdjonline.com###article-body > .subscriber-only:style(display: block !important;
 ||googletagmanager.com/gtm.js$script,domain=oxylabs.io,important
 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/223378
-daily.co.jp##+js(trusted-rpnt, script, /(window\.AdObserverManager\.register\('ds[ps][cp]-bottomRecommend'\);)/, (()=>{window.addEventListener("load"\,(()=>{const t=document.querySelector("#openwebSection")\,e=document.querySelector("div[data-spot-id]");if(!e||!t)return;const d=e.getAttribute("data-spot-id");if(!d)return;var o;((t\,e\,d)=>{const o=document.createElement("div");o.setAttribute("data-spotim-module"\,"conversation")\,o.setAttribute("data-spot-id"\,t)\,o.setAttribute("data-post-id"\,e)\,d.appendChild(o)})(d\,Math.abs((o=document.title\,[...o].reduce(((t\,e)=>Math.imul(31\,t)+e.charCodeAt(0)|0)\,0)))\,t);const a=document.createElement("script");a.setAttribute("src"\,`https://launcher.spot.im/spot/${d}`)\,a.setAttribute("async"\,"")\,document.head.appendChild(a)}));})();$1, sedCount, 1)
+daily.co.jp##+js(trusted-rpnt, script, /(window\.AdObserverManager\.register\('ds[ps][cp]-footer_?r?'\);)/, (()=>{window.addEventListener("load"\,(()=>{const t=document.querySelector("#openwebSection")\,e=document.querySelector("div[data-spot-id]");if(!e||!t)return;const d=e.getAttribute("data-spot-id");if(!d)return;var o;((t\,e\,d)=>{const o=document.createElement("div");o.setAttribute("data-spotim-module"\,"conversation")\,o.setAttribute("data-spot-id"\,t)\,o.dataset.postId=e\,d.appendChild(o)})(d\,Math.abs((o=document.title\,[...o].reduce(((t\,e)=>Math.imul(31\,t)+e.charCodeAt(0)|0)\,0)))\,t);const a=document.createElement("script");a.setAttribute("src"\,`https://launcher.spot.im/spot/${d}`)\,a.setAttribute("async"\,"")\,document.head.appendChild(a)}));})();$1, sedCount, 1)
 
 ! https://github.com/uBlockOrigin/uAssets/issues/31851
 @@||trafico.prensaiberica.es/adm/min/pb_wrapper/pbwrapper.js$script,domain=elperiodicodearagon.com
@@ -5979,3 +5991,58 @@ proxyorb.com##+js(aeld, load, dataset.ready, elements, script[src^="https://www.
 
 ! https://github.com/uBlockOrigin/uAssets/issues/33218
 @@||stadt-zuerich.ch/etc/clientlibs/stzh/analytics/$script,1p
+
+! https://github.com/uBlockOrigin/uAssets/issues/33468
+||imasdk.googleapis.com/js/sdkloader/ima3.js$redirect=google-ima.js,domain=root.cz
+
+! https://www.reddit.com/r/uBlockOrigin/comments/1ugk6yu/gocomics_site_update_comments_no_longer_visible/
+gocomics.com##+js(rpnt, script, document.querySelectorAll, `window.addEventListener("load",()=>{if(!document.querySelector("section[class^='ShowComicViewer-module-scss-module']")){return;}const script=document.createElement("script");script.src="https://cdn.viafoura.net/entry/index.js";document.head.appendChild(script)});document.querySelectorAll`)
+
+! https://github.com/uBlockOrigin/uAssets/issues/33565
+account.bhvr.com##+js(set, Osano, {})
+account.bhvr.com##+js(set, Osano.cm, {})
+account.bhvr.com##+js(set, Osano.cm.addEventListener, noopFunc)
+account.bhvr.com##+js(set, Osano.cm.removeEventListener, noopFunc)
+
+! https://github.com/uBlockOrigin/uAssets/issues/33692
+progressionmbj.ca##.et-waypoint:not(.et_pb_counters):style(opacity: 1 !important;)
+
+! https://github.com/uBlockOrigin/uAssets/issues/10186
+!#if cap_html_filtering
+visualstudio.microsoft.com##^script:has-text(oneDS.ApplicationInsights)
+!#else
+@@||js.monitor.azure.com/scripts/c/ms.analytics-web-4.min.js$domain=visualstudio.microsoft.com
+!#endif
+
+! https://github.com/uBlockOrigin/uAssets/issues/33735
+hikvision.com##+js(set, pa, {})
+hikvision.com##+js(set, pa.getVisitorId, noopFunc)
+hikvision.com##+js(set, pa.sendEvent, noopFunc)
+
+! https://github.com/uBlockOrigin/uAssets/issues/33760
+trustnet.com##+js(set, googletag.setConfig, noopFunc)
+
+! https://github.com/uBlockOrigin/uAssets/issues/33793
+tmz.com##.ad-header-wrapper:remove()
+
+! https://github.com/uBlockOrigin/uAssets/issues/33915
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect-rule,domain=calculla.com
+
+! https://github.com/uBlockOrigin/uAssets/issues/33934
+book.trivago.com##+js(set, RISKX, {})
+book.trivago.com##+js(set, RISKX.go, noopFunc)
+book.trivago.com##+js(set, RISKX.setSid, noopFunc)
+
+! https://www.reddit.com/r/uBlockOrigin/comments/1vkodxb/adblock_detection_on_minishortcom/
+||imasdk.googleapis.com/js/sdkloader/ima3.js$redirect=noopjs,domain=minishort.com
+
+! https://github.com/uBlockOrigin/uAssets/issues/34112
+@@||googletagmanager.com/gtm.js$script,redirect-rule,domain=lyssna.com
+
+! https://github.com/uBlockOrigin/uAssets/issues/34142
+ds.163.com##+js(set, Sentry, {})
+ds.163.com##+js(set, Sentry.init, noopFunc)
+ds.163.com##+js(set, Sentry.configureScope, noopFunc)
+
+! https://github.com/AdguardTeam/AdguardFilters/issues/238706
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$script,domain=airtelxstream.in
