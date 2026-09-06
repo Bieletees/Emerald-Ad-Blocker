@@ -8,10 +8,10 @@
 !
 !For more information about this list, see: https://pgl.yoyo.org/adservers/
 !----
-!Last modified: Sat, 29 Aug 2026 20:04:46 GMT
+!Last modified: Fri, 04 Sep 2026 09:58:01 GMT
 !Homepage:      https://pgl.yoyo.org/adservers/
 !Format:        adblockplus
-!Entries:       3537
+!Entries:       3540
 !Credits:       Peter Lowe - pgl@yoyo.org - pgl on github - https://pgl.yoyo.org/
 !This URL:      https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=0&mimetype=plaintext
 !Policy:        https://pgl.yoyo.org/adservers/policy.php
@@ -50,6 +50,7 @@
 ||82o9v830.com^
 ||a-ads.com^
 ||a.mktw.net^
+||a.pemsrv.com^
 ||a.sakh.com^
 ||a.ucoz.net^
 ||a.ucoz.ru^
@@ -541,7 +542,6 @@
 ||ads.reward-hunt.com^
 ||ads.samsung.com^
 ||ads.saymedia.com^
-||ads.schmoozecom.net^
 ||ads.scifi.com^
 ||ads.seniorfriendfinder.com^
 ||ads.servebom.com^
@@ -640,6 +640,7 @@
 ||adsdk.yandex.ru^
 ||adsend.de^
 ||adsensecustomsearchads.com^
+||adserv.snigelweb.com^
 ||adserve.ams.rhythmxchange.com^
 ||adserve.gkeurope.de^
 ||adserve.io^
@@ -669,7 +670,6 @@
 ||adserver.industryarena.com^
 ||adserver.info7.mx^
 ||adserver.irishwebmasterforum.com^
-||adserver.janes.com^
 ||adserver.kontent.com^
 ||adserver.mobi^
 ||adserver.news.com.au^
@@ -746,6 +746,7 @@
 ||adsys.townnews.com^
 ||adsystem.simplemachines.org^
 ||adt598.com^
+||adtagj.portal-factory.com^
 ||adtech.com^
 ||adtech.de^
 ||adtechjp.com^
@@ -765,7 +766,6 @@
 ||adtrk1.com^
 ||adultadvertising.com^
 ||adv-adserver.com^
-||adv.donejty.pl^
 ||adv.freeonline.it^
 ||adv.hwupgrade.it^
 ||adv.mpvc.it^
@@ -1291,7 +1291,6 @@
 ||clickedyclick.com^
 ||clickfuse.com^
 ||clickhereforcellphones.com^
-||clickngo.pro^
 ||clickngo.top^
 ||clickonometrics.pl^
 ||clickrtrckr.com^
@@ -1617,7 +1616,6 @@
 ||everestads.net^
 ||everesttech.net^
 ||evergage.com^
-||eversales.space^
 ||evs.sgmt.loom.com^
 ||evyy.net^
 ||exampleshake.com^
@@ -1675,7 +1673,6 @@
 ||figurehunter.net^
 ||fillthemap.com^
 ||fimserve.com^
-||findcommerce.com^
 ||findyourcasino.com^
 ||fireads.online^
 ||fireads.org^
@@ -1833,7 +1830,6 @@
 ||heap.com^
 ||hellobar.com^
 ||helpcollar.com^
-||hentaicounter.com^
 ||herbalaffiliateprogram.com^
 ||hexcan.com^
 ||hexusads.fluent.ltd.uk^
@@ -2082,6 +2078,7 @@
 ||lightstep.medium.systems^
 ||lijit.com^
 ||limecodesign.com^
+||link-booster.de^
 ||link.axios.com^
 ||link.beelivery.com^
 ||link.email.davidlloydclubs.co.uk^
@@ -2397,6 +2394,7 @@
 ||oascentral.fortunecity.com^
 ||oascentral.register.com^
 ||objecthero.com^
+||obs.sd4823.spglobal.com^
 ||obscenesidewalk.com^
 ||oceancloudhosts.com^
 ||odbierz-bony.ovp.pl^
@@ -2445,6 +2443,7 @@
 ||operationchicken.com^
 ||opienetwork.com^
 ||opmnstr.com^
+||opoxv.com^
 ||oppuz.com^
 ||optimallimit.com^
 ||optimizely.com^
@@ -2506,6 +2505,7 @@
 ||pcash.imlive.com^
 ||peep-auktion.de^
 ||peer39.com^
+||pemsrv.com^
 ||pennyweb.com^
 ||pepperjamnetwork.com^
 ||percentmobile.com^
@@ -2530,7 +2530,6 @@
 ||pippio.com^
 ||piquantpigs.com^
 ||pix.spot.im^
-||pixel.keywee.co^
 ||pixel.sojern.com^
 ||pixel.watch^
 ||pixel.yabidos.com^
@@ -2625,6 +2624,7 @@
 ||pub.hardware.fr^
 ||pub.network^
 ||pub.realmedia.fr^
+||pubbug.com^
 ||pubdirecte.com^
 ||pubfuture-ssp.com^
 ||publicidad.elmundo.es^
@@ -2806,6 +2806,7 @@
 ||ruralrobin.com^
 ||s.adroll.com^
 ||s.dmmew.com^
+||s.uuidksinc.net^
 ||s20dh7e9dh.com^
 ||s2d6.com^
 ||sabio.us^
@@ -3065,6 +3066,7 @@
 ||superawesome.tv^
 ||superchichair.com^
 ||superclix.de^
+||supercounters.com^
 ||superficialsquare.com^
 ||supersonicads.com^
 ||superstats.com^
@@ -3503,6 +3505,7 @@
 ||xfreeservice.com^
 ||xg4ken.com^
 ||xiti.com^
+||xml-v4.oceanfall.xyz^
 ||xplusone.com^
 ||xponsor.com^
 ||xpu.samsungelectronics.com^
